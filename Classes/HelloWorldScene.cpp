@@ -257,7 +257,7 @@ void HelloWorld::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent* event
     SimpleAudioEngine::sharedEngine()->playEffect("laser_ship.wav");
     
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
-    
+    // レーザー射出
     CCSprite *shipLaser = (CCSprite *)_shipLasers->objectAtIndex(_nextShipLaser++);
     if ( _nextShipLaser >= _shipLasers->count() )
         _nextShipLaser = 0;
@@ -277,6 +277,17 @@ void HelloWorld::ccTouchesMoved(cocos2d::CCSet* touches, cocos2d::CCEvent* event
     location = CCDirector::sharedDirector()->convertToGL(location);
     
     _moveShipPos = CCPointMake(location.x - _lastTouchPos.x, location.y - _lastTouchPos.y);
+
+    // レーザー射出
+    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+    CCSprite *shipLaser = (CCSprite *)_shipLasers->objectAtIndex(_nextShipLaser++);
+    if ( _nextShipLaser >= _shipLasers->count() )
+        _nextShipLaser = 0;
+    shipLaser->setPosition( ccpAdd( _ship->getPosition(), ccp(shipLaser->getContentSize().width/2, 0)));
+    shipLaser->setVisible(true);
+    shipLaser->stopAllActions();
+    shipLaser->runAction(CCSequence::create(CCMoveBy::create(0.5,ccp(winSize.width, 0)), CCCallFuncN::create(this, callfuncN_selector(HelloWorld::setInvisible)), NULL  // DO NOT FORGET TO TERMINATE WITH NULL
+                                            ));
     
     _lastTouchPos = location;
 }
@@ -295,6 +306,9 @@ void HelloWorld::restartTapped() {
     this->scheduleUpdate();
 }
 
+/** 
+ * 終了処理
+ */
 void HelloWorld::endScene( EndReason endReason ) {
     if (_gameOver)
         return;
