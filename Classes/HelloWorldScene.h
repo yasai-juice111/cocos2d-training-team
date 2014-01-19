@@ -26,6 +26,10 @@ private:
     CCSprite *_spacialanomaly2;
     
     float _shipPointsPerSecY;
+    bool    _touchFlag;
+    CCPoint _startTouchPos;
+    CCPoint _lastTouchPos;
+    CCPoint _moveShipPos;
 
     CCArray* _asteroids;
     int _nextAsteroid;
@@ -65,6 +69,8 @@ public:
     float getTimeTick();
     
     virtual void ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent* event);
+    virtual void ccTouchesMoved(cocos2d::CCSet* touches, cocos2d::CCEvent* event);
+    virtual void ccTouchesEnded(cocos2d::CCSet* touches, cocos2d::CCEvent* event);
 };
 
 #endif // __HELLOWORLD_SCENE_H__
