@@ -5,6 +5,7 @@ using namespace CocosDenshion;
 using namespace cocos2d;
 using namespace CocosDenshion;
 
+
 CCScene* HelloWorld::scene()
 {
     // 'scene' is an autorelease object
@@ -28,6 +29,9 @@ bool HelloWorld::init()
     {
         return false;
     }
+
+    _touchFlag = false;
+    _moveShipPos = ccp(0, 0);
 
     _batchNode = CCSpriteBatchNode::create("Sprites.pvr.ccz");
     this->addChild(_batchNode);
@@ -68,7 +72,7 @@ bool HelloWorld::init()
     HelloWorld::addChild(CCParticleSystemQuad::create("Stars2.plist"));
     HelloWorld::addChild(CCParticleSystemQuad::create("Stars3.plist"));
     
-    this->setAccelerometerEnabled(true);
+    this->setAccelerometerEnabled(false);
     
     #define KNUMASTEROIDS 15
     _asteroids = new CCArray();
@@ -79,7 +83,7 @@ bool HelloWorld::init()
         _asteroids->addObject(asteroid);
     }
     
-    #define KNUMLASERS 5
+    #define KNUMLASERS 15
     _shipLasers = new CCArray();
     for(int i = 0; i < KNUMLASERS; ++i) {
         CCSprite *shipLaser = CCSprite::createWithSpriteFrameName("laserbeam_blue.png");
@@ -141,13 +145,18 @@ void HelloWorld::update(float dt) {
     }
     
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+    float maxX = winSize.width - _ship->getContentSize().width/2;
     float maxY = winSize.height - _ship->getContentSize().height/2;
+    float minX = _ship->getContentSize().width/2;
     float minY = _ship->getContentSize().height/2;
     
-    float diff = (_shipPointsPerSecY * dt);
-    float newY = _ship->getPosition().y + diff;
+    //    float diff = (_shipPointsPerSecY * dt);
+    float newX = _ship->getPosition().x + _moveShipPos.x;
+    float newY = _ship->getPosition().y + _moveShipPos.y;
+    newX = MIN(MAX(newX, minX), maxX);
     newY = MIN(MAX(newY, minY), maxY);
-    _ship->setPosition(ccp(_ship->getPosition().x, newY));
+    _ship->setPosition(ccp(newX, newY));
+    _moveShipPos = ccp(0, 0);
     
     float curTimeMillis = getTimeTick();
     if (curTimeMillis > _nextAsteroidSpawn) {
@@ -239,6 +248,12 @@ void HelloWorld::setInvisible(CCNode * node) {
 
 void HelloWorld::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent* event)
 {
+    _touchFlag = true;
+    CCTouch *myTouch = (CCTouch*)touches->anyObject();
+    CCPoint location = myTouch->getLocationInView();
+    location = CCDirector::sharedDirector()->convertToGL(location);
+    _startTouchPos = location;
+    
     SimpleAudioEngine::sharedEngine()->playEffect("laser_ship.wav");
     
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
@@ -251,7 +266,27 @@ void HelloWorld::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent* event
     shipLaser->stopAllActions();
     shipLaser->runAction(CCSequence::create(CCMoveBy::create(0.5,ccp(winSize.width, 0)), CCCallFuncN::create(this, callfuncN_selector(HelloWorld::setInvisible)), NULL  // DO NOT FORGET TO TERMINATE WITH NULL
     ));
+    
+    _lastTouchPos = location;
 }
+
+void HelloWorld::ccTouchesMoved(cocos2d::CCSet* touches, cocos2d::CCEvent* event)
+{
+    CCTouch *myTouch = (CCTouch*)touches->anyObject();
+    CCPoint location = myTouch->getLocationInView();
+    location = CCDirector::sharedDirector()->convertToGL(location);
+    
+    _moveShipPos = CCPointMake(location.x - _lastTouchPos.x, location.y - _lastTouchPos.y);
+    
+    _lastTouchPos = location;
+}
+
+
+void HelloWorld::ccTouchesEnded(cocos2d::CCSet* touches, cocos2d::CCEvent* event)
+{
+    _touchFlag = false;
+}
+
 
 void HelloWorld::restartTapped() {
     CCDirector::sharedDirector()->replaceScene
