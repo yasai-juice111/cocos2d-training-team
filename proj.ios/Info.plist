@@ -23,7 +23,7 @@
 		<string>Icon-152.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>jp.cyberagent.cocos2dx-space-game</string>
+	<string>jp.cyberagent.cocos2d-training-team</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
