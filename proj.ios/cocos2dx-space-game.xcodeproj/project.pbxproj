@@ -247,7 +247,6 @@
 		D4EF949C15BD2D8E00D803EB /* Icon-114.png in Resources */ = {isa = PBXBuildFile; fileRef = D4EF949B15BD2D8E00D803EB /* Icon-114.png */; };
 		D4EF949E15BD2D9600D803EB /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = D4EF949D15BD2D9600D803EB /* Icon-72.png */; };
 		D4EF94A015BD2D9800D803EB /* Icon-144.png in Resources */ = {isa = PBXBuildFile; fileRef = D4EF949F15BD2D9800D803EB /* Icon-144.png */; };
-		FAD7F7511894AC57005803FC /* explosion_1 in Resources */ = {isa = PBXBuildFile; fileRef = FAD7F7501894AC57005803FC /* explosion_1 */; };
 		FA1314A11894E1EA00BBBF27 /* GameTitleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA13149B1894E1EA00BBBF27 /* GameTitleScene.cpp */; };
 		FA1314A21894E1EA00BBBF27 /* StageScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA13149D1894E1EA00BBBF27 /* StageScene.cpp */; };
 		FA1314A31894E1EA00BBBF27 /* StartMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA13149F1894E1EA00BBBF27 /* StartMenuScene.cpp */; };
@@ -264,7 +263,6 @@
 		FA1314C81894E22500BBBF27 /* android_pattern_5.png in Resources */ = {isa = PBXBuildFile; fileRef = FA1314BA1894E22500BBBF27 /* android_pattern_5.png */; };
 		FA1314C91894E22500BBBF27 /* android_pattern_6.png in Resources */ = {isa = PBXBuildFile; fileRef = FA1314BB1894E22500BBBF27 /* android_pattern_6.png */; };
 		FA1314CA1894E22500BBBF27 /* android_pattern_7.png in Resources */ = {isa = PBXBuildFile; fileRef = FA1314BC1894E22500BBBF27 /* android_pattern_7.png */; };
-		FA1314CB1894E22500BBBF27 /* explosion_1 in Resources */ = {isa = PBXBuildFile; fileRef = FA1314BD1894E22500BBBF27 /* explosion_1 */; };
 		FA1314CC1894E22500BBBF27 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = FA1314BE1894E22500BBBF27 /* fonts */; };
 		FA1314CD1894E22500BBBF27 /* temp_apple.png in Resources */ = {isa = PBXBuildFile; fileRef = FA1314BF1894E22500BBBF27 /* temp_apple.png */; };
 		FA1314CE1894E22500BBBF27 /* temp_bullets.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA1314C01894E22500BBBF27 /* temp_bullets.plist */; };
@@ -274,6 +272,9 @@
 		FA402E341894C8D5000CBBF9 /* android_boss_1.png in Resources */ = {isa = PBXBuildFile; fileRef = FA402E311894C8D5000CBBF9 /* android_boss_1.png */; };
 		FA402E351894C8D5000CBBF9 /* android_boss_2.png in Resources */ = {isa = PBXBuildFile; fileRef = FA402E321894C8D5000CBBF9 /* android_boss_2.png */; };
 		FA402E361894C8D5000CBBF9 /* android_boss_3.png in Resources */ = {isa = PBXBuildFile; fileRef = FA402E331894C8D5000CBBF9 /* android_boss_3.png */; };
+		FA4990141894F6E000B99B2C /* explosion.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA4990121894F6E000B99B2C /* explosion.plist */; };
+		FA4990151894F6E000B99B2C /* explosion.png in Resources */ = {isa = PBXBuildFile; fileRef = FA4990131894F6E000B99B2C /* explosion.png */; };
+		FA49901A1894F8C000B99B2C /* KawabataScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA4990181894F8C000B99B2C /* KawabataScene.cpp */; };
 		FAB8FBCB188BD8E2002143D8 /* android_vs_ios.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = FAB8FBC7188BD8E2002143D8 /* android_vs_ios.jpeg */; };
 		FAB8FBCC188BD8E2002143D8 /* androidFree.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FAB8FBC8188BD8E2002143D8 /* androidFree.jpg */; };
 		FAB8FBCD188BD8E2002143D8 /* miniAndroid.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FAB8FBC9188BD8E2002143D8 /* miniAndroid.jpg */; };
@@ -798,7 +799,6 @@
 		D4EF949D15BD2D9600D803EB /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "../proj.ios/Icon-72.png"; sourceTree = "<group>"; };
 		D4EF949F15BD2D9800D803EB /* Icon-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-144.png"; path = "../proj.ios/Icon-144.png"; sourceTree = "<group>"; };
 		D4F9F37B12E54555005CA6D2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
-		FAD7F7501894AC57005803FC /* explosion_1 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = explosion_1; sourceTree = "<group>"; };
 		FA13149B1894E1EA00BBBF27 /* GameTitleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameTitleScene.cpp; path = ../Classes/GameTitleScene.cpp; sourceTree = "<group>"; };
 		FA13149C1894E1EA00BBBF27 /* GameTitleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameTitleScene.h; path = ../Classes/GameTitleScene.h; sourceTree = "<group>"; };
 		FA13149D1894E1EA00BBBF27 /* StageScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StageScene.cpp; path = ../Classes/StageScene.cpp; sourceTree = "<group>"; };
@@ -824,7 +824,6 @@
 		FA1314BA1894E22500BBBF27 /* android_pattern_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = android_pattern_5.png; sourceTree = "<group>"; };
 		FA1314BB1894E22500BBBF27 /* android_pattern_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = android_pattern_6.png; sourceTree = "<group>"; };
 		FA1314BC1894E22500BBBF27 /* android_pattern_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = android_pattern_7.png; sourceTree = "<group>"; };
-		FA1314BD1894E22500BBBF27 /* explosion_1 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = explosion_1; sourceTree = "<group>"; };
 		FA1314BE1894E22500BBBF27 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		FA1314BF1894E22500BBBF27 /* temp_apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = temp_apple.png; sourceTree = "<group>"; };
 		FA1314C01894E22500BBBF27 /* temp_bullets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = temp_bullets.plist; sourceTree = "<group>"; };
@@ -834,6 +833,10 @@
 		FA402E311894C8D5000CBBF9 /* android_boss_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = android_boss_1.png; sourceTree = "<group>"; };
 		FA402E321894C8D5000CBBF9 /* android_boss_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = android_boss_2.png; sourceTree = "<group>"; };
 		FA402E331894C8D5000CBBF9 /* android_boss_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = android_boss_3.png; sourceTree = "<group>"; };
+		FA4990121894F6E000B99B2C /* explosion.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = explosion.plist; path = explosion_1/explosion.plist; sourceTree = "<group>"; };
+		FA4990131894F6E000B99B2C /* explosion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = explosion.png; path = explosion_1/explosion.png; sourceTree = "<group>"; };
+		FA4990181894F8C000B99B2C /* KawabataScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = KawabataScene.cpp; path = ../Classes/KawabataScene.cpp; sourceTree = "<group>"; };
+		FA4990191894F8C000B99B2C /* KawabataScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KawabataScene.h; path = ../Classes/KawabataScene.h; sourceTree = "<group>"; };
 		FAB8FBC7188BD8E2002143D8 /* android_vs_ios.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = android_vs_ios.jpeg; sourceTree = "<group>"; };
 		FAB8FBC8188BD8E2002143D8 /* androidFree.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = androidFree.jpg; sourceTree = "<group>"; };
 		FAB8FBC9188BD8E2002143D8 /* miniAndroid.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = miniAndroid.jpg; sourceTree = "<group>"; };
@@ -1381,6 +1384,7 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				FA4990171894F82D00B99B2C /* kawabata */,
 				FAF23E0B1883E41A00BC00A2 /* CCParallaxNodeExtras.cpp */,
 				FAF23E0C1883E41A00BC00A2 /* CCParallaxNodeExtras.h */,
 				1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */,
@@ -1831,7 +1835,6 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				FAD7F7501894AC57005803FC /* explosion_1 */,
 				FA1314B61894E22500BBBF27 /* android_pattern_1.png */,
 				FA1314B71894E22500BBBF27 /* android_pattern_2.png */,
 				FA1314B81894E22500BBBF27 /* android_pattern_3.png */,
@@ -1839,7 +1842,7 @@
 				FA1314BA1894E22500BBBF27 /* android_pattern_5.png */,
 				FA1314BB1894E22500BBBF27 /* android_pattern_6.png */,
 				FA1314BC1894E22500BBBF27 /* android_pattern_7.png */,
-				FA1314BD1894E22500BBBF27 /* explosion_1 */,
+				FA4990161894F70100B99B2C /* explosion_1 */,
 				FA1314BE1894E22500BBBF27 /* fonts */,
 				FA1314BF1894E22500BBBF27 /* temp_apple.png */,
 				FA1314C01894E22500BBBF27 /* temp_bullets.plist */,
@@ -1923,6 +1926,24 @@
 				FA1314AF1894E20B00BBBF27 /* TimeUtils.h */,
 			);
 			name = Game;
+			sourceTree = "<group>";
+		};
+		FA4990161894F70100B99B2C /* explosion_1 */ = {
+			isa = PBXGroup;
+			children = (
+				FA4990121894F6E000B99B2C /* explosion.plist */,
+				FA4990131894F6E000B99B2C /* explosion.png */,
+			);
+			name = explosion_1;
+			sourceTree = "<group>";
+		};
+		FA4990171894F82D00B99B2C /* kawabata */ = {
+			isa = PBXGroup;
+			children = (
+				FA4990181894F8C000B99B2C /* KawabataScene.cpp */,
+				FA4990191894F8C000B99B2C /* KawabataScene.h */,
+			);
+			name = kawabata;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2032,7 +2053,6 @@
 				FAF23E391883E42500BC00A2 /* Stars1.plist in Resources */,
 				FAF23E3A1883E42500BC00A2 /* Stars2.plist in Resources */,
 				FAF23E3B1883E42500BC00A2 /* Stars3.plist in Resources */,
-				FAD7F7511894AC57005803FC /* explosion_1 in Resources */,
 				FAB8FBCB188BD8E2002143D8 /* android_vs_ios.jpeg in Resources */,
 				FAB8FBCC188BD8E2002143D8 /* androidFree.jpg in Resources */,
 				FAB8FBCD188BD8E2002143D8 /* miniAndroid.jpg in Resources */,
@@ -2044,7 +2064,6 @@
 				FA1314C81894E22500BBBF27 /* android_pattern_5.png in Resources */,
 				FA1314C91894E22500BBBF27 /* android_pattern_6.png in Resources */,
 				FA1314CA1894E22500BBBF27 /* android_pattern_7.png in Resources */,
-				FA1314CB1894E22500BBBF27 /* explosion_1 in Resources */,
 				FA1314CC1894E22500BBBF27 /* fonts in Resources */,
 				FA1314CD1894E22500BBBF27 /* temp_apple.png in Resources */,
 				FA1314CE1894E22500BBBF27 /* temp_bullets.plist in Resources */,
@@ -2054,6 +2073,8 @@
 				FA402E341894C8D5000CBBF9 /* android_boss_1.png in Resources */,
 				FA402E351894C8D5000CBBF9 /* android_boss_2.png in Resources */,
 				FA402E361894C8D5000CBBF9 /* android_boss_3.png in Resources */,
+				FA4990141894F6E000B99B2C /* explosion.plist in Resources */,
+				FA4990151894F6E000B99B2C /* explosion.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2286,6 +2307,7 @@
 				FA1314B31894E20B00BBBF27 /* ParallaxLayer.cpp in Sources */,
 				FA1314B41894E20B00BBBF27 /* PlayerShip.cpp in Sources */,
 				FA1314B51894E20B00BBBF27 /* TimeUtils.cpp in Sources */,
+				FA49901A1894F8C000B99B2C /* KawabataScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
