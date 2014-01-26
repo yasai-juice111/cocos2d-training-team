@@ -40,17 +40,16 @@ bool GameTitleScene::init()
     }
     
     
-    
     CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
     CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
     
     // 背景画像を設定
 //    CCSprite* backgroundImg = CCSprite::create("top_bg.jpg");
-    CCSprite* backgroundImg = CCSprite::create("android_vs_ios.jpeg");
+    CCSprite* backgroundImg = CCSprite::create("splash_1.png");
     backgroundImg->setAnchorPoint(ccp(0.5, 0.5));
     backgroundImg->setPosition(ccp(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
     // 背景の画像を縦方向を画面にフィットするようにスケーリング値を取得
-    float   baseScale = 1.0;    //backgroundImg->getContentSize().height / visibleSize.height;
+    float   baseScale = visibleSize.height / backgroundImg->getContentSize().height;    // 1.0
     backgroundImg->setScale(baseScale);
     backgroundImg->setOpacity(0);
     backgroundImg->runAction(CCFadeIn::create(0.1));

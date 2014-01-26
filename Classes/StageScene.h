@@ -15,7 +15,7 @@ class ParallaxLayer;
 class PlayerShip;
 class EnemyShip;
 
-class StageScene : public cocos2d::CCLayer
+class StageScene : public cocos2d::CCLayerColor
 {
 public:
     // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
@@ -28,10 +28,11 @@ public:
     CREATE_FUNC(StageScene);
 
 
-    void update(float dt);
+    virtual void update(float dt);
     virtual void ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent* event);
     virtual void ccTouchesMoved(cocos2d::CCSet* touches, cocos2d::CCEvent* event);
     virtual void ccTouchesEnded(cocos2d::CCSet* touches, cocos2d::CCEvent* event);
+    
     void setInvisible(cocos2d::CCNode * node);
     float randomValueBetween(float low, float high);
     

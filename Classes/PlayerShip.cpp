@@ -186,7 +186,7 @@ void PlayerShip::setDamage()
         if (spriteFrame)
             frames->addObject(spriteFrame);
     }
-    CCAnimation* animation = CCAnimation::createWithSpriteFrames(frames, kDefaultFrameRate*2);
+    CCAnimation* animation = CCAnimation::createWithSpriteFrames(frames, kDefaultFrameRate);
     CCAnimate* animate = CCAnimate::create(animation);
     bombSprite->setPosition(ccp(0, 0));
     this->addChild(bombSprite);
@@ -206,4 +206,13 @@ void PlayerShip::touchBeganProcess(cocos2d::CCPoint& pos)
     }
 }
 
+CCPoint PlayerShip::getBodySize()
+{
+    if (_ship)
+    {
+        return _ship->getContentSize();
+    }
+    
+    return CCPointZero;
+}
 
