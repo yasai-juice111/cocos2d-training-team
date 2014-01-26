@@ -57,7 +57,7 @@ bool StageScene::init()
 //    frameCache->addSpriteFramesWithFile("dragon_ss.plist");
     frameCache->addSpriteFramesWithFile("temp_bullets.plist");
     frameCache->addSpriteFramesWithFile("temp_explosion.plist");
-    frameCache->addSpriteFramesWithFile("explosion.plist"); // 今サイズが大きすぎて表示できない。
+//    frameCache->addSpriteFramesWithFile("explosion.plist"); // 今サイズが大きすぎて表示できない。
    
     // 背景レイヤーの設定
     _backgroundNode = ParallaxLayer::createLayer();

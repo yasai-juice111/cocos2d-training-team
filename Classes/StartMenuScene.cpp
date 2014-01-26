@@ -8,6 +8,7 @@
 
 #include "StartMenuScene.h"
 #include "StageScene.h"
+#include "ShibuyaScene.h"
 #include "cocos2d.h"
 #include "SimpleAudioEngine.h"
 
@@ -133,10 +134,11 @@ bool StartMenuScene::init()
 
 void StartMenuScene::menuSelectGameLevel1(CCObject* pSender)
 {
+    CCLOG("stage1 is selected");
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(kTouchSEName, false);
 
     // スタートメニュー選択が画面に遷移
-    CCScene *pScene = StageScene::scene();
+    CCScene *pScene = ShibuyaScene::scene();
     CCDirector::sharedDirector()->replaceScene(pScene);
 }
 

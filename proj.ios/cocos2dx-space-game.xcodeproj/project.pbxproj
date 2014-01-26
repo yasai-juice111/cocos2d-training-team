@@ -270,6 +270,7 @@
 		FA1314CF1894E22500BBBF27 /* temp_bullets.png in Resources */ = {isa = PBXBuildFile; fileRef = FA1314C11894E22500BBBF27 /* temp_bullets.png */; };
 		FA1314D01894E22500BBBF27 /* temp_explosion.png in Resources */ = {isa = PBXBuildFile; fileRef = FA1314C21894E22500BBBF27 /* temp_explosion.png */; };
 		FA1314D11894E22500BBBF27 /* temp_explosion.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA1314C31894E22500BBBF27 /* temp_explosion.plist */; };
+		FA230CC51894F30600C1F1B8 /* ShibuyaScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA230CC31894F30600C1F1B8 /* ShibuyaScene.cpp */; };
 		FA402E341894C8D5000CBBF9 /* android_boss_1.png in Resources */ = {isa = PBXBuildFile; fileRef = FA402E311894C8D5000CBBF9 /* android_boss_1.png */; };
 		FA402E351894C8D5000CBBF9 /* android_boss_2.png in Resources */ = {isa = PBXBuildFile; fileRef = FA402E321894C8D5000CBBF9 /* android_boss_2.png */; };
 		FA402E361894C8D5000CBBF9 /* android_boss_3.png in Resources */ = {isa = PBXBuildFile; fileRef = FA402E331894C8D5000CBBF9 /* android_boss_3.png */; };
@@ -829,6 +830,8 @@
 		FA1314C11894E22500BBBF27 /* temp_bullets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = temp_bullets.png; sourceTree = "<group>"; };
 		FA1314C21894E22500BBBF27 /* temp_explosion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = temp_explosion.png; sourceTree = "<group>"; };
 		FA1314C31894E22500BBBF27 /* temp_explosion.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = temp_explosion.plist; sourceTree = "<group>"; };
+		FA230CC31894F30600C1F1B8 /* ShibuyaScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShibuyaScene.cpp; path = ../Classes/ShibuyaScene.cpp; sourceTree = "<group>"; };
+		FA230CC41894F30600C1F1B8 /* ShibuyaScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShibuyaScene.h; path = ../Classes/ShibuyaScene.h; sourceTree = "<group>"; };
 		FA402E311894C8D5000CBBF9 /* android_boss_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = android_boss_1.png; sourceTree = "<group>"; };
 		FA402E321894C8D5000CBBF9 /* android_boss_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = android_boss_2.png; sourceTree = "<group>"; };
 		FA402E331894C8D5000CBBF9 /* android_boss_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = android_boss_3.png; sourceTree = "<group>"; };
@@ -1379,6 +1382,7 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				FA230CC21894F2E400C1F1B8 /* Shibuya */,
 				FAF23E0B1883E41A00BC00A2 /* CCParallaxNodeExtras.cpp */,
 				FAF23E0C1883E41A00BC00A2 /* CCParallaxNodeExtras.h */,
 				1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */,
@@ -1922,6 +1926,15 @@
 			name = Game;
 			sourceTree = "<group>";
 		};
+		FA230CC21894F2E400C1F1B8 /* Shibuya */ = {
+			isa = PBXGroup;
+			children = (
+				FA230CC31894F30600C1F1B8 /* ShibuyaScene.cpp */,
+				FA230CC41894F30600C1F1B8 /* ShibuyaScene.h */,
+			);
+			name = Shibuya;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2282,6 +2295,7 @@
 				FA1314B31894E20B00BBBF27 /* ParallaxLayer.cpp in Sources */,
 				FA1314B41894E20B00BBBF27 /* PlayerShip.cpp in Sources */,
 				FA1314B51894E20B00BBBF27 /* TimeUtils.cpp in Sources */,
+				FA230CC51894F30600C1F1B8 /* ShibuyaScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
