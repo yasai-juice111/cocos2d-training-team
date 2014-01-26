@@ -180,6 +180,7 @@ void HelloWorld::update(float dt) {
                                                ));        
     }
     
+    
     // Asteroids
     CCObject* asteroid;
     CCObject* shipLaser;
