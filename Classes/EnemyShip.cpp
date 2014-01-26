@@ -166,7 +166,7 @@ void EnemyShip::shotBullet()
     shipLaser->setPosition( ccpAdd( this->getPosition(), ccp(shipLaser->getContentSize().width/2, 0)));
     shipLaser->setVisible(true);
     shipLaser->stopAllActions();
-    shipLaser->runAction(CCSequence::create(CCMoveBy::create(0.5, ccp(-winSize.width, 0)), CCCallFuncN::create(this, callfuncN_selector(EnemyShip::setInvisible)), NULL));
+    shipLaser->runAction(CCSequence::create(CCMoveBy::create(0.5, ccp(-winSize.width, 400)), CCCallFuncN::create(this, callfuncN_selector(EnemyShip::setInvisible)), NULL));
 }
 
 void EnemyShip::setInvisible(CCNode * node)

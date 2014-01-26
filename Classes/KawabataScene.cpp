@@ -32,7 +32,7 @@ bool KawabataScene::init()
 {
     //////////////////////////////
     // 1. super init first
-    if ( !CCLayer::init() )
+    if (!CCLayer::init())
     {
         return false;
     }
@@ -101,7 +101,7 @@ bool KawabataScene::init()
     }
     
     // Player機の作成
-    //    _playerShip = PlayerShip::createShipFrame("dragon_ss", 4);
+//    _playerShip = PlayerShip::createShipFrame("dragon_ss", 4);
     CCString*   playerShipName = new CCString("temp_apple.png");
     _playerShip = PlayerShip::createShip(playerShipName->getCString());
     _playerShip->setPosition(ccp(winSize.width * 0.1, winSize.height * 0.5));

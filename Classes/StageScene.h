@@ -28,7 +28,7 @@ public:
     CREATE_FUNC(StageScene);
 
 
-    void update(float dt);
+    virtual void update(float dt);
     virtual void ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent* event);
     virtual void ccTouchesMoved(cocos2d::CCSet* touches, cocos2d::CCEvent* event);
     virtual void ccTouchesEnded(cocos2d::CCSet* touches, cocos2d::CCEvent* event);
