@@ -32,7 +32,7 @@ bool KawabataScene::init()
 {
     //////////////////////////////
     // 1. super init first
-    if (!CCLayer::init())
+    if ( !CCLayerColor::initWithColor(ccc4(128,128,128,0)))
     {
         return false;
     }
