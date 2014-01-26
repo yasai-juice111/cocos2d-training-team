@@ -129,6 +129,8 @@ bool HelloWorld::init()
     
     _lives = 3;
     this->showLifeLabel();
+    _enemyLives = 10;
+
     double curTime = getTimeTick();
     _gameOverTime = curTime + 30000;
     
@@ -246,6 +248,7 @@ void HelloWorld::update(float dt) {
     // Asteroids
     CCObject* shipLaser;
     CCObject* enemyLaser;
+    CCObject* enemyChildLaser;
     // 敵機レーザー
     CCARRAY_FOREACH(_enemyLasers, enemyLaser){
         if (!((CCSprite *) enemyLaser)->isVisible() )
@@ -259,12 +262,12 @@ void HelloWorld::update(float dt) {
         }
     }
     // 敵機子機レーザー
-    CCARRAY_FOREACH(_enemyChildLasers, enemyLaser){
-        if (!((CCSprite *) enemyLaser)->isVisible() )
+    CCARRAY_FOREACH(_enemyChildLasers, enemyChildLaser){
+        if (!((CCSprite *) enemyChildLaser)->isVisible() )
             continue;
-        // 自機と敵機レーザー
-        if (_ship->boundingBox().intersectsRect(((CCSprite *)enemyLaser)->boundingBox()) ) {
-            ((CCSprite *)enemyLaser)->setVisible(false);
+        // 自機と敵機子機レーザー
+        if (_ship->boundingBox().intersectsRect(((CCSprite *)enemyChildLaser)->boundingBox()) ) {
+            ((CCSprite *)enemyChildLaser)->setVisible(false);
             _ship->runAction( CCBlink::create(1.0, 9));
             _lives--;
             this->showLifeLabel();
@@ -277,12 +280,16 @@ void HelloWorld::update(float dt) {
 
         // 自機レーザーと敵機
         if (_enemy->boundingBox().intersectsRect(((CCSprite *)shipLaser)->boundingBox()) ) {
-            ((CCSprite *)shipLaser)->setVisible(false);
             _enemy->runAction( CCBlink::create(1.0, 9));
-            CCObject* enemyChild;
-            CCARRAY_FOREACH(_enemyChilds, enemyChild){
-                if (((CCSprite *) enemyChild)->isVisible() == false) {
-                    ((CCSprite *) enemyChild)->setVisible(true);
+            _enemyLives--;
+            
+            // 子機を表示
+            if (_enemyLives > 0 && _enemyLives % 3 == 0) {
+                CCObject* enemyChild;
+                CCARRAY_FOREACH(_enemyChilds, enemyChild){
+                    if (((CCSprite *) enemyChild)->isVisible() == false) {
+                        ((CCSprite *) enemyChild)->setVisible(true);
+                    }
                 }
             }
         }
@@ -291,7 +298,7 @@ void HelloWorld::update(float dt) {
         _ship->stopAllActions();
         _ship->setVisible(false);
         this->endScene(KENDREASONLOSE);
-    } else if (curTimeMillis >= _gameOverTime) {
+    } else if (curTimeMillis >= _gameOverTime || _enemyLives <= 0) {
         this->endScene(KENDREASONWIN);
     } else {
         this->showRemainingTimeLabel(curTimeMillis);

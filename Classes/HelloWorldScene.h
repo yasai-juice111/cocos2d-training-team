@@ -49,6 +49,7 @@ private:
 	int _nextEnemyChildLaser;
     
     int _lives;
+    int _enemyLives;
     
     double _gameOverTime;
     bool _gameOver;
