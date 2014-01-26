@@ -17,6 +17,7 @@ private:
 	cocos2d::CCSpriteBatchNode * _batchNode;
 	cocos2d::CCSprite * _ship;
 	cocos2d::CCSprite * _enemy;
+    cocos2d::CCSprite * _enemyChild;
 
     CCParallaxNodeExtras *_backgroundNode;
     CCSprite *_spacedust1;
@@ -25,7 +26,6 @@ private:
     CCSprite *_galaxy;
     CCSprite *_spacialanomaly;
     CCSprite *_spacialanomaly2;
-    CCSprite *_backgroundImage;
     
     float _shipPointsPerSecY;
     bool    _touchFlag;
@@ -42,7 +42,10 @@ private:
     
 	CCArray* _enemyLasers;
 	int _nextEnemyLaser;
-
+    
+	CCArray* _enemyChildLasers;
+	int _nextEnemyChildLaser;
+    
     int _lives;
     
     double _gameOverTime;

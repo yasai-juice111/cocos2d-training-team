@@ -49,6 +49,12 @@ bool HelloWorld::init()
 	_enemyVelocityX = winSize.width * (-0.01);
 	_enemyVelocityY = winSize.height * (-0.01);
     
+    // enemyChild
+	_enemyChild = CCSprite::create("Android_Robot_100.png");
+    _enemyChild->setScale(0.5);
+    _enemyChild->setVisible(false);
+	this->addChild(_enemyChild, 1);
+    
     // 1) Create the CCParallaxNode
     _backgroundNode = CCParallaxNodeExtras::node();
     this->addChild(_backgroundNode,-1) ;
@@ -60,7 +66,6 @@ bool HelloWorld::init()
     _galaxy = CCSprite::create("bg_galaxy.png");
     _spacialanomaly = CCSprite::create("bg_spacialanomaly.png");
     _spacialanomaly2 = CCSprite::create("bg_spacialanomaly2.png");
-    _backgroundImage = CCSprite::create("locations_alpine_125695.jpg");
     
     // 3) Determine relative movement speeds for space dust and background
     CCPoint dustSpeed = ccp(0.1, 0.1);
@@ -73,11 +78,7 @@ bool HelloWorld::init()
     _backgroundNode->addChild(_planetsunrise, -1 , bgSpeed, ccp(600, winSize.height * 0));
     _backgroundNode->addChild(_spacialanomaly, -1, bgSpeed, ccp(900, winSize.height * 0.3));
     _backgroundNode->addChild(_spacialanomaly2, -1, bgSpeed, ccp(1500, winSize.height * 0.9));
-    
-    _backgroundImage->setPosition(ccp(winSize.width * 0.5, winSize.height * 0.5));
-    _backgroundImage->setScale(winSize.height / _backgroundImage->getContentSize().height);
-    this->addChild(_backgroundImage, 0);
-    
+        
     this->scheduleUpdate();
 
     HelloWorld::addChild(CCParticleSystemQuad::create("Stars1.plist"));
@@ -110,6 +111,14 @@ bool HelloWorld::init()
 		_batchNode->addChild(enemyLaser);
 		_enemyLasers->addObject(enemyLaser);
 	}
+    _enemyChildLasers = new CCArray();
+	for(int i = 0; i < KNUMLASERS; ++i) {
+		CCSprite *enemyChildLaser = CCSprite::createWithSpriteFrameName("laserbeam_blue.png");
+		enemyChildLaser->setVisible(false);
+		_batchNode->addChild(enemyChildLaser);
+		_enemyChildLasers->addObject(enemyChildLaser);
+	}
+
     this->setTouchEnabled(true);
     
     _lives = 3;
@@ -189,7 +198,11 @@ void HelloWorld::update(float dt) {
 		newEnemyY += _enemyVelocityY * 10;
 	}
 	_enemy->setPosition(ccp(newEnemyX, newEnemyY));
-
+    
+    // enemyChild position
+    if (((CCSprite *) _enemyChild)->isVisible() ) {
+        _enemyChild->setPosition(ccp(newEnemyX, newEnemyY + winSize.height * 0.15));
+    }
     
     float curTimeMillis = getTimeTick();
     if (curTimeMillis > _nextAsteroidSpawn) {
@@ -217,34 +230,60 @@ void HelloWorld::update(float dt) {
 		enemyLaser->setPosition( ccpAdd( _enemy->getPosition(), ccp(enemyLaser->getContentSize().width/2, 0)));
 		enemyLaser->setVisible(true);
 		enemyLaser->stopAllActions();
-		enemyLaser->runAction(CCSequence::create(CCMoveBy::create(0.5,ccp(-winSize.width, 0)), CCCallFuncN::create(this, callfuncN_selector(HelloWorld::setInvisible)), NULL  // DO NOT FORGET TO TERMINATE WITH NULL
-												 ));
+		enemyLaser->runAction(CCSequence::create(CCMoveBy::create(0.5,ccp(-winSize.width, 0)), CCCallFuncN::create(this, callfuncN_selector(HelloWorld::setInvisible)), NULL));  // DO NOT FORGET TO TERMINATE WITH NULL
+
+        if (((CCSprite *) _enemyChild)->isVisible() == true) {
+            CCSprite *enemyChildLaser = (CCSprite *)_enemyChildLasers->objectAtIndex(_nextEnemyChildLaser++);
+            if ( _nextEnemyChildLaser >= _enemyChildLasers->count() )
+                _nextEnemyChildLaser = 0;
+            enemyChildLaser->setPosition( ccpAdd( _enemyChild->getPosition(), ccp(enemyChildLaser->getContentSize().width/2, 0)));
+            enemyChildLaser->setVisible(true);
+            enemyChildLaser->stopAllActions();
+            enemyChildLaser->runAction(CCSequence::create(CCMoveBy::create(0.5,ccp(-winSize.width, 0)), CCCallFuncN::create(this, callfuncN_selector(HelloWorld::setInvisible)), NULL));  // DO NOT FORGET TO TERMINATE WITH NULL
+        }
 
     }
     
     // Asteroids
-    CCObject* asteroid;
     CCObject* shipLaser;
-    CCARRAY_FOREACH(_asteroids, asteroid){
-        if (!((CCSprite *) asteroid)->isVisible() )
+    CCObject* enemyLaser;
+    // 敵機レーザー
+    CCARRAY_FOREACH(_enemyLasers, enemyLaser){
+        if (!((CCSprite *) enemyLaser)->isVisible() )
             continue;
-        CCARRAY_FOREACH(_shipLasers, shipLaser){
-            if (!((CCSprite *) shipLaser)->isVisible())
-                continue;
-            if (((CCSprite *) shipLaser)->boundingBox().intersectsRect(((CCSprite *)asteroid)->boundingBox()) ) {
-                SimpleAudioEngine::sharedEngine()->playEffect("explosion_large.wav");
-                ((CCSprite *)shipLaser)->setVisible(false);
-                ((CCSprite *)asteroid)->setVisible(false);
-                continue;
-            }
-        }
-        if (_ship->boundingBox().intersectsRect(((CCSprite *)asteroid)->boundingBox()) ) {
-            ((CCSprite *)asteroid)->setVisible(false);
-            _ship->runAction( CCBlink::create(1.0, 9));
+//        // 小惑星と自機レーザー
+//        CCARRAY_FOREACH(_shipLasers, shipLaser){
+//            if (!((CCSprite *) shipLaser)->isVisible())
+//                continue;
+//            if (((CCSprite *) shipLaser)->boundingBox().intersectsRect(((CCSprite *)asteroid)->boundingBox()) ) {
+//                SimpleAudioEngine::sharedEngine()->playEffect("explosion_large.wav");
+//                ((CCSprite *)shipLaser)->setVisible(false);
+//                ((CCSprite *)asteroid)->setVisible(false);
+//                continue;
+//            }
+//        }
+        // 自機と敵機レーザー
+        if (_ship->boundingBox().intersectsRect(((CCSprite *)enemyLaser)->boundingBox()) ) {
+            ((CCSprite *)enemyLaser)->setVisible(false);
+//            _ship->runAction( CCBlink::create(1.0, 9));
             _lives--;
         }
     }
-    
+    // 自機レーザー
+    CCARRAY_FOREACH(_shipLasers, shipLaser){
+        if (!((CCSprite *) shipLaser)->isVisible() )
+            continue;
+
+        // 自機レーザーと敵機
+        if (_enemy->boundingBox().intersectsRect(((CCSprite *)shipLaser)->boundingBox()) ) {
+            ((CCSprite *)shipLaser)->setVisible(false);
+//            _enemy->runAction( CCBlink::create(1.0, 9));
+            if (((CCSprite *) _enemyChild)->isVisible() == false) {
+                _enemyChild->setVisible(true);
+            }
+
+        }
+    }
     if (_lives <= 0) {
         _ship->stopAllActions();
         _ship->setVisible(false);
