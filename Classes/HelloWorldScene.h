@@ -16,6 +16,7 @@ class HelloWorld : public cocos2d::CCLayer
 private:
 	cocos2d::CCSpriteBatchNode * _batchNode;
 	cocos2d::CCSprite * _ship;
+	cocos2d::CCSprite * _enemy;
 
     CCParallaxNodeExtras *_backgroundNode;
     CCSprite *_spacedust1;
@@ -24,6 +25,7 @@ private:
     CCSprite *_galaxy;
     CCSprite *_spacialanomaly;
     CCSprite *_spacialanomaly2;
+    CCSprite *_backgroundImage;
     
     float _shipPointsPerSecY;
     bool    _touchFlag;
@@ -38,11 +40,18 @@ private:
     CCArray* _shipLasers;
     int _nextShipLaser;
     
+	CCArray* _enemyLasers;
+	int _nextEnemyLaser;
+
     int _lives;
     
     double _gameOverTime;
     bool _gameOver;
     
+	// enemy velocity
+	int _enemyVelocityX;
+	int _enemyVelocityY;
+
     // scheduled Update
     void update(float dt);
     

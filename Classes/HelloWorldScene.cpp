@@ -42,6 +42,13 @@ bool HelloWorld::init()
     _ship->setPosition(ccp(winSize.width * 0.1, winSize.height * 0.5));
     _batchNode->addChild(_ship, 1);
     
+    // enemy
+	_enemy = CCSprite::create("Android_Robot_100.png");
+	_enemy->setPosition(ccp(winSize.width * 0.9, winSize.height * 0.5));
+	this->addChild(_enemy, 1);
+	_enemyVelocityX = winSize.width * (-0.01);
+	_enemyVelocityY = winSize.height * (-0.01);
+    
     // 1) Create the CCParallaxNode
     _backgroundNode = CCParallaxNodeExtras::node();
     this->addChild(_backgroundNode,-1) ;
@@ -53,6 +60,7 @@ bool HelloWorld::init()
     _galaxy = CCSprite::create("bg_galaxy.png");
     _spacialanomaly = CCSprite::create("bg_spacialanomaly.png");
     _spacialanomaly2 = CCSprite::create("bg_spacialanomaly2.png");
+    _backgroundImage = CCSprite::create("locations_alpine_125695.jpg");
     
     // 3) Determine relative movement speeds for space dust and background
     CCPoint dustSpeed = ccp(0.1, 0.1);
@@ -65,6 +73,10 @@ bool HelloWorld::init()
     _backgroundNode->addChild(_planetsunrise, -1 , bgSpeed, ccp(600, winSize.height * 0));
     _backgroundNode->addChild(_spacialanomaly, -1, bgSpeed, ccp(900, winSize.height * 0.3));
     _backgroundNode->addChild(_spacialanomaly2, -1, bgSpeed, ccp(1500, winSize.height * 0.9));
+    
+    _backgroundImage->setPosition(ccp(winSize.width * 0.5, winSize.height * 0.5));
+    _backgroundImage->setScale(winSize.height / _backgroundImage->getContentSize().height);
+    this->addChild(_backgroundImage, 0);
     
     this->scheduleUpdate();
 
@@ -91,6 +103,13 @@ bool HelloWorld::init()
         _batchNode->addChild(shipLaser);
         _shipLasers->addObject(shipLaser);
     }
+    _enemyLasers = new CCArray();
+	for(int i = 0; i < KNUMLASERS; ++i) {
+		CCSprite *enemyLaser = CCSprite::createWithSpriteFrameName("laserbeam_blue.png");
+		enemyLaser->setVisible(false);
+		_batchNode->addChild(enemyLaser);
+		_enemyLasers->addObject(enemyLaser);
+	}
     this->setTouchEnabled(true);
     
     _lives = 3;
@@ -158,26 +177,49 @@ void HelloWorld::update(float dt) {
     _ship->setPosition(ccp(newX, newY));
     _moveShipPos = ccp(0, 0);
     
+    // enemy position
+	float newEnemyX = _enemy->getPosition().x + _enemyVelocityX;
+	if (newEnemyX < winSize.width * 0.3 || winSize.width * 0.9 < newEnemyX) {
+		_enemyVelocityX *= -1;
+		newEnemyX += _enemyVelocityX * 10;
+	}
+	float newEnemyY = _enemy->getPosition().y + _enemyVelocityY;
+	if (newEnemyY < winSize.height * 0.1 || winSize.height * 0.9 < newEnemyY) {
+		_enemyVelocityY *= -1;
+		newEnemyY += _enemyVelocityY * 10;
+	}
+	_enemy->setPosition(ccp(newEnemyX, newEnemyY));
+
+    
     float curTimeMillis = getTimeTick();
     if (curTimeMillis > _nextAsteroidSpawn) {
         
         float randMillisecs = randomValueBetween(0.20,1.0) * 1000;
         _nextAsteroidSpawn = randMillisecs + curTimeMillis;
         
-        float randY = randomValueBetween(0.0,winSize.height);
-        float randDuration = randomValueBetween(2.0,10.0);
+//        float randY = randomValueBetween(0.0,winSize.height);
+//        float randDuration = randomValueBetween(2.0,10.0);
         
-        CCSprite *asteroid = (CCSprite *)_asteroids->objectAtIndex(_nextAsteroid);
-        _nextAsteroid++;
-        
-        if (_nextAsteroid >= _asteroids->count())
-            _nextAsteroid = 0;
-        
-        asteroid->stopAllActions();
-        asteroid->setPosition( ccp(winSize.width+asteroid->getContentSize().width/2, randY));
-        asteroid->setVisible(true);
-        asteroid->runAction(CCSequence::create(CCMoveBy::create(randDuration, ccp(-winSize.width-asteroid->getContentSize().width, 0)), CCCallFuncN::create(this, callfuncN_selector(HelloWorld::setInvisible)), NULL // DO NOT FORGET TO TERMINATE WITH NULL (unexpected in C++)
-                                               ));        
+//        CCSprite *asteroid = (CCSprite *)_asteroids->objectAtIndex(_nextAsteroid);
+//        _nextAsteroid++;
+//        
+//        if (_nextAsteroid >= _asteroids->count())
+//            _nextAsteroid = 0;
+//        
+//        asteroid->stopAllActions();
+//        asteroid->setPosition( ccp(winSize.width+asteroid->getContentSize().width/2, randY));
+//        asteroid->setVisible(true);
+//        asteroid->runAction(CCSequence::create(CCMoveBy::create(randDuration, ccp(-winSize.width-asteroid->getContentSize().width, 0)), CCCallFuncN::create(this, callfuncN_selector(HelloWorld::setInvisible)), NULL // DO NOT FORGET TO TERMINATE WITH NULL (unexpected in C++)
+//                                               ));
+        CCSprite *enemyLaser = (CCSprite *)_enemyLasers->objectAtIndex(_nextEnemyLaser++);
+		if ( _nextEnemyLaser >= _enemyLasers->count() )
+			_nextEnemyLaser = 0;
+		enemyLaser->setPosition( ccpAdd( _enemy->getPosition(), ccp(enemyLaser->getContentSize().width/2, 0)));
+		enemyLaser->setVisible(true);
+		enemyLaser->stopAllActions();
+		enemyLaser->runAction(CCSequence::create(CCMoveBy::create(0.5,ccp(-winSize.width, 0)), CCCallFuncN::create(this, callfuncN_selector(HelloWorld::setInvisible)), NULL  // DO NOT FORGET TO TERMINATE WITH NULL
+												 ));
+
     }
     
     // Asteroids
