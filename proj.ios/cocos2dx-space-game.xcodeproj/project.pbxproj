@@ -274,7 +274,7 @@
 		FA402E361894C8D5000CBBF9 /* android_boss_3.png in Resources */ = {isa = PBXBuildFile; fileRef = FA402E331894C8D5000CBBF9 /* android_boss_3.png */; };
 		FA4990141894F6E000B99B2C /* explosion.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA4990121894F6E000B99B2C /* explosion.plist */; };
 		FA4990151894F6E000B99B2C /* explosion.png in Resources */ = {isa = PBXBuildFile; fileRef = FA4990131894F6E000B99B2C /* explosion.png */; };
-		FA49901A1894F8C000B99B2C /* KawabataScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA4990181894F8C000B99B2C /* KawabataScene.cpp */; };
+		FA4990211894FE7B00B99B2C /* KawabataScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA49901F1894FE7B00B99B2C /* KawabataScene.cpp */; };
 		FAB8FBCB188BD8E2002143D8 /* android_vs_ios.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = FAB8FBC7188BD8E2002143D8 /* android_vs_ios.jpeg */; };
 		FAB8FBCC188BD8E2002143D8 /* androidFree.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FAB8FBC8188BD8E2002143D8 /* androidFree.jpg */; };
 		FAB8FBCD188BD8E2002143D8 /* miniAndroid.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FAB8FBC9188BD8E2002143D8 /* miniAndroid.jpg */; };
@@ -835,8 +835,8 @@
 		FA402E331894C8D5000CBBF9 /* android_boss_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = android_boss_3.png; sourceTree = "<group>"; };
 		FA4990121894F6E000B99B2C /* explosion.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = explosion.plist; path = explosion_1/explosion.plist; sourceTree = "<group>"; };
 		FA4990131894F6E000B99B2C /* explosion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = explosion.png; path = explosion_1/explosion.png; sourceTree = "<group>"; };
-		FA4990181894F8C000B99B2C /* KawabataScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = KawabataScene.cpp; path = ../Classes/KawabataScene.cpp; sourceTree = "<group>"; };
-		FA4990191894F8C000B99B2C /* KawabataScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KawabataScene.h; path = ../Classes/KawabataScene.h; sourceTree = "<group>"; };
+		FA49901F1894FE7B00B99B2C /* KawabataScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = KawabataScene.cpp; path = ../Classes/KawabataScene.cpp; sourceTree = "<group>"; };
+		FA4990201894FE7B00B99B2C /* KawabataScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KawabataScene.h; path = ../Classes/KawabataScene.h; sourceTree = "<group>"; };
 		FAB8FBC7188BD8E2002143D8 /* android_vs_ios.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = android_vs_ios.jpeg; sourceTree = "<group>"; };
 		FAB8FBC8188BD8E2002143D8 /* androidFree.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = androidFree.jpg; sourceTree = "<group>"; };
 		FAB8FBC9188BD8E2002143D8 /* miniAndroid.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = miniAndroid.jpg; sourceTree = "<group>"; };
@@ -1384,7 +1384,7 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				FA4990171894F82D00B99B2C /* kawabata */,
+				FA4990221894FEB700B99B2C /* Kawabata */,
 				FAF23E0B1883E41A00BC00A2 /* CCParallaxNodeExtras.cpp */,
 				FAF23E0C1883E41A00BC00A2 /* CCParallaxNodeExtras.h */,
 				1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */,
@@ -1937,13 +1937,13 @@
 			name = explosion_1;
 			sourceTree = "<group>";
 		};
-		FA4990171894F82D00B99B2C /* kawabata */ = {
+		FA4990221894FEB700B99B2C /* Kawabata */ = {
 			isa = PBXGroup;
 			children = (
-				FA4990181894F8C000B99B2C /* KawabataScene.cpp */,
-				FA4990191894F8C000B99B2C /* KawabataScene.h */,
+				FA49901F1894FE7B00B99B2C /* KawabataScene.cpp */,
+				FA4990201894FE7B00B99B2C /* KawabataScene.h */,
 			);
-			name = kawabata;
+			name = Kawabata;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2307,7 +2307,7 @@
 				FA1314B31894E20B00BBBF27 /* ParallaxLayer.cpp in Sources */,
 				FA1314B41894E20B00BBBF27 /* PlayerShip.cpp in Sources */,
 				FA1314B51894E20B00BBBF27 /* TimeUtils.cpp in Sources */,
-				FA49901A1894F8C000B99B2C /* KawabataScene.cpp in Sources */,
+				FA4990211894FE7B00B99B2C /* KawabataScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
