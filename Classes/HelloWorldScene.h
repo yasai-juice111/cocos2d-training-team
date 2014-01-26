@@ -17,7 +17,6 @@ private:
 	cocos2d::CCSpriteBatchNode * _batchNode;
 	cocos2d::CCSprite * _ship;
 	cocos2d::CCSprite * _enemy;
-    cocos2d::CCSprite * _enemyChild;
 
     CCParallaxNodeExtras *_backgroundNode;
     CCSprite *_spacedust1;
@@ -36,7 +35,10 @@ private:
     CCArray* _asteroids;
     int _nextAsteroid;
     float _nextAsteroidSpawn;
-    
+
+    CCArray* _enemyChilds;
+    int _nextEnemyChild;
+
     CCArray* _shipLasers;
     int _nextShipLaser;
     
@@ -60,6 +62,9 @@ private:
     
     void endScene(EndReason endReason);
     void restartTapped();
+    
+    void showLifeLabel();
+    void showRemainingTimeLabel(float time);
     
 public:
     // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
