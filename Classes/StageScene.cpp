@@ -40,7 +40,7 @@ bool StageScene::init()
 {
     //////////////////////////////
     // 1. super init first
-    if ( !CCLayer::init() )
+    if ( !CCLayerColor::initWithColor(ccc4(128,128,128,0)))
     {
         return false;
     }
@@ -57,7 +57,7 @@ bool StageScene::init()
 //    frameCache->addSpriteFramesWithFile("dragon_ss.plist");
     frameCache->addSpriteFramesWithFile("temp_bullets.plist");
     frameCache->addSpriteFramesWithFile("temp_explosion.plist");
-    frameCache->addSpriteFramesWithFile("explosion.plist"); // 今サイズが大きすぎて表示できない。
+//    frameCache->addSpriteFramesWithFile("explosion.plist"); // 今サイズが大きすぎて表示できない。エラーが出るので今だけコメントアウト
    
     // 背景レイヤーの設定
     _backgroundNode = ParallaxLayer::createLayer();
@@ -110,7 +110,7 @@ bool StageScene::init()
     
     // Player機の作成
 //    _playerShip = PlayerShip::createShipFrame("dragon_ss", 4);
-    CCString*   playerShipName = new CCString("temp_apple.png");
+    CCString*   playerShipName = new CCString("apple_hero.png");
     _playerShip = PlayerShip::createShip(playerShipName->getCString());
     _playerShip->setPosition(ccp(winSize.width * 0.1, winSize.height * 0.5));
     this->addChild(_playerShip, 3);

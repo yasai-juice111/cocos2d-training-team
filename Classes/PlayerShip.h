@@ -29,6 +29,7 @@ public:
     void shotBullet();
     void setInvisible(cocos2d::CCNode * node);
     void touchBeganProcess(cocos2d::CCPoint& pos);
+    cocos2d::CCPoint getBodySize();
     
     void setDamage();
 
