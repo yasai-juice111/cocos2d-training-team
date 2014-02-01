@@ -71,27 +71,27 @@ bool KawabataScene::init()
     // 適機の設定
     _enemyLayer = new CCNode();
     this->addChild(_enemyLayer, 2);
-    EnemyShip *enemyShip;
+    KawabataEnemy *enemyShip;
     for(int i = 0; i < 30; ++i)
     {
         if (i < 10)
         {
-            enemyShip = EnemyShip::createShip("android_pattern_3.png");
+            enemyShip = KawabataEnemy::createShip("android_pattern_3.png");
             enemyShip->setMoveSpeed(5);
         }
         else if (i < 20)
         {
-            enemyShip = EnemyShip::createShip("android_pattern_5.png");
+            enemyShip = KawabataEnemy::createShip("android_pattern_5.png");
             enemyShip->setMoveSpeed(4);
         }
         else if (i < 25)
         {
-            enemyShip = EnemyShip::createShip("android_pattern_3.png");
+            enemyShip = KawabataEnemy::createShip("android_pattern_3.png");
             enemyShip->setMoveSpeed(6);
         }
         else if (i < 30)
         {
-            enemyShip = EnemyShip::createShip("android_pattern_5.png");
+            enemyShip = KawabataEnemy::createShip("android_pattern_5.png");
             enemyShip->setMoveSpeed(8);
         }
         enemyShip->initBullets(_batchNode);
@@ -144,7 +144,7 @@ void KawabataScene::update(float dt)
     _playerShip->update(dt);
     
     // 適機の自動生成処理
-    double curTimeMillis = TimeUtils::getTime();
+    double curTimeMillis = TimeUtils::getTime() / 2.f;	// この値が大きければ、短いスパンで出現する
     if (curTimeMillis > _nextEnemySpawn)
     {
         float randMillisecs = randomValueBetween(0.20,1.0);
@@ -165,7 +165,7 @@ void KawabataScene::update(float dt)
     
     // 敵機の表示位置の更新
     EnemyShip *enemyShip;
-    std::vector<EnemyShip *>::iterator iterEnemy = _enemyList.begin();
+    std::vector<KawabataEnemy *>::iterator iterEnemy = _enemyList.begin();
     while (iterEnemy != _enemyList.end())
     {
         enemyShip = (EnemyShip*)(*iterEnemy);

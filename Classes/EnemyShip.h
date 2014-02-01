@@ -40,7 +40,7 @@ public:
 public:
     std::vector<BulletSprite*>  bulletList;
     
-private:
+protected:
     cocos2d::CCSprite*  _ship;
     cocos2d::CCString*  _imageName;
     bool                _autoShooting;

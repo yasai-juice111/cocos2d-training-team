@@ -12,15 +12,18 @@
 #include "StageScene.h"
 #include "ParallaxLayer.h"
 #include "PlayerShip.h"
-#include "EnemyShip.h"
+//#include "EnemyShip.h"
 #include "BulletSprite.h"
 #include "TimeUtils.h"
 #include "SimpleAudioEngine.h"
 
+#include "KawabataEnemy.h"
+
 // クラス定義必要？
 class ParallaxLayer;
 class PlayerShip;
-class EnemyShip;
+//class EnemyShip;
+class KawabataEnemy;
 
 class KawabataScene : public StageScene
 {
@@ -45,7 +48,7 @@ private:
     cocos2d::CCNode*    _enemyLayer;
     ParallaxLayer*  _backgroundNode;
     
-    std::vector<EnemyShip*>_enemyList;
+    std::vector<KawabataEnemy*>_enemyList;
     
     int             _nextEnemy;
     double          _nextEnemySpawn;
