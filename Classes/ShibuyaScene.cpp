@@ -215,35 +215,38 @@ void ShibuyaScene::update(float dt)
 				}
 
 				// Playerの弾とボス子機との衝突判定
-				CCRect sbBossChildUpperShipBounds = _sbBossChildUpperShip->boundingBox();
-				if (pBulletBounds.intersectsRect(sbBossChildUpperShipBounds)) {
-					_sbBossChildUpperShip->setDamage();
-					
-					int life = _sbBossChildUpperShip->getLife();
-					life--;
-					_sbBossChildUpperShip->setLife(life);
-					CCLOG("_sbBossChildUpperShip life: %d", life);
-					
-					if (life == 0) {
-						_sbBossChildUpperShip->setVisible(false);
+				if (_sbBossChildUpperShip->isVisible()) {
+					CCRect sbBossChildUpperShipBounds = _sbBossChildUpperShip->boundingBox();
+					if (pBulletBounds.intersectsRect(sbBossChildUpperShipBounds)) {
+						_sbBossChildUpperShip->setDamage();
+						
+						int life = _sbBossChildUpperShip->getLife();
+						life--;
+						_sbBossChildUpperShip->setLife(life);
+						CCLOG("_sbBossChildUpperShip life: %d", life);
+						
+						if (life == 0) {
+							_sbBossChildUpperShip->setVisible(false);
+						}
 					}
 				}
 
 				// Playerの弾とボス子機との衝突判定
-				CCRect sbBossChildLowerShipBounds = _sbBossChildLowerShip->boundingBox();
-				if (pBulletBounds.intersectsRect(sbBossChildLowerShipBounds)) {
-					_sbBossChildLowerShip->setDamage();
-					
-					int life = _sbBossChildLowerShip->getLife();
-					life--;
-					_sbBossChildLowerShip->setLife(life);
-					CCLOG("_sbBossChildLowerShip life: %d", life);
-					
-					if (life == 0) {
-						_sbBossChildLowerShip->setVisible(false);
+				if (_sbBossChildLowerShip->isVisible()) {
+					CCRect sbBossChildLowerShipBounds = _sbBossChildLowerShip->boundingBox();
+					if (pBulletBounds.intersectsRect(sbBossChildLowerShipBounds)) {
+						_sbBossChildLowerShip->setDamage();
+						
+						int life = _sbBossChildLowerShip->getLife();
+						life--;
+						_sbBossChildLowerShip->setLife(life);
+						CCLOG("_sbBossChildLowerShip life: %d", life);
+						
+						if (life == 0) {
+							_sbBossChildLowerShip->setVisible(false);
+						}
 					}
 				}
-
 			}
 			iterPlayerBullet++;
 		}
