@@ -37,12 +37,10 @@ public:
     float randomValueBetween(float low, float high);
     
 protected:
-    PlayerShip*  _playerShip;
 	cocos2d::CCSpriteBatchNode * _batchNode;
     cocos2d::CCNode*    _enemyLayer;
     ParallaxLayer*  _backgroundNode;
     
-    std::vector<EnemyShip*>_enemyList;
     
     int             _nextEnemy;
     double          _nextEnemySpawn;
@@ -52,7 +50,9 @@ protected:
     cocos2d::CCPoint _lastTouchPos;
     cocos2d::CCPoint _moveShipPos;
     
-
+private:
+    PlayerShip*  _playerShip;
+    std::vector<EnemyShip*>_enemyList;
     
 };
 
