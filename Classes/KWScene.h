@@ -1,13 +1,13 @@
 //
-//  KawabataScene.h
+//  KWScene.h
 //  cocos2dx-space-game
 //
 //  Created by cocos2d-x on 2014/01/26.
 //
 //
 
-#ifndef __cocos2dx_space_game__KawabataScene__
-#define __cocos2dx_space_game__KawabataScene__
+#ifndef __cocos2dx_space_game__KWScene__
+#define __cocos2dx_space_game__KWScene__
 
 #include "StageScene.h"
 #include "ParallaxLayer.h"
@@ -17,15 +17,15 @@
 #include "TimeUtils.h"
 #include "SimpleAudioEngine.h"
 
-#include "KawabataEnemy.h"
+#include "KWEnemy.h"
 
 // クラス定義必要？
 class ParallaxLayer;
 class PlayerShip;
 //class EnemyShip;
-class KawabataEnemy;
+class KWEnemy;
 
-class KawabataScene : public StageScene
+class KWScene : public StageScene
 {
 public:
     // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
@@ -34,7 +34,7 @@ public:
     static cocos2d::CCScene* scene();
     
     // implement the "static node()" method manually
-    CREATE_FUNC(KawabataScene);
+    CREATE_FUNC(KWScene);
     
     virtual void update(float dt);
     virtual void ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent* event);
@@ -44,7 +44,7 @@ public:
     virtual float randomValueBetween(float low, float high);
 private:
 	// 敵機
-    std::vector<KawabataEnemy*>_enemyList;
+    std::vector<KWEnemy*>_enemyList;
 };
 
-#endif /* defined(__cocos2dx_space_game__KawabataScene__) */
+#endif /* defined(__cocos2dx_space_game__KWScene__) */

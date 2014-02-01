@@ -1,22 +1,22 @@
 //
-//  KawabataScene.cpp
+//  KWScene.cpp
 //  cocos2dx-space-game
 //
 //  Created by cocos2d-x on 2014/01/26.
 //
 //
-#include "KawabataScene.h"
+#include "KWScene.h"
 
 using namespace CocosDenshion;
 USING_NS_CC;
 
-CCScene* KawabataScene::scene()
+CCScene* KWScene::scene()
 {
     // 'scene' is an autorelease object
     CCScene *scene = CCScene::create();
     
     // 'layer' is an autorelease object
-    KawabataScene *layer = KawabataScene::create();
+    KWScene *layer = KWScene::create();
     
     // add layer as a child to scene
     scene->addChild(layer);
@@ -28,7 +28,7 @@ CCScene* KawabataScene::scene()
 /**
  * 初期化
  */
-bool KawabataScene::init()
+bool KWScene::init()
 {
     //////////////////////////////
     // 1. super init first
@@ -71,27 +71,27 @@ bool KawabataScene::init()
     // 適機の設定
     _enemyLayer = new CCNode();
     this->addChild(_enemyLayer, 2);
-    KawabataEnemy *enemyShip;
+    KWEnemy *enemyShip;
     for(int i = 0; i < 30; ++i)
     {
         if (i < 10)
         {
-            enemyShip = KawabataEnemy::createShip("android_pattern_3.png");
+            enemyShip = KWEnemy::createShip("android_pattern_3.png");
             enemyShip->setMoveSpeed(5);
         }
         else if (i < 20)
         {
-            enemyShip = KawabataEnemy::createShip("android_pattern_5.png");
+            enemyShip = KWEnemy::createShip("android_pattern_5.png");
             enemyShip->setMoveSpeed(4);
         }
         else if (i < 25)
         {
-            enemyShip = KawabataEnemy::createShip("android_pattern_3.png");
+            enemyShip = KWEnemy::createShip("android_pattern_3.png");
             enemyShip->setMoveSpeed(6);
         }
         else if (i < 30)
         {
-            enemyShip = KawabataEnemy::createShip("android_pattern_5.png");
+            enemyShip = KWEnemy::createShip("android_pattern_5.png");
             enemyShip->setMoveSpeed(8);
         }
         enemyShip->initBullets(_batchNode);
@@ -123,7 +123,7 @@ bool KawabataScene::init()
 /**
  * 更新
  */
-void KawabataScene::update(float dt)
+void KWScene::update(float dt)
 {
     // 背景レイヤーの更新
     _backgroundNode->update(dt);
@@ -163,11 +163,11 @@ void KawabataScene::update(float dt)
     }
     
     // 敵機の表示位置の更新
-    KawabataEnemy *enemyShip;
-    std::vector<KawabataEnemy *>::iterator iterEnemy = _enemyList.begin();
+    KWEnemy *enemyShip;
+    std::vector<KWEnemy *>::iterator iterEnemy = _enemyList.begin();
     while (iterEnemy != _enemyList.end())
     {
-        enemyShip = (KawabataEnemy*)(*iterEnemy);
+        enemyShip = (KWEnemy*)(*iterEnemy);
         if (enemyShip && enemyShip->isVisible())
         {
             enemyShip->update(dt);
@@ -186,7 +186,7 @@ void KawabataScene::update(float dt)
             iterEnemy = _enemyList.begin();
             while (iterEnemy != _enemyList.end())
             {
-                enemyShip = (KawabataEnemy*)(*iterEnemy);
+                enemyShip = (KWEnemy*)(*iterEnemy);
                 if (enemyShip && enemyShip->isVisible())
                 {
                     // 敵機の本体との衝突判定処理
@@ -205,6 +205,7 @@ void KawabataScene::update(float dt)
                     if (pBulletBounds.intersectsRect(eBulletBounds))
                     {
                         _playerShip->setDamage();
+						CCLOG("Player Damaged............................................................");
                     }
                     iterEnemyBullet++;
                 }
@@ -220,7 +221,7 @@ void KawabataScene::update(float dt)
 /**
  * タッチ開始
  */
-void KawabataScene::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent* event)
+void KWScene::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent* event)
 {
     _touchFlag = true;
     CCTouch *myTouch = (CCTouch*)touches->anyObject();
@@ -237,7 +238,7 @@ void KawabataScene::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent* ev
 /**
  * スワイプ
  */
-void KawabataScene::ccTouchesMoved(cocos2d::CCSet* touches, cocos2d::CCEvent* event)
+void KWScene::ccTouchesMoved(cocos2d::CCSet* touches, cocos2d::CCEvent* event)
 {
     CCTouch *myTouch = (CCTouch*)touches->anyObject();
     CCPoint location = myTouch->getLocationInView();
@@ -252,7 +253,7 @@ void KawabataScene::ccTouchesMoved(cocos2d::CCSet* touches, cocos2d::CCEvent* ev
 /**
  * タッチ終了
  */
-void KawabataScene::ccTouchesEnded(cocos2d::CCSet* touches, cocos2d::CCEvent* event)
+void KWScene::ccTouchesEnded(cocos2d::CCSet* touches, cocos2d::CCEvent* event)
 {
     _touchFlag = false;
     CCLOG("Kawabata touch ended");
@@ -261,7 +262,7 @@ void KawabataScene::ccTouchesEnded(cocos2d::CCSet* touches, cocos2d::CCEvent* ev
 /**
  * 表示設定
  */
-void KawabataScene::setInvisible(cocos2d::CCNode * node)
+void KWScene::setInvisible(cocos2d::CCNode * node)
 {
     StageScene::setInvisible(node);
     CCLOG("Kawabata set invisible");
@@ -270,7 +271,7 @@ void KawabataScene::setInvisible(cocos2d::CCNode * node)
 /**
  * ランダム値取得
  */
-float KawabataScene::randomValueBetween(float low, float high)
+float KWScene::randomValueBetween(float low, float high)
 {
     return StageScene::randomValueBetween(low, high);
 }

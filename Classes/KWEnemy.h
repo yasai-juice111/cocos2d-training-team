@@ -1,21 +1,21 @@
 //
-//  KawabataEnemy.h
+//  KWEnemy.h
 //  cocos2dx-space-game
 //
 //  Created by kwst_mac on 2014/02/01.
 //
 //
 
-#ifndef __cocos2dx_space_game__KawabataEnemy__
-#define __cocos2dx_space_game__KawabataEnemy__
+#ifndef __cocos2dx_space_game__KWEnemy__
+#define __cocos2dx_space_game__KWEnemy__
 
 #include "EnemyShip.h"
 
-class KawabataEnemy : public EnemyShip
+class KWEnemy : public EnemyShip
 {
 public:
-	KawabataEnemy();
-	virtual ~KawabataEnemy();
+	KWEnemy();
+	virtual ~KWEnemy();
 	
 	// 更新処理（弾の頻度調整）
 	virtual void update(float dt);
@@ -23,8 +23,8 @@ public:
 	virtual void shotBullet();
 	
 public:
-    static KawabataEnemy* createShip(const char* filename);
-    static KawabataEnemy* createShipFrame(const char* filename, int numFrame);
+    static KWEnemy* createShip(const char* filename);
+    static KWEnemy* createShipFrame(const char* filename, int numFrame);
 	
 private:
 	void createLaser(BulletSprite *shipLaser, cocos2d::CCSize winSize, int direction);
@@ -34,4 +34,4 @@ private:
 
 
 
-#endif /* defined(__cocos2dx_space_game__KawabataEnemy__) */
+#endif /* defined(__cocos2dx_space_game__KWEnemy__) */

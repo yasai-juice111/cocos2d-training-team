@@ -10,7 +10,7 @@
 #include "StageScene.h"
 #include "cocos2d.h"
 #include "SimpleAudioEngine.h"
-#include "KawabataScene.h"
+#include "KWScene.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -146,7 +146,7 @@ void StartMenuScene::menuSelectGameLevel2(CCObject* pSender)
 //    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(kTouchSEName, false);
 
     // スタートメニュー選択が画面に遷移
-    CCScene *pScene = KawabataScene::scene();
+    CCScene *pScene = KWScene::scene();
     CCDirector::sharedDirector()->replaceScene(pScene);
 }
 
