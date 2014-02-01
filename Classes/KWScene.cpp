@@ -103,7 +103,7 @@ bool KWScene::init()
     // Player機の作成
 //    _playerShip = PlayerShip::createShipFrame("dragon_ss", 4);
     CCString*   playerShipName = new CCString("temp_apple.png");
-    _playerShip = PlayerShip::createShip(playerShipName->getCString());
+    _playerShip = KWPlayer::createShip(playerShipName->getCString());
     _playerShip->setPosition(ccp(winSize.width * 0.1, winSize.height * 0.5));
     this->addChild(_playerShip, 3);
     
@@ -179,7 +179,6 @@ void KWScene::update(float dt)
 	judgeEnemyHit();
 	// Playerの当たり判定を見る
 	judgePlayerHit();
-    CCLOG("Kawabata update");
 }
 
 /**

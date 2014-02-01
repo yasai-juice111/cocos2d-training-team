@@ -18,6 +18,7 @@
 #include "SimpleAudioEngine.h"
 
 #include "KWEnemy.h"
+#include "KWPlayer.h"
 
 // クラス定義必要？
 class ParallaxLayer;
@@ -47,6 +48,8 @@ private:
 	void judgePlayerHit();
 	// Enemyの当たり判定を見る
 	void judgeEnemyHit();
+	// Plyaer
+	KWPlayer* _playerShip;
 	// 敵機
     std::vector<KWEnemy*>_enemyList;
 };
