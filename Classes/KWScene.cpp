@@ -175,46 +175,10 @@ void KWScene::update(float dt)
         iterEnemy++;
     }
     
-    // Playerの弾と敵機に対する当たり判定処理
-    std::vector<BulletSprite *>::iterator iterPlayerBullet = _playerShip->bulletList.begin();
-    while (iterPlayerBullet != _playerShip->bulletList.end())
-    {
-        BulletSprite* playerBullet = (BulletSprite*)(*iterPlayerBullet);
-        if (playerBullet && playerBullet->isVisible())
-        {
-            CCRect  pBulletBounds = playerBullet->boundingBox();
-            iterEnemy = _enemyList.begin();
-            while (iterEnemy != _enemyList.end())
-            {
-                enemyShip = (KWEnemy*)(*iterEnemy);
-                if (enemyShip && enemyShip->isVisible())
-                {
-                    // 敵機の本体との衝突判定処理
-                    CCRect  eShipBounds = enemyShip->boundingBox();
-                    if (pBulletBounds.intersectsRect(eShipBounds))
-                    {
-                        enemyShip->setDamage();
-                    }
-                }
-                
-                // 敵機の弾とPlayerの衝突判定
-                std::vector<BulletSprite *>::iterator iterEnemyBullet = enemyShip->bulletList.begin();
-                while (iterEnemyBullet != enemyShip->bulletList.end())
-                {
-                    CCRect  eBulletBounds = (*iterEnemyBullet)->boundingBox();
-                    if (pBulletBounds.intersectsRect(eBulletBounds))
-                    {
-                        _playerShip->setDamage();
-						CCLOG("Player Damaged............................................................");
-                    }
-                    iterEnemyBullet++;
-                }
-                
-                iterEnemy++;
-            }
-        }
-        iterPlayerBullet++;
-    }
+    // Enemyの当たり判定を見る
+	judgeEnemyHit();
+	// Playerの当たり判定を見る
+	judgePlayerHit();
     CCLOG("Kawabata update");
 }
 
@@ -274,4 +238,79 @@ void KWScene::setInvisible(cocos2d::CCNode * node)
 float KWScene::randomValueBetween(float low, float high)
 {
     return StageScene::randomValueBetween(low, high);
+}
+
+/**
+ * Playerの当たり判定
+ */
+void KWScene::judgePlayerHit()
+{
+	/**** Playerの衝突判定 ****/
+	CCRect  pShipBounds = _playerShip->boundingBox();
+	// 敵機全てのループ
+	std::vector<KWEnemy *>::iterator iterEnemy = _enemyList.begin();
+	while (iterEnemy != _enemyList.end())
+	{
+		/**** 敵機との当たり判定 ****/
+		// 敵機の取得
+		KWEnemy *enemyShip = (KWEnemy*)(*iterEnemy);
+		CCRect eShipBounds = enemyShip->boundingBox();
+		if (pShipBounds.intersectsRect(eShipBounds))
+		{
+			_playerShip->setDamage();
+			CCLOG("Player Damaged............................................................");
+			return;
+		}
+		/**** 敵機の弾との当たり判定 ****/
+		// 敵機の弾取得
+		std::vector<BulletSprite *>::iterator iterEnemyBullet = enemyShip->bulletList.begin();
+		// 弾のループ
+		while (iterEnemyBullet != enemyShip->bulletList.end())
+		{
+			CCRect  eBulletBounds = (*iterEnemyBullet)->boundingBox();
+			if (pShipBounds.intersectsRect(eBulletBounds))
+			{
+				_playerShip->setDamage();
+				CCLOG("Player Damaged............................................................");
+				return;
+			}
+			// イテレータを進める
+			iterEnemyBullet++;
+		}
+		// イテレータを進める
+		iterEnemy++;
+	}
+}
+/**
+ * Enemyの当たり判定
+ */
+void KWScene::judgeEnemyHit()
+{
+	// Playerの弾と敵機に対する当たり判定処理
+    std::vector<BulletSprite *>::iterator iterPlayerBullet = _playerShip->bulletList.begin();
+    while (iterPlayerBullet != _playerShip->bulletList.end())
+    {
+        BulletSprite* playerBullet = (BulletSprite*)(*iterPlayerBullet);
+        if (playerBullet && playerBullet->isVisible())
+        {
+            CCRect  pBulletBounds = playerBullet->boundingBox();
+			std::vector<KWEnemy *>::iterator iterEnemy = _enemyList.begin();
+            while (iterEnemy != _enemyList.end())
+            {
+                KWEnemy *enemyShip = (KWEnemy*)(*iterEnemy);
+                if (enemyShip && enemyShip->isVisible())
+                {
+                    // 敵機の本体との衝突判定処理
+                    CCRect  eShipBounds = enemyShip->boundingBox();
+                    if (pBulletBounds.intersectsRect(eShipBounds))
+                    {
+                        enemyShip->setDamage();
+						return;
+                    }
+                }
+			    iterEnemy++;
+            }
+        }
+        iterPlayerBullet++;
+    }
 }
