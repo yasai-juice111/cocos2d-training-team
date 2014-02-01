@@ -6,7 +6,7 @@
 //
 //
 #include "ShibuyaScene.h"
-
+#include "SimpleAudioEngine.h"
 using namespace CocosDenshion;
 USING_NS_CC;
 
@@ -44,6 +44,11 @@ bool ShibuyaScene::init()
     
     // 画面サイズの取得
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+
+	// 音声ファイル
+	SimpleAudioEngine::sharedEngine()->playBackgroundMusic("SpaceGame.wav",true);
+	SimpleAudioEngine::sharedEngine()->preloadEffect("explosion_large.wav");
+	SimpleAudioEngine::sharedEngine()->preloadEffect("laser_ship.wav");
     
     // plistの登録
     CCSpriteFrameCache* frameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
@@ -71,10 +76,10 @@ bool ShibuyaScene::init()
     // Player機の作成
     CCString*   playerShipName = new CCString("temp_apple.png");
     _playerShip = PlayerShip::createShip(playerShipName->getCString());
-    _playerShip->setPosition(ccp(winSize.width * 0.1, winSize.height * 0.5));
+    _playerShip->setPosition(ccp(winSize.width * 0.1, winSize.height * 0.9));
     this->addChild(_playerShip, 3);
 	
-	_playerShip->setLife(5);
+	_playerShip->setLife(1);
 	showPlayerLife();
     
     // Playerの砲撃弾の設定
@@ -158,6 +163,7 @@ void ShibuyaScene::update(float dt)
     _playerShip->setPosition(ccp(newX, newY));
     _moveShipPos = ccp(0, 0);
     _playerShip->update(dt);
+	SimpleAudioEngine::sharedEngine()->playEffect("laser_ship.wav");
     	
 	// ボス機の表示位置の更新
 	float bossShipNextPositionX = _shibuyaBossShip->getPosition().x + _shibuyaBossShip->getPositionDx();
@@ -201,6 +207,7 @@ void ShibuyaScene::update(float dt)
 				CCRect shibuyaBossShipBounds = _shibuyaBossShip->boundingBox();
 				if (pBulletBounds.intersectsRect(shibuyaBossShipBounds)) {
 					_shibuyaBossShip->setDamage();
+					SimpleAudioEngine::sharedEngine()->playEffect("explosion_large.wav");
 					
 					int life = _shibuyaBossShip->getLife();
 					life--;
@@ -219,6 +226,7 @@ void ShibuyaScene::update(float dt)
 					CCRect sbBossChildUpperShipBounds = _sbBossChildUpperShip->boundingBox();
 					if (pBulletBounds.intersectsRect(sbBossChildUpperShipBounds)) {
 						_sbBossChildUpperShip->setDamage();
+						SimpleAudioEngine::sharedEngine()->playEffect("explosion_large.wav");
 						
 						int life = _sbBossChildUpperShip->getLife();
 						life--;
@@ -236,6 +244,7 @@ void ShibuyaScene::update(float dt)
 					CCRect sbBossChildLowerShipBounds = _sbBossChildLowerShip->boundingBox();
 					if (pBulletBounds.intersectsRect(sbBossChildLowerShipBounds)) {
 						_sbBossChildLowerShip->setDamage();
+						SimpleAudioEngine::sharedEngine()->playEffect("explosion_large.wav");
 						
 						int life = _sbBossChildLowerShip->getLife();
 						life--;
@@ -265,6 +274,7 @@ void ShibuyaScene::update(float dt)
 				CCRect playerShipBounds = _playerShip->boundingBox();
 				if (pBulletBounds.intersectsRect(playerShipBounds)) {
 					_playerShip->setDamage();
+					SimpleAudioEngine::sharedEngine()->playEffect("explosion_large.wav");
 
 					int life = _playerShip->getLife();
 					life--;
@@ -293,6 +303,7 @@ void ShibuyaScene::update(float dt)
 				CCRect playerShipBounds = _playerShip->boundingBox();
 				if (pBulletBounds.intersectsRect(playerShipBounds)) {
 					_playerShip->setDamage();
+					SimpleAudioEngine::sharedEngine()->playEffect("explosion_large.wav");
 					
 					int life = _playerShip->getLife();
 					life--;
@@ -321,6 +332,7 @@ void ShibuyaScene::update(float dt)
 				CCRect playerShipBounds = _playerShip->boundingBox();
 				if (pBulletBounds.intersectsRect(playerShipBounds)) {
 					_playerShip->setDamage();
+					SimpleAudioEngine::sharedEngine()->playEffect("explosion_large.wav");
 					
 					int life = _playerShip->getLife();
 					life--;
