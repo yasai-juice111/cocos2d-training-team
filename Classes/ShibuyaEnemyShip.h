@@ -1,24 +1,25 @@
 //
-//  PlayerShip.h
-//  SpaceGame
+//  ShibuyaEnemyShip.h
+//  cocos2dx-space-game
 //
-//  Created by GCREST on 2014/01/24.
+//  Created by Shun SHIBUYA on 14/01/29.
 //
 //
 
-#ifndef __SpaceGame__PlayerShip__
-#define __SpaceGame__PlayerShip__
+#ifndef __cocos2dx_space_game__ShibuyaEnemyShip__
+#define __cocos2dx_space_game__ShibuyaEnemyShip__
 
+#include <iostream>
 #include "cocos2d.h"
+#include "EnemyShip.h"
 
 class BulletSprite;
 
-
-class PlayerShip    : public cocos2d::CCNode
+class ShibuyaEnemyShip    : public EnemyShip
 {
 public:
-    PlayerShip();
-    virtual ~PlayerShip();
+    ShibuyaEnemyShip();
+    virtual ~ShibuyaEnemyShip();
     
     bool initWithFileName(const char* pszFileName);
     bool initWithFrameName(const char* pframeName, int numFrame = 0);
@@ -29,32 +30,27 @@ public:
     void shotBullet();
     void setInvisible(cocos2d::CCNode * node);
     void touchBeganProcess(cocos2d::CCPoint& pos);
-    cocos2d::CCPoint getBodySize();
+    float getMoveSpeed();
+    void setMoveSpeed(float speed);
     
     void setDamage();
-
+    
 public:
-    static PlayerShip* createShip(const char* filename);
-    static PlayerShip* createShipFrame(const char* filename, int numFrame);
+    static ShibuyaEnemyShip* createShip(const char* filename);
+    static ShibuyaEnemyShip* createShipFrame(const char* filename, int numFrame);
     
 public:
     std::vector<BulletSprite*>  bulletList;
-	
-	void setLife(int life);
-	int getLife();
     
 private:
     cocos2d::CCSprite*  _ship;
     cocos2d::CCString*  _imageName;
     bool                _autoShooting;
-    bool                _hasShipAnimation;
+    bool                _attacked;
     double              _shotInterval;
     double              _lastShotTime;
+    float               _moveSpeed;
     
-//    cocos2d::CCArray*   _shipLasers;
     int                 _nextShipLaser;
-	
-	int _lives;
 };
-
-#endif /* defined(__SpaceGame__PlayerShip__) */
+#endif /* defined(__cocos2dx_space_game__ShibuyaEnemyShip__) */
