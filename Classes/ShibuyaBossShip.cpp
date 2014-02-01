@@ -38,7 +38,7 @@ bool ShibuyaBossShip::initWithFileName(const char* pszFileName)
     
     _nextShipLaser = 0;
     _autoShooting = true;
-    _shotInterval = 0.25;
+    _shotInterval = 0.5;
     _lastShotTime = 0;
     _hasShipAnimation = false;
     _ship = CCSprite::create(pszFileName);

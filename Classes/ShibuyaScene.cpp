@@ -68,48 +68,13 @@ bool ShibuyaScene::init()
     _batchNode = CCSpriteBatchNode::create("temp_bullets.png");
     this->addChild(_batchNode, 1);
     
-    // 適機の設定
-    _enemyLayer = new CCNode();
-//    this->addChild(_enemyLayer, 2);
-    EnemyShip *enemyShip;
-    for(int i = 0; i < 30; ++i)
-    {
-        if (i < 10)
-        {
-            enemyShip = EnemyShip::createShip("android_pattern_3.png");
-            enemyShip->setMoveSpeed(5);
-        }
-        else if (i < 20)
-        {
-            enemyShip = EnemyShip::createShip("android_pattern_5.png");
-            enemyShip->setMoveSpeed(4);
-        }
-        else if (i < 25)
-        {
-            enemyShip = EnemyShip::createShip("android_pattern_3.png");
-            enemyShip->setMoveSpeed(6);
-        }
-        else if (i < 30)
-        {
-            enemyShip = EnemyShip::createShip("android_pattern_5.png");
-            enemyShip->setMoveSpeed(8);
-        }
-        enemyShip->initBullets(_batchNode);
-        enemyShip->setVisible(false);
-        _enemyLayer->addChild(enemyShip);
-        _enemyList.push_back(enemyShip);
-    }
-	
-	
-    
     // Player機の作成
-//    _playerShip = PlayerShip::createShipFrame("dragon_ss", 4);
     CCString*   playerShipName = new CCString("temp_apple.png");
     _playerShip = PlayerShip::createShip(playerShipName->getCString());
     _playerShip->setPosition(ccp(winSize.width * 0.1, winSize.height * 0.5));
     this->addChild(_playerShip, 3);
 	
-	_playerShip->setLife(2);
+	_playerShip->setLife(5);
 	showPlayerLife();
     
     // Playerの砲撃弾の設定
@@ -118,6 +83,7 @@ bool ShibuyaScene::init()
     // Playerの制御を開始
     _playerShip->start();
 
+	
 	// ボス機の作成
 	CCString* shibuyaBossShipName = new CCString("Android_Robot_100.png");
 	_shibuyaBossShip = ShibuyaBossShip::createShip(shibuyaBossShipName->getCString());
@@ -133,6 +99,36 @@ bool ShibuyaScene::init()
     // ボス機の制御を開始
     _shibuyaBossShip->start();
 
+	
+	// ボス子機上の作成
+	CCString* sbBossChildUpperShipName = new CCString("Android_Robot_100.png");
+	_sbBossChildUpperShip = ShibuyaBossShip::createShip(sbBossChildUpperShipName->getCString());
+	_sbBossChildUpperShip->setScale(0.5);
+	this->addChild(_sbBossChildUpperShip, 3);
+	
+	_sbBossChildUpperShip->setLife(1);
+	
+	// ボス子機の砲撃弾の設定
+    _sbBossChildUpperShip->initBullets(_batchNode);
+    
+    // ボス子機の制御を開始
+    _sbBossChildUpperShip->start();
+
+	// ボス子機下の作成
+	CCString* sbBossChildLowerShipName = new CCString("Android_Robot_100.png");
+	_sbBossChildLowerShip = ShibuyaBossShip::createShip(sbBossChildLowerShipName->getCString());
+	_sbBossChildLowerShip->setScale(0.5);
+	this->addChild(_sbBossChildLowerShip, 3);
+	
+	_sbBossChildLowerShip->setLife(1);
+	
+	// ボス子機の砲撃弾の設定
+    _sbBossChildLowerShip->initBullets(_batchNode);
+    
+    // ボス子機の制御を開始
+    _sbBossChildLowerShip->start();
+
+	
     // 更新スケジューラを設定
     this->scheduleUpdate();
     // タッチを有効化
@@ -162,40 +158,7 @@ void ShibuyaScene::update(float dt)
     _playerShip->setPosition(ccp(newX, newY));
     _moveShipPos = ccp(0, 0);
     _playerShip->update(dt);
-    
-    // 適機の自動生成処理
-    double curTimeMillis = TimeUtils::getTime();
-    if (curTimeMillis > _nextEnemySpawn)
-    {
-        float randMillisecs = randomValueBetween(0.20,1.0);
-        _nextEnemySpawn = ((double)(randMillisecs)) + curTimeMillis;
-        
-        float randY = randomValueBetween(0.0, winSize.height);
-        EnemyShip *enemyShip = (EnemyShip *)_enemyList[_nextEnemy];
-        _nextEnemy++;
-        
-        if (_nextEnemy >= _enemyList.size())
-            _nextEnemy = 0;
-        
-        enemyShip->stopAllActions();
-        enemyShip->setPosition( ccp(winSize.width+enemyShip->getContentSize().width/2, randY));
-        enemyShip->setVisible(true);
-        enemyShip->runAction(CCSequence::create(CCMoveBy::create(enemyShip->getMoveSpeed(), ccp(-winSize.width - enemyShip->getContentSize().width, 0)), CCCallFuncN::create(this, callfuncN_selector(StageScene::setInvisible)), NULL));
-    }
-    
-    // 敵機の表示位置の更新
-    EnemyShip *enemyShip;
-    std::vector<EnemyShip *>::iterator iterEnemy = _enemyList.begin();
-    while (iterEnemy != _enemyList.end())
-    {
-        enemyShip = (EnemyShip*)(*iterEnemy);
-        if (enemyShip && enemyShip->isVisible())
-        {
-//            enemyShip->update(dt);
-        }
-        iterEnemy++;
-    }
-	
+    	
 	// ボス機の表示位置の更新
 	float bossShipNextPositionX = _shibuyaBossShip->getPosition().x + _shibuyaBossShip->getPositionDx();
 	float bossShipNextPositionY = _shibuyaBossShip->getPosition().y + _shibuyaBossShip->getPositionDy();
@@ -210,6 +173,19 @@ void ShibuyaScene::update(float dt)
 	
 	// ボス機の更新処理
 	_shibuyaBossShip->update(dt);
+
+	
+	// ボス子機の表示位置の更新
+	if (_sbBossChildUpperShip->isVisible()) {
+		_sbBossChildUpperShip->setPosition(ccp(bossShipNextPositionX, bossShipNextPositionY + winSize.height * 0.1));
+		_sbBossChildUpperShip->update(dt);
+	}
+	
+	// ボス子機の表示位置の更新
+	if (_sbBossChildLowerShip->isVisible()) {
+		_sbBossChildLowerShip->setPosition(ccp(bossShipNextPositionX, bossShipNextPositionY - winSize.height * 0.1));
+		_sbBossChildLowerShip->update(dt);
+	}
 	
     
     // Playerの弾と敵機に対する当たり判定処理
@@ -237,6 +213,37 @@ void ShibuyaScene::update(float dt)
 						endScene();
 					}
 				}
+
+				// Playerの弾とボス子機との衝突判定
+				CCRect sbBossChildUpperShipBounds = _sbBossChildUpperShip->boundingBox();
+				if (pBulletBounds.intersectsRect(sbBossChildUpperShipBounds)) {
+					_sbBossChildUpperShip->setDamage();
+					
+					int life = _sbBossChildUpperShip->getLife();
+					life--;
+					_sbBossChildUpperShip->setLife(life);
+					CCLOG("_sbBossChildUpperShip life: %d", life);
+					
+					if (life == 0) {
+						_sbBossChildUpperShip->setVisible(false);
+					}
+				}
+
+				// Playerの弾とボス子機との衝突判定
+				CCRect sbBossChildLowerShipBounds = _sbBossChildLowerShip->boundingBox();
+				if (pBulletBounds.intersectsRect(sbBossChildLowerShipBounds)) {
+					_sbBossChildLowerShip->setDamage();
+					
+					int life = _sbBossChildLowerShip->getLife();
+					life--;
+					_sbBossChildLowerShip->setLife(life);
+					CCLOG("_sbBossChildLowerShip life: %d", life);
+					
+					if (life == 0) {
+						_sbBossChildLowerShip->setVisible(false);
+					}
+				}
+
 			}
 			iterPlayerBullet++;
 		}
@@ -270,8 +277,64 @@ void ShibuyaScene::update(float dt)
 			}
 			iterShibuyaBossShipBullet++;
 		}
-	}
 
+		// ボス子機の弾とPlayerに対する当たり判定処理
+		std::vector<BulletSprite *>::iterator iterSbBossChildUpperShipBullet = _sbBossChildUpperShip->bulletList.begin();
+		while (iterSbBossChildUpperShipBullet != _sbBossChildUpperShip->bulletList.end())
+		{
+			BulletSprite* shibuyaBossShipBullet = (BulletSprite*)(*iterSbBossChildUpperShipBullet);
+			if (shibuyaBossShipBullet && shibuyaBossShipBullet->isVisible())
+			{
+				CCRect  pBulletBounds = shibuyaBossShipBullet->boundingBox();
+				// Playerの弾とボス機との衝突判定
+				CCRect playerShipBounds = _playerShip->boundingBox();
+				if (pBulletBounds.intersectsRect(playerShipBounds)) {
+					_playerShip->setDamage();
+					
+					int life = _playerShip->getLife();
+					life--;
+					_playerShip->setLife(life);
+					CCLOG("_playerShip life: %d", life);
+					
+					showPlayerLife();
+					
+					if (life == 0) {
+						endScene();
+					}
+				}
+			}
+			iterSbBossChildUpperShipBullet++;
+		}
+
+		// ボス子機の弾とPlayerに対する当たり判定処理
+		std::vector<BulletSprite *>::iterator iterSbBossChildLowerShipBullet = _sbBossChildLowerShip->bulletList.begin();
+		while (iterSbBossChildLowerShipBullet != _sbBossChildLowerShip->bulletList.end())
+		{
+			BulletSprite* shibuyaBossShipBullet = (BulletSprite*)(*iterSbBossChildLowerShipBullet);
+			if (shibuyaBossShipBullet && shibuyaBossShipBullet->isVisible())
+			{
+				CCRect  pBulletBounds = shibuyaBossShipBullet->boundingBox();
+				// Playerの弾とボス機との衝突判定
+				CCRect playerShipBounds = _playerShip->boundingBox();
+				if (pBulletBounds.intersectsRect(playerShipBounds)) {
+					_playerShip->setDamage();
+					
+					int life = _playerShip->getLife();
+					life--;
+					_playerShip->setLife(life);
+					CCLOG("_playerShip life: %d", life);
+					
+					showPlayerLife();
+					
+					if (life == 0) {
+						endScene();
+					}
+				}
+			}
+			iterSbBossChildLowerShipBullet++;
+		}
+
+	}
 }
 
 /**

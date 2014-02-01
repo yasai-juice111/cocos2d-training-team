@@ -47,6 +47,8 @@ private:
     cocos2d::CCNode*    _enemyLayer;
     ParallaxLayer*  _backgroundNode;
 	ShibuyaBossShip* _shibuyaBossShip;
+	ShibuyaBossShip* _sbBossChildUpperShip;
+	ShibuyaBossShip* _sbBossChildLowerShip;
 
     std::vector<EnemyShip*>_enemyList;
     
