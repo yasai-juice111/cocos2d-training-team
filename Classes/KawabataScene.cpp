@@ -120,7 +120,6 @@ bool KawabataScene::init()
     
     return true;
 }
-
 /**
  * 更新
  */
@@ -164,11 +163,11 @@ void KawabataScene::update(float dt)
     }
     
     // 敵機の表示位置の更新
-    EnemyShip *enemyShip;
+    KawabataEnemy *enemyShip;
     std::vector<KawabataEnemy *>::iterator iterEnemy = _enemyList.begin();
     while (iterEnemy != _enemyList.end())
     {
-        enemyShip = (EnemyShip*)(*iterEnemy);
+        enemyShip = (KawabataEnemy*)(*iterEnemy);
         if (enemyShip && enemyShip->isVisible())
         {
             enemyShip->update(dt);
@@ -187,7 +186,7 @@ void KawabataScene::update(float dt)
             iterEnemy = _enemyList.begin();
             while (iterEnemy != _enemyList.end())
             {
-                enemyShip = (EnemyShip*)(*iterEnemy);
+                enemyShip = (KawabataEnemy*)(*iterEnemy);
                 if (enemyShip && enemyShip->isVisible())
                 {
                     // 敵機の本体との衝突判定処理

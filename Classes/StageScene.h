@@ -36,7 +36,7 @@ public:
     void setInvisible(cocos2d::CCNode * node);
     float randomValueBetween(float low, float high);
     
-private:
+protected:
     PlayerShip*  _playerShip;
 	cocos2d::CCSpriteBatchNode * _batchNode;
     cocos2d::CCNode*    _enemyLayer;

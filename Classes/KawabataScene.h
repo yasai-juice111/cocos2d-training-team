@@ -43,20 +43,8 @@ public:
     virtual void setInvisible(cocos2d::CCNode * node);
     virtual float randomValueBetween(float low, float high);
 private:
-    PlayerShip* _playerShip;
-	cocos2d::CCSpriteBatchNode * _batchNode;
-    cocos2d::CCNode*    _enemyLayer;
-    ParallaxLayer*  _backgroundNode;
-    
+	// 敵機
     std::vector<KawabataEnemy*>_enemyList;
-    
-    int             _nextEnemy;
-    double          _nextEnemySpawn;
-    
-    bool    _touchFlag;
-    cocos2d::CCPoint _startTouchPos;
-    cocos2d::CCPoint _lastTouchPos;
-    cocos2d::CCPoint _moveShipPos;
 };
 
 #endif /* defined(__cocos2dx_space_game__KawabataScene__) */

@@ -12,12 +12,14 @@
 #include "KawabataEnemy.h"
 
 
-using namespace CocosDenshion;
+//using namespace CocosDenshion;
 
 USING_NS_CC;
 
 KawabataEnemy::KawabataEnemy()
 {
+	bulletDirection = int(CCRANDOM_0_1() * 4);
+	bulletInterval = CCRANDOM_0_1();
 	
 }
 
@@ -51,19 +53,50 @@ KawabataEnemy* KawabataEnemy::createShipFrame(const char* pszFileName, int numFr
     return NULL;
 }
 
+/**
+ * 更新処理
+ */
+void KawabataEnemy::update(float dt)
+{
+    if (_autoShooting && !_attacked)
+    {
+        double   curTime = TimeUtils::getTime() * bulletInterval;
+        double   diffTime = curTime - _lastShotTime;
+        if (diffTime > _shotInterval)
+        {
+            shotBullet();
+            
+            _lastShotTime = curTime;
+        }
+        
+    }
+}
+
 /*
  弾をうつ
  */
 void KawabataEnemy::shotBullet()
 {
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
-    BulletSprite *shipLaser = bulletList[_nextShipLaser++];
-    if ( _nextShipLaser >= bulletList.size() )
+	createLaser(bulletList[_nextShipLaser++], winSize, bulletDirection);
+	createLaser(bulletList[_nextShipLaser++], winSize, -bulletDirection);
+}
+
+/**
+ * レーザーを生成する
+ */
+void KawabataEnemy::createLaser(BulletSprite *shipLaser, CCSize winSize, int direction)
+{
+	// レーザーのリストと照合
+	if ( _nextShipLaser >= bulletList.size() )
         _nextShipLaser = 0;
-    shipLaser->setPosition( ccpAdd( this->getPosition(), ccp(shipLaser->getContentSize().width/2, 0)));
+	// レーザーを設定する
+    shipLaser->setPosition(ccpAdd( this->getPosition(), ccp(shipLaser->getContentSize().width/2, 0)));
     shipLaser->setVisible(true);
     shipLaser->stopAllActions();
-    shipLaser->runAction(CCSequence::create(CCMoveBy::create(0.5, ccp(-winSize.width, 1000)), CCCallFuncN::create(this, callfuncN_selector(EnemyShip::setInvisible)), NULL));
+	// 方向を設定
+	float directionPos = 200 * direction;
+    shipLaser->runAction(CCSequence::create(CCMoveBy::create(0.5, ccp(-winSize.width, directionPos)), CCCallFuncN::create(this, callfuncN_selector(EnemyShip::setInvisible)), NULL));
 }
 
 
