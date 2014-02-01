@@ -247,6 +247,7 @@
 		D4EF949C15BD2D8E00D803EB /* Icon-114.png in Resources */ = {isa = PBXBuildFile; fileRef = D4EF949B15BD2D8E00D803EB /* Icon-114.png */; };
 		D4EF949E15BD2D9600D803EB /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = D4EF949D15BD2D9600D803EB /* Icon-72.png */; };
 		D4EF94A015BD2D9800D803EB /* Icon-144.png in Resources */ = {isa = PBXBuildFile; fileRef = D4EF949F15BD2D9800D803EB /* Icon-144.png */; };
+		F26E3C32189CB63A00BE79BF /* KawabataEnemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F26E3C30189CB63A00BE79BF /* KawabataEnemy.cpp */; };
 		FA1314A11894E1EA00BBBF27 /* GameTitleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA13149B1894E1EA00BBBF27 /* GameTitleScene.cpp */; };
 		FA1314A21894E1EA00BBBF27 /* StageScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA13149D1894E1EA00BBBF27 /* StageScene.cpp */; };
 		FA1314A31894E1EA00BBBF27 /* StartMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA13149F1894E1EA00BBBF27 /* StartMenuScene.cpp */; };
@@ -813,6 +814,8 @@
 		D4EF949D15BD2D9600D803EB /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "../proj.ios/Icon-72.png"; sourceTree = "<group>"; };
 		D4EF949F15BD2D9800D803EB /* Icon-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-144.png"; path = "../proj.ios/Icon-144.png"; sourceTree = "<group>"; };
 		D4F9F37B12E54555005CA6D2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
+		F26E3C30189CB63A00BE79BF /* KawabataEnemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = KawabataEnemy.cpp; path = ../Classes/KawabataEnemy.cpp; sourceTree = "<group>"; };
+		F26E3C31189CB63A00BE79BF /* KawabataEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KawabataEnemy.h; path = ../Classes/KawabataEnemy.h; sourceTree = "<group>"; };
 		FA13149B1894E1EA00BBBF27 /* GameTitleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameTitleScene.cpp; path = ../Classes/GameTitleScene.cpp; sourceTree = "<group>"; };
 		FA13149C1894E1EA00BBBF27 /* GameTitleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameTitleScene.h; path = ../Classes/GameTitleScene.h; sourceTree = "<group>"; };
 		FA13149D1894E1EA00BBBF27 /* StageScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StageScene.cpp; path = ../Classes/StageScene.cpp; sourceTree = "<group>"; };
@@ -1983,6 +1986,8 @@
 			children = (
 				FA49901F1894FE7B00B99B2C /* KawabataScene.cpp */,
 				FA4990201894FE7B00B99B2C /* KawabataScene.h */,
+				F26E3C30189CB63A00BE79BF /* KawabataEnemy.cpp */,
+				F26E3C31189CB63A00BE79BF /* KawabataEnemy.h */,
 			);
 			name = Kawabata;
 			sourceTree = "<group>";
@@ -2185,6 +2190,7 @@
 				15A3D9181682F7D5002FB0C5 /* b2ChainAndPolygonContact.cpp in Sources */,
 				15A3D9191682F7D5002FB0C5 /* b2CircleContact.cpp in Sources */,
 				15A3D91A1682F7D5002FB0C5 /* b2Contact.cpp in Sources */,
+				F26E3C32189CB63A00BE79BF /* KawabataEnemy.cpp in Sources */,
 				15A3D91B1682F7D5002FB0C5 /* b2ContactSolver.cpp in Sources */,
 				15A3D91C1682F7D5002FB0C5 /* b2EdgeAndCircleContact.cpp in Sources */,
 				15A3D91D1682F7D5002FB0C5 /* b2EdgeAndPolygonContact.cpp in Sources */,
