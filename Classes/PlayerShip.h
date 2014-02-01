@@ -25,8 +25,8 @@ public:
     void initBullets(cocos2d::CCNode* bulletLayer);
     void start();
     void end();
-    void update(float dt);
-    void shotBullet();
+    virtual void update(float dt);
+	virtual void shotBullet();
     void setInvisible(cocos2d::CCNode * node);
     void touchBeganProcess(cocos2d::CCPoint& pos);
     cocos2d::CCPoint getBodySize();
@@ -40,7 +40,7 @@ public:
 public:
     std::vector<BulletSprite*>  bulletList;
     
-private:
+protected:
     cocos2d::CCSprite*  _ship;
     cocos2d::CCString*  _imageName;
     bool                _autoShooting;
