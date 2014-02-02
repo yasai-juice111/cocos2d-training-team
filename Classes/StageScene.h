@@ -36,13 +36,11 @@ public:
     void setInvisible(cocos2d::CCNode * node);
     float randomValueBetween(float low, float high);
     
-private:
-    PlayerShip*  _playerShip;
+protected:
 	cocos2d::CCSpriteBatchNode * _batchNode;
     cocos2d::CCNode*    _enemyLayer;
     ParallaxLayer*  _backgroundNode;
     
-    std::vector<EnemyShip*>_enemyList;
     
     int             _nextEnemy;
     double          _nextEnemySpawn;
@@ -52,7 +50,9 @@ private:
     cocos2d::CCPoint _lastTouchPos;
     cocos2d::CCPoint _moveShipPos;
     
-
+private:
+    PlayerShip*  _playerShip;
+    std::vector<EnemyShip*>_enemyList;
     
 };
 

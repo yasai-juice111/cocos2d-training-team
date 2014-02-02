@@ -245,6 +245,7 @@ void HelloWorld::update(float dt) {
         }
     }
     
+    
     // Asteroids
     CCObject* shipLaser;
     CCObject* enemyLaser;

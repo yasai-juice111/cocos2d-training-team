@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>25FC6677-92A8-4968-9B08-48B816829176</string>
+	<key>IDESourceControlProjectName</key>
+	<string>cocos2dx-space-game</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>476DA0E7-8A74-417C-8BC5-55A9ADF5914B</key>
+		<string>https://github.com/yasai-juice111/cocos2d-training-team.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>proj.ios/cocos2dx-space-game.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>476DA0E7-8A74-417C-8BC5-55A9ADF5914B</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/yasai-juice111/cocos2d-training-team.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>476DA0E7-8A74-417C-8BC5-55A9ADF5914B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>476DA0E7-8A74-417C-8BC5-55A9ADF5914B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>cocos2d-traning-team</string>
+		</dict>
+	</array>
+</dict>
+</plist>
