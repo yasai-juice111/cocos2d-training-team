@@ -507,6 +507,32 @@ void ShibuyaScene::makeRetryButton()
 	this->addChild(menu);
 }
 
+
+/*
+ * メニューへ遷移ボタンタップ次の処理
+ */
+void ShibuyaScene::tapMoveTopButton(CCNode *node)
+{
+	CCScene* gameScene = (CCScene*)StartMenuScene::create();
+	CCDirector::sharedDirector()->replaceScene(gameScene);
+}
+
+/*
+ * メニューへ遷移ボタンを作成
+ */
+void ShibuyaScene::makeMoveTopButton()
+{
+	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+	
+	CCLabelTTF* retryLabel = CCLabelTTF::create("Menu", "Arial", 24.0);
+	CCMenuItemLabel* retryItem = CCMenuItemLabel::create(retryLabel, this, menu_selector(ShibuyaScene::tapMoveTopButton));
+	retryItem->setPosition(ccp(winSize.width * 0.5, winSize.height * 0.1));
+	
+	CCMenu* menu = CCMenu::create(retryItem, NULL);
+	menu->setPosition(CCPointZero);
+	this->addChild(menu);
+}
+
 /*
  * プログレスタイマーの更新
  */
@@ -547,4 +573,6 @@ void ShibuyaScene::endScene()
 	
 	// show retry button
 	makeRetryButton();
+    
+    makeMoveTopButton();
 }

@@ -17,6 +17,7 @@
 #include "TimeUtils.h"
 #include "SimpleAudioEngine.h"
 #include "ShibuyaBossShip.h"
+#include "StartMenuScene.h"
 
 USING_NS_CC;
 
@@ -73,7 +74,10 @@ private:
 	
 	void makeRetryButton();
 	void tapRetryButton(CCNode *node);
-    
+
+    void makeMoveTopButton();
+	void tapMoveTopButton(CCNode *node);
+
     void updatePlayerProgressTimer();
     void updateBossProgressTimer();
 };
