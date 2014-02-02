@@ -2,7 +2,7 @@
 //  GameTitleScene.cpp
 //  SpaceGame
 //
-//  Created by GCREST on 2014/01/24.
+//  Created by Shinji Hiramatsu on 2014/01/24.
 //
 //
 
@@ -45,7 +45,7 @@ bool GameTitleScene::init()
     
     // 背景画像を設定
 //    CCSprite* backgroundImg = CCSprite::create("top_bg.jpg");
-    CCSprite* backgroundImg = CCSprite::create("splash_1.png");
+    CCSprite* backgroundImg = CCSprite::create("splash_12.png");
     backgroundImg->setAnchorPoint(ccp(0.5, 0.5));
     backgroundImg->setPosition(ccp(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
     // 背景の画像を縦方向を画面にフィットするようにスケーリング値を取得

@@ -2,7 +2,7 @@
 //  EnemyShip.h
 //  SpaceGame
 //
-//  Created by GCREST on 2014/01/24.
+//  Created by Shinji Hiramatsu on 2014/01/24.
 //
 //
 
@@ -24,14 +24,23 @@ public:
     void initBullets(cocos2d::CCNode* bulletLayer);
     void start();
     void end();
+    void reset();
 	virtual void update(float dt);
 	virtual	void shotBullet();
     void setInvisible(cocos2d::CCNode * node);
     void touchBeganProcess(cocos2d::CCPoint& pos);
     float getMoveSpeed();
     void setMoveSpeed(float speed);
-    
+    void stopActions();
+    bool isActive();
+    bool hitTheBullet(int damageLevel);
+    cocos2d::CCRect getBoundingBox();
+    cocos2d::CCSprite* getBodySprite();
+    void setAttacked();
     virtual void setDamage();
+    int getPlayerDamageLevel() const;
+    int getHP() const;
+    int getDefeatedPoint() const;
     
 public:
     static EnemyShip* createShip(const char* filename);
@@ -48,6 +57,10 @@ protected:
     double              _shotInterval;
     double              _lastShotTime;
     float               _moveSpeed;
+    int                 _defaultHP;
+    int                 _hp;
+    int                 _playerDamageLevel;
+    int                 _defeatedPoint;
     
     int                 _nextShipLaser;
 };

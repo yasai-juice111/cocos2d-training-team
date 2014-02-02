@@ -1,0 +1,50 @@
+{
+"author":"hiramatsu",
+"title":"episode4",
+"version":"1.0",
+"id":"1",
+"speed":"1.0",
+"player":{"img":"apple_hero_2.png", "numFrame":"1", "scale":"0.25", "hp":"1000", "attackPoint":"20"},
+"background":[
+    {
+    "stageId":"1",
+    "time":"10.0",
+    "view":
+    [ {"id":"1", "img":"1A2_normalBG01.jpeg", "ztag":"0", "scale":"1.0", "rx":"0.25", "ry":"1.0", "offsx":"0", "offsy":"0"}
+    ]
+    },
+    {
+    "stageId":"2",
+    "time":"10.0",
+    "view":
+    [ {"id":"1", "img":"1A2_normalBG01.jpeg", "ztag":"0", "scale":"1.0", "rx":"0.25", "ry":"1.0", "offsx":"0", "offsy":"0"}
+    ]
+    }
+],
+"enemy":[
+    {"id":"1", "img":"android_pattern1.png", "speed":"5"},
+     {"id":"2", "img":"android_pattern2.png", "speed":"5"},
+     {"id":"3", "img":"android_pattern3.png", "speed":"5"},
+     {"id":"4", "img":"android_pattern4.png", "speed":"5"},
+     {"id":"5", "img":"android_pattern5.png", "speed":"5"}
+],
+"enemypoplist":[
+    {"t":"0.5","type":"1","mid":"0"},
+    {"t":"1.0","type":"1","mid":"0"},
+    {"t":"1.5","type":"1","mid":"0"},
+    {"t":"2.0","type":"1","mid":"0"}
+],
+"movepattern":[
+   {"id":"1",
+   "route":[{"x":"640", "y":"100", "s":"0.5"},
+            {"x":"500", "y":"200", "s":"0.5"}
+            ]
+   },
+    {"id":"2",
+    "route":[{"x":"640", "y":"100", "s":"0.5"},
+     {"x":"500", "y":"200", "s":"0.5"},
+     {"x":"500", "y":"200", "s":"0.5"}
+     ]
+    }
+]
+}

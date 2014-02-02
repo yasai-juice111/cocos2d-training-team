@@ -11,7 +11,11 @@ CPP_FILES := $(shell find $(LOCAL_PATH)/../../Classes -name *.cpp)
 LOCAL_SRC_FILES := hellocpp/main.cpp \
 LOCAL_SRC_FILES += $(CPP_FILES:$(LOCAL_PATH)/%=%)
 
+H_FILES := $(shell find $(LOCAL_PATH)/../../Classes -name *.h)
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../Classes/Config
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../Classes/JSONParser
+LOCAL_C_INCLUDES += $(H_FILES:$(LOCAL_PATH)/%=%)
 
 LOCAL_WHOLE_STATIC_LIBRARIES += cocos2dx_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocosdenshion_static

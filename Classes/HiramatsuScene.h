@@ -1,14 +1,15 @@
 //
-//  StageScene.h
-//  SpaceGame
+//  HiramatsuScene.h
+//  cocos2dx-space-game
 //
-//  Created by Shinji Hiramatsu on H.26/02/02.
+//  Created by CyberAgent on H.26/01/31.
 //
 //
 
-#ifndef __SpaceGame__StageScene__
-#define __SpaceGame__StageScene__
+#ifndef __cocos2dx_space_game__HiramatsuScene__
+#define __cocos2dx_space_game__HiramatsuScene__
 
+#include "StageScene.h"
 #include "cocos2d.h"
 
 class ParallaxLayer;
@@ -16,7 +17,7 @@ class PlayerShip;
 class EnemyShip;
 class ConfigGame;
 
-class StageScene : public cocos2d::CCLayerColor
+class HiramatsuScene : public cocos2d::CCLayerColor
 {
 public:
     // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
@@ -26,7 +27,7 @@ public:
     static cocos2d::CCScene* scene();
     
     // implement the "static node()" method manually
-    CREATE_FUNC(StageScene);
+    CREATE_FUNC(HiramatsuScene);
     
     
     virtual void update(float dt);
@@ -46,13 +47,15 @@ public:
     void removeNode(cocos2d::CCNode* node);
     float randomValueBetween(float low, float high);
     
-protected:
+private:
+    PlayerShip*  _playerShip;
 	cocos2d::CCSpriteBatchNode * _batchNode;
     cocos2d::CCNode*    _enemyLayer;
     cocos2d::CCNode*    _effectLayer;
     cocos2d::CCNode*    _uiLayer;
     ParallaxLayer*  _backgroundNode;
-    
+        
+    std::vector<EnemyShip*>_enemyList;
     
     // UI View Items
     cocos2d::CCLabelTTF*     _scoreItem;
@@ -68,15 +71,12 @@ protected:
     // Work Variable
     int             _nextEnemy;
     double          _nextEnemySpawn;
+    bool            _duringPlayerBombEffect;
     
     bool    _touchFlag;
     cocos2d::CCPoint _startTouchPos;
     cocos2d::CCPoint _lastTouchPos;
     cocos2d::CCPoint _moveShipPos;
-    
-private:
-    PlayerShip*  _playerShip;
-    std::vector<EnemyShip*>_enemyList;
 };
 
-#endif /* defined(__SpaceGame__StageScene__) */
+#endif /* defined(__cocos2dx_space_game__HiramatsuScene__) */
