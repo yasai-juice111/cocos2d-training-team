@@ -169,7 +169,6 @@
 		1AFCDA8216D4A25900906EA6 /* RootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1AFCDA8116D4A25900906EA6 /* RootViewController.mm */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		241CC48A18994D0000B977C0 /* ShibuyaEnemyShip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 241CC48818994D0000B977C0 /* ShibuyaEnemyShip.cpp */; };
 		241CC48D189C094F00B977C0 /* ShibuyaBossShip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 241CC48B189C094E00B977C0 /* ShibuyaBossShip.cpp */; };
 		241CC48F189C0E8600B977C0 /* Android_Robot_100.png in Resources */ = {isa = PBXBuildFile; fileRef = 241CC48E189C0E8500B977C0 /* Android_Robot_100.png */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
@@ -667,8 +666,6 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* cocos2dx-space-game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "cocos2dx-space-game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		241CC48818994D0000B977C0 /* ShibuyaEnemyShip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShibuyaEnemyShip.cpp; path = ../Classes/ShibuyaEnemyShip.cpp; sourceTree = "<group>"; };
-		241CC48918994D0000B977C0 /* ShibuyaEnemyShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShibuyaEnemyShip.h; path = ../Classes/ShibuyaEnemyShip.h; sourceTree = "<group>"; };
 		241CC48B189C094E00B977C0 /* ShibuyaBossShip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShibuyaBossShip.cpp; path = ../Classes/ShibuyaBossShip.cpp; sourceTree = "<group>"; };
 		241CC48C189C094F00B977C0 /* ShibuyaBossShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShibuyaBossShip.h; path = ../Classes/ShibuyaBossShip.h; sourceTree = "<group>"; };
 		241CC48E189C0E8500B977C0 /* Android_Robot_100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Android_Robot_100.png; sourceTree = "<group>"; };
@@ -1982,8 +1979,6 @@
 			children = (
 				FA230CC31894F30600C1F1B8 /* ShibuyaScene.cpp */,
 				FA230CC41894F30600C1F1B8 /* ShibuyaScene.h */,
-				241CC48818994D0000B977C0 /* ShibuyaEnemyShip.cpp */,
-				241CC48918994D0000B977C0 /* ShibuyaEnemyShip.h */,
 				241CC48B189C094E00B977C0 /* ShibuyaBossShip.cpp */,
 				241CC48C189C094F00B977C0 /* ShibuyaBossShip.h */,
 			);
@@ -2366,7 +2361,6 @@
 				FA1314B41894E20B00BBBF27 /* PlayerShip.cpp in Sources */,
 				FA1314B51894E20B00BBBF27 /* TimeUtils.cpp in Sources */,
 				FA230CC51894F30600C1F1B8 /* ShibuyaScene.cpp in Sources */,
-				241CC48A18994D0000B977C0 /* ShibuyaEnemyShip.cpp in Sources */,
 				241CC48D189C094F00B977C0 /* ShibuyaBossShip.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

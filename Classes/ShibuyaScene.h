@@ -13,7 +13,6 @@
 #include "ParallaxLayer.h"
 #include "PlayerShip.h"
 #include "EnemyShip.h"
-#include "ShibuyaEnemyShip.h"
 #include "BulletSprite.h"
 #include "TimeUtils.h"
 #include "SimpleAudioEngine.h"
