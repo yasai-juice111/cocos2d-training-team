@@ -2,7 +2,7 @@
 //  ShibuyaScene.h
 //  cocos2dx-space-game
 //
-//  Created by cocos2d-x on 2014/01/26.
+//  Created by c2:shibuya_shun on 2014/01/26.
 //
 //
 

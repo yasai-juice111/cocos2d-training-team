@@ -188,6 +188,9 @@ void KWScene::update(float dt)
         // 死亡した
         CCLOG("player is dead.....");
     }
+    
+    
+//    CCLOG("TIME : %d", TimeUtils::getMSecTime());
 }
 
 /**
