@@ -165,8 +165,8 @@ bool StageScene::init()
     this->scheduleUpdate();
     this->setTouchEnabled(true);
     
-    // BGM再生
-    //    CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("bgm_stage_01.caf", true);
+//    // BGM再生
+//    CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("bgm.mp3", true);
     
     return true;
 }

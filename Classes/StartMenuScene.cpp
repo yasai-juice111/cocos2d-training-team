@@ -47,6 +47,17 @@ bool StartMenuScene::init()
     CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
     CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
     
+    // 背景画像を設定
+    CCSprite* backgroundImg = CCSprite::create("splash_12.png");
+    backgroundImg->setAnchorPoint(ccp(0.5, 0.5));
+    backgroundImg->setPosition(ccp(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+    // 背景の画像を縦方向を画面にフィットするようにスケーリング値を取得
+    float   baseScale = visibleSize.height / backgroundImg->getContentSize().height;
+    backgroundImg->setScale(baseScale);
+    backgroundImg->setOpacity(0);
+    backgroundImg->runAction(CCFadeIn::create(0.1));
+    this->addChild(backgroundImg);
+    
     // ゲームタイトルを設定
     CCMenuItemLabel *titleImg = CCMenuItemLabel::create(CCLabelTTF::create("ステージ選択", "", 48),
                                                            this, menu_selector(StartMenuScene::menuSelectGameLevel1));
@@ -61,7 +72,7 @@ bool StartMenuScene::init()
     CCMenuItemLabel *pGameLevel1 = CCMenuItemLabel::create(CCLabelTTF::create("Episode 1", "", 48),
                                                            this, menu_selector(StartMenuScene::menuSelectGameLevel1));
 	pGameLevel1->setPosition(ccp(origin.x + visibleSize.width/2 - pGameLevel1->getContentSize().width,
-                                 origin.y + visibleSize.height/2 + pGameLevel1->getContentSize().height/2));
+                                 origin.y + visibleSize.height/2 + pGameLevel1->getContentSize().height/2 - 150));
     CCMenu* pLevel1Menu = CCMenu::create(pGameLevel1, NULL);
     pLevel1Menu->setPosition(CCPointZero);
     this->addChild(pLevel1Menu, 1);
@@ -70,7 +81,7 @@ bool StartMenuScene::init()
     CCMenuItemLabel *pGameLevel2 = CCMenuItemLabel::create(CCLabelTTF::create("Episode 2", "", 48),
                                                            this, menu_selector(StartMenuScene::menuSelectGameLevel2));
 	pGameLevel2->setPosition(ccp(origin.x + visibleSize.width/2 + pGameLevel2->getContentSize().width ,
-                                 origin.y + visibleSize.height/2 + pGameLevel2->getContentSize().height/2));
+                                 origin.y + visibleSize.height/2 + pGameLevel2->getContentSize().height/2 - 150));
     CCMenu* pLevel2Menu = CCMenu::create(pGameLevel2, NULL);
     pLevel2Menu->setPosition(CCPointZero);
     this->addChild(pLevel2Menu, 1);
@@ -79,7 +90,7 @@ bool StartMenuScene::init()
     CCMenuItemLabel *pGameLevel3 = CCMenuItemLabel::create(CCLabelTTF::create("Episode 3", "", 48),
                                                            this, menu_selector(StartMenuScene::menuSelectGameLevel3));
 	pGameLevel3->setPosition(ccp(origin.x + visibleSize.width/2 - pGameLevel3->getContentSize().width,
-                                 origin.y + visibleSize.height/2 - pGameLevel3->getContentSize().height));
+                                 origin.y + visibleSize.height/2 - pGameLevel3->getContentSize().height - 150));
     CCMenu* pLevel3Menu = CCMenu::create(pGameLevel3, NULL);
     pLevel3Menu->setPosition(CCPointZero);
     this->addChild(pLevel3Menu, 1);
@@ -88,7 +99,7 @@ bool StartMenuScene::init()
     CCMenuItemLabel *pGameLevel4 = CCMenuItemLabel::create(CCLabelTTF::create("Episode 4", "", 48),
                                                            this, menu_selector(StartMenuScene::menuSelectGameLevel4));
 	pGameLevel4->setPosition(ccp(origin.x + visibleSize.width/2 + pGameLevel4->getContentSize().width,
-                                 origin.y + visibleSize.height/2 - pGameLevel4->getContentSize().height));
+                                 origin.y + visibleSize.height/2 - pGameLevel4->getContentSize().height - 150));
     CCMenu* pLevel4Menu = CCMenu::create(pGameLevel4, NULL);
     pLevel4Menu->setPosition(CCPointZero);
     this->addChild(pLevel4Menu, 1);
@@ -129,6 +140,9 @@ bool StartMenuScene::init()
     pLevel4Menu->setPosition(CCPointZero);
     this->addChild(pLevel4Menu, 1);
 #endif
+    
+    //    BGM再生
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("bgm.mp3", true);
     
     return true;
 }
