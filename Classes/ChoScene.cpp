@@ -102,10 +102,9 @@ bool ChoScene::init()
     }
     
     // Player機の作成
-    //    _playerShip = PlayerShip::createShipFrame("dragon_ss", 4);
-    CCString*   playerShipName = new CCString("temp_apple.png");
+    CCString*   playerShipName = new CCString("apple_hero_2.png");
     _playerShip = ChoPlayer::createShip(playerShipName->getCString());
-    _playerShip->setPosition(ccp(winSize.width * 0.1, winSize.height * 0.5));
+    _playerShip->setPosition(ccp(winSize.width * 0.5, winSize.height * 0.5));
     this->addChild(_playerShip, 3);
     
     // Playerの砲撃弾の設定
