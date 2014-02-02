@@ -2242,7 +2242,6 @@
 				FA402E341894C8D5000CBBF9 /* android_boss_1.png in Resources */,
 				FA402E351894C8D5000CBBF9 /* android_boss_2.png in Resources */,
 				FA402E361894C8D5000CBBF9 /* android_boss_3.png in Resources */,
-<<<<<<< HEAD
 				FA230CD8189511B900C1F1B8 /* android_special.png in Resources */,
 				FA230CD9189511B900C1F1B8 /* apple_hero_2.png in Resources */,
 				FA230CDA189511B900C1F1B8 /* apple_hero.png in Resources */,
