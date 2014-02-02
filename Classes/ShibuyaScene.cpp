@@ -96,7 +96,7 @@ bool ShibuyaScene::init()
 	_shibuyaBossShip->setPosition(ccp(winSize.width * 0.9, winSize.height * 0.5));
 	this->addChild(_shibuyaBossShip, 3);
 
-	_shibuyaBossShip->setLife(2);
+	_shibuyaBossShip->setLife(5);
 	showBossLife();
 
 	// ボス機の砲撃弾の設定
@@ -227,7 +227,14 @@ void ShibuyaScene::update(float dt)
 					
 					showBossLife();
 					
-					if (life == 0) {
+                    if (life == 1) {
+                        if (_sbBossChildUpperShip->isVisible() == false) {
+                            _sbBossChildUpperShip->setVisible(true);
+                        }
+                        if (_sbBossChildLowerShip->isVisible() == false) {
+                            _sbBossChildLowerShip->setVisible(true);
+                        }
+                    } else if (life == 0) {
 						endScene();
 					}
 				}
