@@ -49,12 +49,14 @@ private:
     cocos2d::CCNode*    _enemyLayer;
     ParallaxLayer*  _backgroundNode;
 	ShibuyaBossShip* _shibuyaBossShip;
+    int _bossShipLife;
 	ShibuyaBossShip* _sbBossChildUpperShip;
 	ShibuyaBossShip* _sbBossChildLowerShip;
 
     std::vector<EnemyShip*>_enemyList;
     
-    CCProgressTimer* _progressTimer;
+    CCProgressTimer* _playerProgressTimer;
+    CCProgressTimer* _bossProgressTimer;
     
     int             _nextEnemy;
     double          _nextEnemySpawn;
@@ -72,7 +74,8 @@ private:
 	void makeRetryButton();
 	void tapRetryButton(CCNode *node);
     
-    void updateProgressTimer();
+    void updatePlayerProgressTimer();
+    void updateBossProgressTimer();
 };
 
 #endif /* defined(__cocos2dx_space_game__ShibuyaScene__) */

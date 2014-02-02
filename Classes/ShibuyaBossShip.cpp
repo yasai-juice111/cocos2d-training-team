@@ -48,36 +48,6 @@ bool ShibuyaBossShip::initWithFileName(const char* pszFileName)
     
 }
 
-bool ShibuyaBossShip::initWithFrameName(const char* pFrameName, int numFrame)
-{
-    if (!CCNode::init())
-        return false;
-    
-    _nextShipLaser = 0;
-    _autoShooting = true;
-    _shotInterval = 0.05;
-    _lastShotTime = 0;
-    _hasShipAnimation = true;
-	_imageName = new CCString(pFrameName);
-    
-    // Player機の作成
-    CCString*  frameName = CCString::createWithFormat("%s.plist", pFrameName);
-	
-    CCSpriteFrameCache* frameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
-    frameCache->addSpriteFramesWithFile(frameName->getCString());
-    
-    CCString*   name = CCString::createWithFormat("%s_01.png", pFrameName);
-    _ship = CCSprite::createWithSpriteFrameName(name->getCString());
-    
-	//    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
-	//    _ship->setPosition(ccp(winSize.width * 0.1, winSize.height * 0.5));
-    _ship->setPosition(ccp(0, 0));
-    this->addChild(_ship);
-    
-    return true;
-    
-}
-
 void ShibuyaBossShip::initBullets(cocos2d::CCNode* bulletLayer)
 {
 #define KNUMLASERS 15
@@ -200,14 +170,6 @@ void ShibuyaBossShip::setDamage()
 void ShibuyaBossShip::setInvisible(CCNode * node)
 {
     node->setVisible(false);
-}
-
-void ShibuyaBossShip::touchBeganProcess(cocos2d::CCPoint& pos)
-{
-    if (!_autoShooting)
-    {
-        shotBullet();
-    }
 }
 
 CCPoint ShibuyaBossShip::getBodySize()

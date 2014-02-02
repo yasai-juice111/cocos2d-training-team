@@ -23,14 +23,12 @@ public:
     virtual ~ShibuyaBossShip();
     
     bool initWithFileName(const char* pszFileName);
-    bool initWithFrameName(const char* pframeName, int numFrame = 0);
     void initBullets(cocos2d::CCNode* bulletLayer);
     void start();
     void end();
     void update(float dt);
     void shotBullet();
     void setInvisible(cocos2d::CCNode * node);
-    void touchBeganProcess(cocos2d::CCPoint& pos);
     cocos2d::CCPoint getBodySize();
     
     void setDamage();
@@ -63,7 +61,6 @@ private:
 	
 	int _lives;
     
-	//    cocos2d::CCArray*   _shipLasers;
     int                 _nextShipLaser;
 };
 

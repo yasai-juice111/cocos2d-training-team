@@ -96,7 +96,8 @@ bool ShibuyaScene::init()
 	_shibuyaBossShip->setPosition(ccp(winSize.width * 0.9, winSize.height * 0.5));
 	this->addChild(_shibuyaBossShip, 3);
 
-	_shibuyaBossShip->setLife(5);
+    _bossShipLife = 5;
+	_shibuyaBossShip->setLife(_bossShipLife);
 	showBossLife();
 
 	// ボス機の砲撃弾の設定
@@ -136,13 +137,20 @@ bool ShibuyaScene::init()
     
     // ライフ表示用画像
     CCSprite* _battery = CCSprite::create("battery-empty-256x256.png");
-    _progressTimer = CCProgressTimer::create(_battery);
-    _progressTimer->setType(kCCProgressTimerTypeBar);
-    _progressTimer->setMidpoint(ccp(0, 0));
-    _progressTimer->setBarChangeRate(ccp(1, 0));
-    _progressTimer->setPercentage(100.0);
-    _progressTimer->setPosition(ccp(winSize.width * 0.5, winSize.height * 0.9));
-    this->addChild(_progressTimer);
+    _playerProgressTimer = CCProgressTimer::create(_battery);
+    _playerProgressTimer->setType(kCCProgressTimerTypeBar);
+    _playerProgressTimer->setMidpoint(ccp(0, 0));
+    _playerProgressTimer->setBarChangeRate(ccp(1, 0));
+    _playerProgressTimer->setPercentage(100.0);
+    _playerProgressTimer->setPosition(ccp(winSize.width * 0.3, winSize.height * 0.9));
+    this->addChild(_playerProgressTimer);
+    _bossProgressTimer = CCProgressTimer::create(_battery);
+    _bossProgressTimer->setType(kCCProgressTimerTypeBar);
+    _bossProgressTimer->setMidpoint(ccp(0, 0));
+    _bossProgressTimer->setBarChangeRate(ccp(1, 0));
+    _bossProgressTimer->setPercentage(100.0);
+    _bossProgressTimer->setPosition(ccp(winSize.width * 0.7, winSize.height * 0.9));
+    this->addChild(_bossProgressTimer);
 
 	
     // 更新スケジューラを設定
@@ -226,6 +234,7 @@ void ShibuyaScene::update(float dt)
 					CCLOG("_shibuyaBossShip life: %d", life);
 					
 					showBossLife();
+                    updateBossProgressTimer();
 					
                     if (life == 1) {
                         if (_sbBossChildUpperShip->isVisible() == false) {
@@ -300,7 +309,7 @@ void ShibuyaScene::update(float dt)
 					CCLOG("_playerShip life: %d", life);
 					
 					showPlayerLife();
-                    updateProgressTimer();
+                    updatePlayerProgressTimer();
 					
 					if (life == 0) {
 						endScene();
@@ -330,7 +339,7 @@ void ShibuyaScene::update(float dt)
 					CCLOG("_playerShip life: %d", life);
 					
 					showPlayerLife();
-                    updateProgressTimer();
+                    updatePlayerProgressTimer();
 					
 					if (life == 0) {
 						endScene();
@@ -360,7 +369,7 @@ void ShibuyaScene::update(float dt)
 					CCLOG("_playerShip life: %d", life);
 					
 					showPlayerLife();
-                    updateProgressTimer();
+                    updatePlayerProgressTimer();
 					
 					if (life == 0) {
 						endScene();
@@ -444,7 +453,7 @@ void ShibuyaScene::showPlayerLife()
 	{
 		CCSize winSize = CCDirector::sharedDirector()->getWinSize();
 		lifeLabel = CCLabelTTF::create(lifeString->getCString(), "Arial", 24.0);
-		lifeLabel->setPosition(ccp(winSize.width * 0.2, winSize.height * 0.9));
+		lifeLabel->setPosition(ccp(winSize.width * 0.1, winSize.height * 0.9));
 		lifeLabel->setTag(tagPlayerLifeLabel);
 		this->addChild(lifeLabel);		
 	}
@@ -467,7 +476,7 @@ void ShibuyaScene::showBossLife()
 	{
 		CCSize winSize = CCDirector::sharedDirector()->getWinSize();
 		lifeLabel = CCLabelTTF::create(lifeString->getCString(), "Arial", 24.0);
-		lifeLabel->setPosition(ccp(winSize.width * 0.8, winSize.height * 0.9));
+		lifeLabel->setPosition(ccp(winSize.width * 0.9, winSize.height * 0.9));
 		lifeLabel->setTag(tagBossLifeLabel);
 		this->addChild(lifeLabel);
 	}
@@ -501,11 +510,17 @@ void ShibuyaScene::makeRetryButton()
 /*
  * プログレスタイマーの更新
  */
-void ShibuyaScene::updateProgressTimer()
+void ShibuyaScene::updatePlayerProgressTimer()
 {
-    float percentage = _progressTimer->getPercentage();
+    float percentage = _playerProgressTimer->getPercentage();
     percentage -= (100/_playerShipLife);
-    _progressTimer->setPercentage(percentage);
+    _playerProgressTimer->setPercentage(percentage);
+}
+void ShibuyaScene::updateBossProgressTimer()
+{
+    float percentage = _bossProgressTimer->getPercentage();
+    percentage -= (100/_bossShipLife);
+    _bossProgressTimer->setPercentage(percentage);
 }
 
 /*
