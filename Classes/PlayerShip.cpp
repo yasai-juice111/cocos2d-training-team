@@ -38,6 +38,7 @@ bool PlayerShip::initWithFileName(const char* pszFileName)
     _shotInterval = 0.05;
     _lastShotTime = 0;
     _defaultHP = 1000;
+    _attackPoint = 20;
     _hp = _defaultHP;
     _hasShipAnimation = false;
     _duringBombEffect = false;
@@ -58,6 +59,9 @@ bool PlayerShip::initWithFrameName(const char* pFrameName, int numFrame)
     _duringBombEffect = false;
     _shotInterval = 0.05;
     _lastShotTime = 0;
+    _defaultHP = 1000;
+    _attackPoint = 20;
+    _hp = _defaultHP;
     _hasShipAnimation = true;
     _imageName = new CCString(pFrameName);
     

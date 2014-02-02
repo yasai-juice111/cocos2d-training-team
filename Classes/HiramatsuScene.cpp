@@ -11,12 +11,12 @@
 #include "PlayerShip.h"
 #include "EnemyShip.h"
 #include "BulletSprite.h"
-#include "ConfigGame.h"
 #include "GameConst.h"
 #include "TimeUtils.h"
-#include "JSONToDictConverter.h"
 #include "SimpleAudioEngine.h"
-#include "CCJSONConverter.h"
+//#include "JSONToDictConverter.h"
+//#include "ConfigGame.h"
+//#include "CCJSONConverter.h"
 
 using namespace CocosDenshion;
 
@@ -61,6 +61,7 @@ bool HiramatsuScene::init()
     
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
     
+/*
     CCDictionary* configDict = NULL;
     // File path.
     const char* fileName = "episode_hiramatsu.json";
@@ -76,23 +77,27 @@ bool HiramatsuScene::init()
     unsigned char* json_str = CCFileUtils::sharedFileUtils()->getFileData(fullPath.c_str(), openMode, &fileSize);
     if (json_str)
     {
-//        configDict = JSONToDictConverter::queryDictionary((const char *)json_str);
         configDict = CCJSONConverter::sharedConverter()->dictionaryFrom((const char *)json_str);
     }
     
     _config = new ConfigGame(configDict);
+*/
 
     // plistの登録
     CCSpriteFrameCache* frameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
     //    frameCache->addSpriteFramesWithFile("dragon_ss.plist");
     frameCache->addSpriteFramesWithFile("temp_bullets.plist");
     frameCache->addSpriteFramesWithFile("temp_explosion.plist");
+    frameCache->addSpriteFramesWithFile("explosion_2_L/explosion.plist");
+    frameCache->addSpriteFramesWithFile("explosion_boss_1_L/explosion_boss.plist");
+
     //    frameCache->addSpriteFramesWithFile("explosion.plist"); // 今サイズが大きすぎて表示できない。エラーが出るので今だけコメントアウト
     
     // 背景レイヤーの設定
     _backgroundNode = ParallaxLayer::createLayer();
 #if 1  // 背景は外部から取得したJSONデータから設定する
-    _backgroundNode->addChildLayer("1A2_normalBG01.jpeg", 0, 1.0, ccp(0.25, 1.0), CCPointZero);
+    _backgroundNode->addChildLayer("background/A1_sky05.jpg", 0, 1.0, ccp(0.25, 1.0), CCPointZero);
+//    _backgroundNode->addChildLayer("background/1A2_normalBG01.jpeg", 0, 1.0, ccp(0.25, 1.0), CCPointZero);
 //    _backgroundNode->addChildLayer("bglayer2.png", 0, 1.5, ccp(0.5, 1.0), CCPointZero);
 //    _backgroundNode->addChildLayer("bglayer3.png", 0, 1.5, ccp(1.0, 1.0), CCPointZero);
 #endif
@@ -204,14 +209,14 @@ void HiramatsuScene::update(float dt)
         {
             enemyShip->update(dt);
             CCRect  eShipBounds = enemyShip->getBoundingBox();
-            CCLOG("enemyRect={x=%f, y=%f, w=%f, h=%f", eShipBounds.origin.x, eShipBounds.origin.y, eShipBounds.size.width, eShipBounds.size.height);
+            //CCLOG("enemyRect={x=%f, y=%f, w=%f, h=%f", eShipBounds.origin.x, eShipBounds.origin.y, eShipBounds.size.width, eShipBounds.size.height);
         }
         iterEnemy++;
     }
     
     // Playerの弾と敵機に対する当たり判定処理
     CCRect  playerShipBounds = _playerShip->getBoundingBox();
-    CCLOG("playerShipBounds={x=%f, y=%f, w=%f, h=%f", playerShipBounds.origin.x, playerShipBounds.origin.y, playerShipBounds.size.width, playerShipBounds.size.height);
+    //CCLOG("playerShipBounds={x=%f, y=%f, w=%f, h=%f", playerShipBounds.origin.x, playerShipBounds.origin.y, playerShipBounds.size.width, playerShipBounds.size.height);
     std::vector<BulletSprite *>::iterator iterPlayerBullet = _playerShip->bulletList.begin();
     while (iterPlayerBullet != _playerShip->bulletList.end())
     {
@@ -394,14 +399,15 @@ void HiramatsuScene::createUIItems()
 void HiramatsuScene::doBombEffect(CCPoint pos, CCNode* dispLayer)
 {
 #if 0
-    const char* bombEfectName = "explosion";   // "explosion"
-    int numFrames = 84;
+    const char* bombEfectName = "explosion_2_L/explosion";   // "explosion"
+    int numFrames = 16;
+    CCString*   name = CCString::createWithFormat("%s_00000.png", bombEfectName);
     CCSprite* bombSprite = CCSprite::createWithSpriteFrameName(name->getCString());
     CCSpriteFrameCache* frameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
     CCArray*    frames = CCArray::createWithCapacity(numFrames);
     for (int i = 0; i <= numFrames; i++)
     {
-        CCString*   name = CCString::createWithFormat("%s_%04d.png", bombName->getCString(), i);
+        CCString*   name = CCString::createWithFormat("%s_%05d.png", bombEfectName, i);
         CCSpriteFrame* spriteFrame = frameCache->spriteFrameByName(name->getCString());
         if (spriteFrame)
             frames->addObject(spriteFrame);
@@ -435,7 +441,7 @@ void HiramatsuScene::doBombEffect(CCPoint pos, CCNode* dispLayer)
 
 bool HiramatsuScene::damagePlayer(EnemyShip* fromEnemy)
 {
-    CCLOG("do bomb player!");
+    //CCLOG("do bomb player!");
     bool    overp = false;
     if (_playerShip->hitTheBullet(fromEnemy->getPlayerDamageLevel()))
     {
@@ -452,7 +458,7 @@ bool HiramatsuScene::damagePlayer(EnemyShip* fromEnemy)
 
 void HiramatsuScene::damageEnemy(EnemyShip* enemy)
 {
-    CCLOG("do bomb enemy!");
+    //CCLOG("do bomb enemy!");
     if (enemy->hitTheBullet(_playerShip->getAttackPoint()))
     {
         doBombEffect(enemy->getPosition(), _effectLayer);

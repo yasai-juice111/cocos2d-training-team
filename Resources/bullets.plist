@@ -62,11 +62,11 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>temp_bullets.png</string>
+		<string>bullets.png</string>
 		<key>size</key>
 		<string>{66,78}</string>
 		<key>textureFileName</key>
-		<string>temp_bullets.png</string>
+		<string>bullets.png</string>
 	</dict>
 </dict>
 </plist>

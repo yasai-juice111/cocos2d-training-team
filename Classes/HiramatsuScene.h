@@ -15,7 +15,7 @@
 class ParallaxLayer;
 class PlayerShip;
 class EnemyShip;
-class ConfigGame;
+//class ConfigGame;
 
 class HiramatsuScene : public cocos2d::CCLayerColor
 {
@@ -63,7 +63,7 @@ private:
     cocos2d::CCLabelTTF*     _bossHPItem;
     
     // Configuration, data model
-    ConfigGame*     _config;
+//    ConfigGame*     _config;
     int             _score;
     int             _playerHP;
     int             _bossHP;
