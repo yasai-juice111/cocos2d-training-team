@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
 #include "GameTitleScene.h"
+#include "GameConst.h"
 
 USING_NS_CC;
 
@@ -19,7 +20,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     pDirector->setOpenGLView(pEGLView);
 	
     // 横幅を基準に画像サイズを調整する
-//    pDirector->setContentScaleFactor(640.0/pDirector->getWinSize().width);
+    pDirector->setContentScaleFactor(DEFAULT_BASE_HEIGHT/pDirector->getWinSize().height);
     
     // turn on display FPS
     pDirector->setDisplayStats(false);

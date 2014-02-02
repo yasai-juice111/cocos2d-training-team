@@ -2,7 +2,7 @@
 //  TimeUtils.h
 //  SpaceGame
 //
-//  Created by shiramat on H.26/01/26.
+//  Created by Shinji Hiramatsu on H.26/02/02.
 //
 //
 

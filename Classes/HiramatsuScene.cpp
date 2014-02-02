@@ -1,12 +1,12 @@
 //
-//  StageScene.cpp
-//  SpaceGame
+//  HiramatsuScene.cpp
+//  cocos2dx-space-game
 //
-//  Created by Shinji Hiramatsu on H.26/01/15.
+//  Created by CyberAgent on H.26/01/31.
 //
 //
 
-#include "StageScene.h"
+#include "HiramatsuScene.h"
 #include "ParallaxLayer.h"
 #include "PlayerShip.h"
 #include "EnemyShip.h"
@@ -24,13 +24,13 @@ USING_NS_CC;
 
 const float kDefaultFrameRate = (1.0 / 24.0);
 
-CCScene* StageScene::scene()
+CCScene* HiramatsuScene::scene()
 {
     // 'scene' is an autorelease object
     CCScene *scene = CCScene::create();
     
     // 'layer' is an autorelease object
-    StageScene *layer = StageScene::create();
+    HiramatsuScene *layer = HiramatsuScene::create();
     
     // add layer as a child to scene
     scene->addChild(layer);
@@ -40,7 +40,7 @@ CCScene* StageScene::scene()
 }
 
 // on "init" you need to initialize your instance
-bool StageScene::init()
+bool HiramatsuScene::init()
 {
     //////////////////////////////
     // 1. super init first
@@ -53,6 +53,7 @@ bool StageScene::init()
     _touchFlag = false;
     _moveShipPos = ccp(0, 0);
     _nextEnemy = 0;
+    _duringPlayerBombEffect = false;
     
     _score = 0;
     _playerHP = 100;
@@ -70,17 +71,17 @@ bool StageScene::init()
     
     // File size (will be set when open the file).
     unsigned long fileSize = 0;
-    
+
     // Open the file and get the data.
     unsigned char* json_str = CCFileUtils::sharedFileUtils()->getFileData(fullPath.c_str(), openMode, &fileSize);
     if (json_str)
     {
-        //        configDict = JSONToDictConverter::queryDictionary((const char *)json_str);
+//        configDict = JSONToDictConverter::queryDictionary((const char *)json_str);
         configDict = CCJSONConverter::sharedConverter()->dictionaryFrom((const char *)json_str);
     }
     
     _config = new ConfigGame(configDict);
-    
+
     // plistの登録
     CCSpriteFrameCache* frameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
     //    frameCache->addSpriteFramesWithFile("dragon_ss.plist");
@@ -92,14 +93,14 @@ bool StageScene::init()
     _backgroundNode = ParallaxLayer::createLayer();
 #if 1  // 背景は外部から取得したJSONデータから設定する
     _backgroundNode->addChildLayer("1A2_normalBG01.jpeg", 0, 1.0, ccp(0.25, 1.0), CCPointZero);
-    //    _backgroundNode->addChildLayer("bglayer2.png", 0, 1.5, ccp(0.5, 1.0), CCPointZero);
-    //    _backgroundNode->addChildLayer("bglayer3.png", 0, 1.5, ccp(1.0, 1.0), CCPointZero);
+//    _backgroundNode->addChildLayer("bglayer2.png", 0, 1.5, ccp(0.5, 1.0), CCPointZero);
+//    _backgroundNode->addChildLayer("bglayer3.png", 0, 1.5, ccp(1.0, 1.0), CCPointZero);
 #endif
     this->addChild(_backgroundNode, 0);
     
-    //    HiramatsuScene::addChild(CCParticleSystemQuad::create("Stars1.plist"));
-    //    HiramatsuScene::addChild(CCParticleSystemQuad::create("Stars2.plist"));
-    //    HiramatsuScene::addChild(CCParticleSystemQuad::create("Stars3.plist"));
+//    HiramatsuScene::addChild(CCParticleSystemQuad::create("Stars1.plist"));
+//    HiramatsuScene::addChild(CCParticleSystemQuad::create("Stars2.plist"));
+//    HiramatsuScene::addChild(CCParticleSystemQuad::create("Stars3.plist"));
     
     // 弾丸表示用のBatchNodeを設定
     _batchNode = CCSpriteBatchNode::create("temp_bullets.png");
@@ -138,8 +139,7 @@ bool StageScene::init()
     }
     
     // Player機の作成
-    //    _playerShip = PlayerShip::createShipFrame("dragon_ss", 4);
-    //    CCString*   playerShipName = new CCString("apple_hero.png");
+//    CCString*   playerShipName = new CCString("apple_hero.png");
     CCString*   playerShipName = new CCString("apple_hero_2.png");
     _playerShip = PlayerShip::createShip(playerShipName->getCString());
     _playerShip->setPosition(ccp(winSize.width * 0.1, winSize.height * 0.5));
@@ -172,7 +172,7 @@ bool StageScene::init()
 }
 
 // 画面のスケジューラの更新処理
-void StageScene::update(float dt)
+void HiramatsuScene::update(float dt)
 {
     // 背景レイヤーの更新
     _backgroundNode->update(dt);
@@ -190,7 +190,7 @@ void StageScene::update(float dt)
     _playerShip->setPosition(ccp(newX, newY));
     _moveShipPos = ccp(0, 0);
     _playerShip->update(dt);
-    
+        
     // 敵機の自動生成処理
     checkPopupEnemy();
     
@@ -203,11 +203,15 @@ void StageScene::update(float dt)
         if (enemyShip && enemyShip->isVisible())
         {
             enemyShip->update(dt);
+            CCRect  eShipBounds = enemyShip->getBoundingBox();
+            CCLOG("enemyRect={x=%f, y=%f, w=%f, h=%f", eShipBounds.origin.x, eShipBounds.origin.y, eShipBounds.size.width, eShipBounds.size.height);
         }
         iterEnemy++;
     }
     
     // Playerの弾と敵機に対する当たり判定処理
+    CCRect  playerShipBounds = _playerShip->getBoundingBox();
+    CCLOG("playerShipBounds={x=%f, y=%f, w=%f, h=%f", playerShipBounds.origin.x, playerShipBounds.origin.y, playerShipBounds.size.width, playerShipBounds.size.height);
     std::vector<BulletSprite *>::iterator iterPlayerBullet = _playerShip->bulletList.begin();
     while (iterPlayerBullet != _playerShip->bulletList.end())
     {
@@ -215,20 +219,21 @@ void StageScene::update(float dt)
         if (playerBullet && playerBullet->isVisible())
         {
             CCRect  pBulletBounds = playerBullet->boundingBox();
-            iterEnemy = _enemyList.begin();
+            //CCLOG("bulletRect={x=%f, y=%f, w=%f, h=%f", pBulletBounds.origin.x, pBulletBounds.origin.y, pBulletBounds.size.width, pBulletBounds.size.height);
+           iterEnemy = _enemyList.begin();
             while (iterEnemy != _enemyList.end())
             {
                 enemyShip = (EnemyShip*)(*iterEnemy);
-                if (enemyShip && enemyShip->isActive())
+                if (enemyShip /*&& enemyShip->isActive()*/)
                 {
                     // 敵機の本体との衝突判定処理
-                    CCRect  eShipBounds = enemyShip->boundingBox();
+                    CCSprite* eShipSprite = enemyShip->getBodySprite();
+                    CCRect  eShipBounds = enemyShip->getBoundingBox();
                     if (pBulletBounds.intersectsRect(eShipBounds))
                     {
                         damageEnemy(enemyShip);
                     }
                     
-                    CCRect  playerShipBounds = _playerShip->boundingBox();
                     if (playerShipBounds.intersectsRect(eShipBounds))
                     {
                         damagePlayer(enemyShip);
@@ -289,10 +294,10 @@ void StageScene::update(float dt)
 }
 
 // 敵機のポップ表示処理
-void StageScene::checkPopupEnemy()
+void HiramatsuScene::checkPopupEnemy()
 {
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
-    
+
     // 敵機の自動生成処理
     double curTimeMillis = TimeUtils::getTime();
     if (curTimeMillis > _nextEnemySpawn)
@@ -305,17 +310,17 @@ void StageScene::checkPopupEnemy()
         _nextEnemy++;
         
         if (_nextEnemy >= _enemyList.size())
-            _nextEnemy = 0;
+        _nextEnemy = 0;
         
         enemyShip->reset();
         enemyShip->setPosition( ccp(winSize.width+enemyShip->getContentSize().width/2, randY));
         enemyShip->setVisible(true);
-        enemyShip->runAction(CCSequence::create(CCMoveBy::create(enemyShip->getMoveSpeed(), ccp(-winSize.width - enemyShip->getContentSize().width, 0)), CCCallFuncN::create(this, callfuncN_selector(StageScene::setInvisible)), NULL));
+        enemyShip->runAction(CCSequence::create(CCMoveBy::create(enemyShip->getMoveSpeed(), ccp(-winSize.width - enemyShip->getContentSize().width, 0)), CCCallFuncN::create(this, callfuncN_selector(HiramatsuScene::setInvisible)), NULL));
     }
 }
 
 // 画面タッチ開始処理
-void StageScene::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent* event)
+void HiramatsuScene::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent* event)
 {
     _touchFlag = true;
     CCTouch *myTouch = (CCTouch*)touches->anyObject();
@@ -329,7 +334,7 @@ void StageScene::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent* event
 }
 
 // 画面タッチ移動処理
-void StageScene::ccTouchesMoved(cocos2d::CCSet* touches, cocos2d::CCEvent* event)
+void HiramatsuScene::ccTouchesMoved(cocos2d::CCSet* touches, cocos2d::CCEvent* event)
 {
     CCTouch *myTouch = (CCTouch*)touches->anyObject();
     CCPoint location = myTouch->getLocationInView();
@@ -342,18 +347,18 @@ void StageScene::ccTouchesMoved(cocos2d::CCSet* touches, cocos2d::CCEvent* event
 
 
 // 画面タッチ終了処理
-void StageScene::ccTouchesEnded(cocos2d::CCSet* touches, cocos2d::CCEvent* event)
+void HiramatsuScene::ccTouchesEnded(cocos2d::CCSet* touches, cocos2d::CCEvent* event)
 {
     _touchFlag = false;
 }
 
-void StageScene::createUIItems()
+void HiramatsuScene::createUIItems()
 {
     // UIレイヤー
     _uiLayer = new CCNode;
     
     CCSize size = CCDirector::sharedDirector()->getWinSize();
-    
+
     float   ratio = getDispResolution();
     float   fontSize = 36.0 * ratio;
     // Score
@@ -373,7 +378,7 @@ void StageScene::createUIItems()
     _playerHPItem = CCLabelTTF::create("100", "", fontSize);
 	_playerHPItem->setPosition(ccp(200*ratio, size.height - (20*ratio)));
     _uiLayer->addChild(_playerHPItem);
-    
+   
     // Boss HP
     CCLabelTTF *bossTitle = CCLabelTTF::create("BossHP:", "", fontSize);
 	bossTitle->setPosition(ccp(size.width-(200*ratio), size.height - (20*ratio)));
@@ -382,11 +387,11 @@ void StageScene::createUIItems()
     _bossHPItem = CCLabelTTF::create("100", "", fontSize);
 	_bossHPItem->setPosition(ccp(size.width-(100*ratio), size.height - (20*ratio)));
     _uiLayer->addChild(_bossHPItem);
-    
+
     this->addChild(_uiLayer, 5);
 }
 
-void StageScene::doBombEffect(CCPoint pos, CCNode* dispLayer)
+void HiramatsuScene::doBombEffect(CCPoint pos, CCNode* dispLayer)
 {
 #if 0
     const char* bombEfectName = "explosion";   // "explosion"
@@ -420,20 +425,21 @@ void StageScene::doBombEffect(CCPoint pos, CCNode* dispLayer)
     
     CCAnimation* animation = CCAnimation::createWithSpriteFrames(frames, kDefaultFrameRate);
     CCAnimate* animate = CCAnimate::create(animation);
-    CCCallFuncN* removeFunc = CCCallFuncN::create(this, callfuncN_selector(StageScene::removeNode));
+    CCCallFuncN* removeFunc = CCCallFuncN::create(this, callfuncN_selector(HiramatsuScene::removeNode));
     
     bombSprite->setPosition(pos);
     dispLayer->addChild(bombSprite);
-    
+                                                  
     bombSprite->runAction(CCSequence::create(animate, removeFunc, NULL));
 }
 
-bool StageScene::damagePlayer(EnemyShip* fromEnemy)
+bool HiramatsuScene::damagePlayer(EnemyShip* fromEnemy)
 {
+    CCLOG("do bomb player!");
     bool    overp = false;
     if (_playerShip->hitTheBullet(fromEnemy->getPlayerDamageLevel()))
     {
-        doBombEffect(_playerShip->getPosition(), _effectLayer);
+        _playerShip->setDamage(_effectLayer);
         overp = true;
     }
     
@@ -444,8 +450,9 @@ bool StageScene::damagePlayer(EnemyShip* fromEnemy)
     return overp;
 }
 
-void StageScene::damageEnemy(EnemyShip* enemy)
+void HiramatsuScene::damageEnemy(EnemyShip* enemy)
 {
+    CCLOG("do bomb enemy!");
     if (enemy->hitTheBullet(_playerShip->getAttackPoint()))
     {
         doBombEffect(enemy->getPosition(), _effectLayer);
@@ -455,14 +462,14 @@ void StageScene::damageEnemy(EnemyShip* enemy)
     }
 }
 
-float StageScene::getDispWinRatio()
+float HiramatsuScene::getDispWinRatio()
 {
     CCSize size = CCDirector::sharedDirector()->getWinSize();
     float ratio = size.height / DEFAULT_BASE_HEIGHT;
     return ratio;
 }
 
-float StageScene::getDispResolution()
+float HiramatsuScene::getDispResolution()
 {
     CCSize size = CCDirector::sharedDirector()->getWinSize();
     return (size.height / DEFAULT_BASE_HEIGHT);
@@ -470,18 +477,18 @@ float StageScene::getDispResolution()
 
 
 
-void StageScene::setInvisible(CCNode * node)
+void HiramatsuScene::setInvisible(CCNode * node)
 {
     node->setVisible(false);
 }
 
-void StageScene::removeNode(cocos2d::CCNode* node)
+void HiramatsuScene::removeNode(cocos2d::CCNode* node)
 {
+    node->setVisible(false);
     node->removeFromParentAndCleanup(true);
 }
 
-
-float StageScene::randomValueBetween(float low, float high)
+float HiramatsuScene::randomValueBetween(float low, float high)
 {
     return (((float) arc4random() / 0xFFFFFFFFu) * (high - low)) + low;
 }

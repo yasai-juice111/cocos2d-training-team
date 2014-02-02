@@ -2,12 +2,13 @@
 //  StartMenuScene.cpp
 //  SpaceGame
 //
-//  Created by shiramat on H.26/01/15.
+//  Created by Shinji Hiramatsu on H.26/01/15.
 //
 //
 
 #include "StartMenuScene.h"
 #include "StageScene.h"
+#include "HiramatsuScene.h"
 #include "cocos2d.h"
 #include "SimpleAudioEngine.h"
 
@@ -163,15 +164,7 @@ void StartMenuScene::menuSelectGameLevel4(CCObject* pSender)
 //    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(kTouchSEName, false);
 
     // スタートメニュー選択が画面に遷移
-    CCScene *pScene = StageScene::scene();
+    CCScene *pScene = HiramatsuScene::scene();
     CCDirector::sharedDirector()->replaceScene(pScene);
 }
 
-void StartMenuScene::menuSelectGameLevel5(CCObject* pSender)
-{
-    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(kTouchSEName, false);
-
-    // スタートメニュー選択が画面に遷移
-    CCScene *pScene = StageScene::scene();
-    CCDirector::sharedDirector()->replaceScene(pScene);
-}

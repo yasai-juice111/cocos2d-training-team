@@ -2,7 +2,7 @@
 //  PlayerShip.cpp
 //  SpaceGame
 //
-//  Created by GCREST on 2014/01/24.
+//  Created by Shinji Hiramatsu on 2014/01/24.
 //
 //
 
@@ -37,7 +37,10 @@ bool PlayerShip::initWithFileName(const char* pszFileName)
     _autoShooting = true;
     _shotInterval = 0.05;
     _lastShotTime = 0;
+    _defaultHP = 1000;
+    _hp = _defaultHP;
     _hasShipAnimation = false;
+    _duringBombEffect = false;
     _ship = CCSprite::create(pszFileName);
     this->addChild(_ship);
     
@@ -52,6 +55,7 @@ bool PlayerShip::initWithFrameName(const char* pFrameName, int numFrame)
     
     _nextShipLaser = 0;
     _autoShooting = true;
+    _duringBombEffect = false;
     _shotInterval = 0.05;
     _lastShotTime = 0;
     _hasShipAnimation = true;
@@ -171,8 +175,11 @@ void PlayerShip::shotBullet()
     shipLaser->runAction(CCSequence::create(CCMoveBy::create(0.5,ccp(winSize.width, 0)), CCCallFuncN::create(this, callfuncN_selector(PlayerShip::setInvisible)), NULL));
 }
 
-void PlayerShip::setDamage()
+void PlayerShip::setDamage(cocos2d::CCNode* dispLayer)
 {
+    if (_duringBombEffect)
+        return;
+    
     CCString*   bombName = new CCString("temp_explosion");
     CCString*   name = CCString::createWithFormat("%s_01.png", bombName->getCString());
     CCSprite* bombSprite = CCSprite::createWithSpriteFrameName(name->getCString());
@@ -188,15 +195,32 @@ void PlayerShip::setDamage()
     }
     CCAnimation* animation = CCAnimation::createWithSpriteFrames(frames, kDefaultFrameRate);
     CCAnimate* animate = CCAnimate::create(animation);
-    bombSprite->setPosition(ccp(0, 0));
-    this->addChild(bombSprite);
-    bombSprite->runAction(CCSequence::create(animate, CCCallFuncN::create(this, callfuncN_selector(PlayerShip::setInvisible)), NULL));
+    if (dispLayer)
+    {
+        bombSprite->setPosition(this->getPosition());
+        dispLayer->addChild(bombSprite);
+    }
+    else
+    {
+        bombSprite->setPosition(ccp(0, 0));
+        this->addChild(bombSprite);
+    }
+    bombSprite->runAction(CCSequence::create(animate, CCCallFuncN::create(this, callfuncN_selector(PlayerShip::removeNode)), NULL));
+    _duringBombEffect = true;
 }
 
 void PlayerShip::setInvisible(CCNode * node)
 {
     node->setVisible(false);
 }
+
+void PlayerShip::removeNode(cocos2d::CCNode* node)
+{
+    node->setVisible(false);
+    node->removeFromParentAndCleanup(true);
+    _duringBombEffect = false;
+}
+
 
 void PlayerShip::touchBeganProcess(cocos2d::CCPoint& pos)
 {
@@ -215,4 +239,56 @@ CCPoint PlayerShip::getBodySize()
     
     return CCPointZero;
 }
+
+cocos2d::CCRect PlayerShip::getBoundingBox()
+{
+    CCRect  shipBounds = _ship->boundingBox();
+    CCPoint basePos = _ship->convertToWorldSpace(this->getPosition());
+    shipBounds.origin.x = basePos.x;
+    shipBounds.origin.y = basePos.y;
+    
+    return shipBounds;
+}
+
+cocos2d::CCSprite* PlayerShip::getBodySprite()
+{
+    return _ship;
+}
+
+
+void PlayerShip::stopActions()
+{
+    if (_ship)
+        _ship->stopAllActions();
+    this->stopAllActions();
+}
+
+bool PlayerShip::hitTheBullet(int damageLevel)
+{
+    _hp -= damageLevel;
+    if (_hp < 0)
+        _hp = 0;
+
+#if 0
+    if (_hp == 0)
+    {
+        stopActions();
+        _ship->setVisible(false);
+    }
+#endif
+    
+    return (_hp == 0)? true: false;
+}
+
+
+int PlayerShip::getHP() const
+{
+    return _hp;
+}
+
+int PlayerShip::getAttackPoint() const
+{
+    return _attackPoint;
+}
+
 

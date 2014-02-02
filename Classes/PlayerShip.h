@@ -2,7 +2,7 @@
 //  PlayerShip.h
 //  SpaceGame
 //
-//  Created by GCREST on 2014/01/24.
+//  Created by Shinji Hiramatsu on 2014/01/24.
 //
 //
 
@@ -28,10 +28,16 @@ public:
     void update(float dt);
     void shotBullet();
     void setInvisible(cocos2d::CCNode * node);
+    void removeNode(cocos2d::CCNode* node);
     void touchBeganProcess(cocos2d::CCPoint& pos);
     cocos2d::CCPoint getBodySize();
-    
-    void setDamage();
+    cocos2d::CCRect getBoundingBox();
+    cocos2d::CCSprite* getBodySprite();
+    void stopActions();
+    bool hitTheBullet(int damageLevel);
+    int getHP() const;
+    int getAttackPoint() const;
+    void setDamage(cocos2d::CCNode* dispLayer=NULL);
 
 public:
     static PlayerShip* createShip(const char* filename);
@@ -40,13 +46,17 @@ public:
 public:
     std::vector<BulletSprite*>  bulletList;
     
-private:
+protected:
     cocos2d::CCSprite*  _ship;
     cocos2d::CCString*  _imageName;
     bool                _autoShooting;
     bool                _hasShipAnimation;
+    bool                _duringBombEffect;
     double              _shotInterval;
     double              _lastShotTime;
+    int                 _defaultHP;
+    int                 _hp;
+    int                 _attackPoint;
     
 //    cocos2d::CCArray*   _shipLasers;
     int                 _nextShipLaser;

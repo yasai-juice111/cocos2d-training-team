@@ -2,7 +2,7 @@
 //  ParallaxChildLayer.h
 //  SpaceGame
 //
-//  Created by shiramat on H.26/01/25.
+//  Created by Shinji Hiramatsu on H.26/02/02.
 //
 //
 
@@ -24,7 +24,7 @@ public:
     
     void update(cocos2d::CCPoint& movePt);
 
-private:
+protected:
     unsigned int    _z;
     float           _scale;
     cocos2d::CCPoint    _ratio;
