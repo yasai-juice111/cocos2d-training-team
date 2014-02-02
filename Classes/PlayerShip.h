@@ -31,8 +31,8 @@ public:
     void touchBeganProcess(cocos2d::CCPoint& pos);
     cocos2d::CCPoint getBodySize();
     
-    void setDamage();
-    
+    virtual void setDamage();
+
 public:
     static PlayerShip* createShip(const char* filename);
     static PlayerShip* createShipFrame(const char* filename, int numFrame);
@@ -48,7 +48,7 @@ protected:
     double              _shotInterval;
     double              _lastShotTime;
     
-    //    cocos2d::CCArray*   _shipLasers;
+//    cocos2d::CCArray*   _shipLasers;
     int                 _nextShipLaser;
 };
 

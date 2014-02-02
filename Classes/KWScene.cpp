@@ -49,8 +49,9 @@ bool KWScene::init()
     CCSpriteFrameCache* frameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
     //    frameCache->addSpriteFramesWithFile("dragon_ss.plist");
     frameCache->addSpriteFramesWithFile("temp_bullets.plist");
-    frameCache->addSpriteFramesWithFile("temp_explosion.plist");
-    frameCache->addSpriteFramesWithFile("explosion.plist"); // 今サイズが大きすぎて表示できない。
+//    frameCache->addSpriteFramesWithFile("temp_explosion.plist");
+    frameCache->addSpriteFramesWithFile("explosion.plist");
+    frameCache->addSpriteFramesWithFile("explosion_boss.plist");
     // 背景レイヤーの設定
     _backgroundNode = ParallaxLayer::createLayer();
 #if 0   // 背景は外部から取得したJSONデータから設定する
@@ -77,22 +78,22 @@ bool KWScene::init()
         if (i < 10)
         {
             enemyShip = KWEnemy::createShip("android_pattern_3.png");
-            enemyShip->setMoveSpeed(5);
+            enemyShip->setMoveSpeed(15);
         }
         else if (i < 20)
         {
             enemyShip = KWEnemy::createShip("android_pattern_5.png");
-            enemyShip->setMoveSpeed(4);
+            enemyShip->setMoveSpeed(14);
         }
         else if (i < 25)
         {
             enemyShip = KWEnemy::createShip("android_pattern_3.png");
-            enemyShip->setMoveSpeed(6);
+            enemyShip->setMoveSpeed(16);
         }
         else if (i < 30)
         {
             enemyShip = KWEnemy::createShip("android_pattern_5.png");
-            enemyShip->setMoveSpeed(8);
+            enemyShip->setMoveSpeed(18);
         }
         enemyShip->initBullets(_batchNode);
         enemyShip->setVisible(false);
@@ -102,7 +103,7 @@ bool KWScene::init()
     
     // Player機の作成
 //    _playerShip = PlayerShip::createShipFrame("dragon_ss", 4);
-    CCString*   playerShipName = new CCString("temp_apple.png");
+    CCString*   playerShipName = new CCString("apple_hero_2.png");
     _playerShip = KWPlayer::createShip(playerShipName->getCString());
     _playerShip->setPosition(ccp(winSize.width * 0.1, winSize.height * 0.5));
     this->addChild(_playerShip, 3);
@@ -179,6 +180,14 @@ void KWScene::update(float dt)
 	judgeEnemyHit();
 	// Playerの当たり判定を見る
 	judgePlayerHit();
+    
+    
+    // 死亡処理
+    if (_playerShip->getDead())
+    {
+        // 死亡した
+        CCLOG("player is dead.....");
+    }
 }
 
 /**
@@ -195,7 +204,7 @@ void KWScene::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent* event)
     _playerShip->touchBeganProcess(location);
     
     _lastTouchPos = location;
-    CCLOG("Kawabata touch began");
+//    CCLOG("Kawabata touch began");
 }
 
 /**
@@ -210,7 +219,7 @@ void KWScene::ccTouchesMoved(cocos2d::CCSet* touches, cocos2d::CCEvent* event)
     _moveShipPos = CCPointMake(location.x - _lastTouchPos.x, location.y - _lastTouchPos.y);
     
     _lastTouchPos = location;
-    CCLOG("Kawabata touch moved");
+//    CCLOG("Kawabata touch moved");
 }
 
 /**
@@ -219,7 +228,7 @@ void KWScene::ccTouchesMoved(cocos2d::CCSet* touches, cocos2d::CCEvent* event)
 void KWScene::ccTouchesEnded(cocos2d::CCSet* touches, cocos2d::CCEvent* event)
 {
     _touchFlag = false;
-    CCLOG("Kawabata touch ended");
+//    CCLOG("Kawabata touch ended");
 }
 
 /**
@@ -228,7 +237,7 @@ void KWScene::ccTouchesEnded(cocos2d::CCSet* touches, cocos2d::CCEvent* event)
 void KWScene::setInvisible(cocos2d::CCNode * node)
 {
     StageScene::setInvisible(node);
-    CCLOG("Kawabata set invisible");
+//    CCLOG("Kawabata set invisible");
 }
 
 /**

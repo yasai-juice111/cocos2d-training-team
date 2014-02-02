@@ -31,7 +31,7 @@ public:
     float getMoveSpeed();
     void setMoveSpeed(float speed);
     
-    void setDamage();
+    virtual void setDamage();
     
 public:
     static EnemyShip* createShip(const char* filename);

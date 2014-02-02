@@ -4,7 +4,7 @@
 	<dict>
 		<key>frames</key>
 		<dict>
-			<key>explosion_00000.png</key>
+			<key>explosion_boss_00000.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{0,0},{256,256}}</string>
@@ -17,7 +17,7 @@
 				<key>sourceSize</key>
 				<string>{256,256}</string>
 			</dict>
-			<key>explosion_00001.png</key>
+			<key>explosion_boss_00001.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{256,0},{256,256}}</string>
@@ -30,7 +30,7 @@
 				<key>sourceSize</key>
 				<string>{256,256}</string>
 			</dict>
-			<key>explosion_00002.png</key>
+			<key>explosion_boss_00002.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{512,0},{256,256}}</string>
@@ -43,7 +43,7 @@
 				<key>sourceSize</key>
 				<string>{256,256}</string>
 			</dict>
-			<key>explosion_00003.png</key>
+			<key>explosion_boss_00003.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{768,0},{256,256}}</string>
@@ -56,7 +56,7 @@
 				<key>sourceSize</key>
 				<string>{256,256}</string>
 			</dict>
-			<key>explosion_00004.png</key>
+			<key>explosion_boss_00004.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{0,256},{256,256}}</string>
@@ -69,7 +69,7 @@
 				<key>sourceSize</key>
 				<string>{256,256}</string>
 			</dict>
-			<key>explosion_00005.png</key>
+			<key>explosion_boss_00005.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{256,256},{256,256}}</string>
@@ -82,7 +82,7 @@
 				<key>sourceSize</key>
 				<string>{256,256}</string>
 			</dict>
-			<key>explosion_00006.png</key>
+			<key>explosion_boss_00006.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{512,256},{256,256}}</string>
@@ -95,7 +95,7 @@
 				<key>sourceSize</key>
 				<string>{256,256}</string>
 			</dict>
-			<key>explosion_00007.png</key>
+			<key>explosion_boss_00007.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{768,256},{256,256}}</string>
@@ -108,7 +108,7 @@
 				<key>sourceSize</key>
 				<string>{256,256}</string>
 			</dict>
-			<key>explosion_00008.png</key>
+			<key>explosion_boss_00008.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{0,512},{256,256}}</string>
@@ -121,7 +121,7 @@
 				<key>sourceSize</key>
 				<string>{256,256}</string>
 			</dict>
-			<key>explosion_00009.png</key>
+			<key>explosion_boss_00009.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{256,512},{256,256}}</string>
@@ -134,7 +134,7 @@
 				<key>sourceSize</key>
 				<string>{256,256}</string>
 			</dict>
-			<key>explosion_00010.png</key>
+			<key>explosion_boss_00010.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{512,512},{256,256}}</string>
@@ -147,7 +147,7 @@
 				<key>sourceSize</key>
 				<string>{256,256}</string>
 			</dict>
-			<key>explosion_00011.png</key>
+			<key>explosion_boss_00011.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{768,512},{256,256}}</string>
@@ -160,7 +160,7 @@
 				<key>sourceSize</key>
 				<string>{256,256}</string>
 			</dict>
-			<key>explosion_00012.png</key>
+			<key>explosion_boss_00012.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{0,768},{256,256}}</string>
@@ -173,7 +173,7 @@
 				<key>sourceSize</key>
 				<string>{256,256}</string>
 			</dict>
-			<key>explosion_00013.png</key>
+			<key>explosion_boss_00013.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{256,768},{256,256}}</string>
@@ -186,7 +186,7 @@
 				<key>sourceSize</key>
 				<string>{256,256}</string>
 			</dict>
-			<key>explosion_00014.png</key>
+			<key>explosion_boss_00014.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{512,768},{256,256}}</string>
@@ -199,7 +199,7 @@
 				<key>sourceSize</key>
 				<string>{256,256}</string>
 			</dict>
-			<key>explosion_00015.png</key>
+			<key>explosion_boss_00015.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{768,768},{256,256}}</string>
