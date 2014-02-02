@@ -2,7 +2,7 @@
 //  StartMenuScene.h
 //  SpaceGame
 //
-//  Created by shiramat on H.26/01/15.
+//  Created by Shinji Hiramatsu on H.26/02/02.
 //
 //
 
@@ -25,7 +25,6 @@ public:
     void menuSelectGameLevel2(cocos2d::CCObject* pSender);
     void menuSelectGameLevel3(cocos2d::CCObject* pSender);
     void menuSelectGameLevel4(cocos2d::CCObject* pSender);
-    void menuSelectGameLevel5(cocos2d::CCObject* pSender);
     
     // implement the "static node()" method manually
     CREATE_FUNC(StartMenuScene);

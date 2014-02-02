@@ -2,7 +2,7 @@
 //  GameTitleScene.h
 //  SpaceGame
 //
-//  Created by GCREST on 2014/01/24.
+//  Created by Shinji Hiramatsu on 2014/01/24.
 //
 //
 

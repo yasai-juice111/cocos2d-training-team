@@ -2,7 +2,7 @@
 //  ParallaxChildLayer.cpp
 //  SpaceGame
 //
-//  Created by shiramat on H.26/01/25.
+//  Created by Shinji Hiramatsu on H.26/02/02.
 //
 //
 

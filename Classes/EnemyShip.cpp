@@ -2,7 +2,7 @@
 //  EnemyShip.cpp
 //  SpaceGame
 //
-//  Created by GCREST on 2014/01/24.
+//  Created by Shinji Hiramatsu on 2014/01/24.
 //
 //
 
@@ -37,8 +37,12 @@ bool EnemyShip::initWithFileName(const char* pszFileName)
     _nextShipLaser = 0;
     _autoShooting = true;
     _attacked = false;
-    _shotInterval = 0.4;
+    _shotInterval = 0.8;
     _lastShotTime = 0;
+    _defaultHP = 10;
+    _hp = _defaultHP;
+    _playerDamageLevel = 10;    // Default
+    _defeatedPoint = 20;
     _ship = CCSprite::create(pszFileName);
     _ship->setPosition(ccp(0, 0));
     this->addChild(_ship);
@@ -141,6 +145,13 @@ void EnemyShip::end()
         _ship->stopAllActions();
 }
 
+void EnemyShip::reset()
+{
+    stopActions();
+    _attacked = false;
+    _hp = _defaultHP;
+}
+
 void EnemyShip::update(float dt)
 {
     if (_autoShooting && !_attacked)
@@ -188,6 +199,63 @@ void EnemyShip::setMoveSpeed(float speed)
     _moveSpeed = speed;
 }
 
+cocos2d::CCRect EnemyShip::getBoundingBox()
+{
+    CCRect  shipBounds = _ship->boundingBox();
+    shipBounds.origin.x = this->getPosition().x;
+    shipBounds.origin.y = this->getPosition().y;
+    
+//    CCRect  shipBounds = _ship->boundingBox();
+//    CCPoint basePos = _ship->convertToWorldSpace(this->getPosition());
+//    shipBounds.origin.x = basePos.x;
+//    shipBounds.origin.y = basePos.y;
+    
+    return shipBounds;
+}
+
+cocos2d::CCSprite* EnemyShip::getBodySprite()
+{
+    return _ship;
+}
+
+
+void EnemyShip::stopActions()
+{
+    _ship->stopAllActions();
+    this->stopAllActions();
+}
+
+bool EnemyShip::isActive()
+{
+    return (_attacked == false && _ship->isVisible());
+}
+
+bool EnemyShip::hitTheBullet(int damageLevel)
+{
+    _hp -= damageLevel;
+    if (_hp < 0)
+        _hp = 0;
+    
+    if (_hp == 0)
+    {
+        stopActions();
+        _attacked = true;
+        _ship->setVisible(false);
+    }
+    
+    return (_hp == 0)? true: false;
+}
+
+
+void EnemyShip::setAttacked()
+{
+    stopActions();
+    
+    _attacked = true;
+    _ship->setVisible(false);
+}
+
+
 void EnemyShip::setDamage()
 {
     _attacked = true;
@@ -228,5 +296,22 @@ void EnemyShip::setDamage()
     _ship->runAction(CCSequence::create(animate, CCCallFuncN::create(this, callfuncN_selector(EnemyShip::setInvisible)), NULL));
 #endif
 }
+
+int EnemyShip::getPlayerDamageLevel() const
+{
+    return _playerDamageLevel;
+}
+
+int EnemyShip::getHP() const
+{
+    return _hp;
+}
+
+int EnemyShip::getDefeatedPoint() const
+{
+    return _defeatedPoint;
+}
+
+
 
 
