@@ -79,7 +79,8 @@ bool ShibuyaScene::init()
     _playerShip->setPosition(ccp(winSize.width * 0.1, winSize.height * 0.9));
     this->addChild(_playerShip, 3);
 	
-	_playerShip->setLife(1);
+    _playerShipLife = 5;
+	_playerShip->setLife(_playerShipLife);
 	showPlayerLife();
     
     // Playerの砲撃弾の設定
@@ -132,6 +133,16 @@ bool ShibuyaScene::init()
     
     // ボス子機の制御を開始
     _sbBossChildLowerShip->start();
+    
+    // ライフ表示用画像
+    CCSprite* _battery = CCSprite::create("battery-empty-256x256.png");
+    _progressTimer = CCProgressTimer::create(_battery);
+    _progressTimer->setType(kCCProgressTimerTypeBar);
+    _progressTimer->setMidpoint(ccp(0, 0));
+    _progressTimer->setBarChangeRate(ccp(1, 0));
+    _progressTimer->setPercentage(100.0);
+    _progressTimer->setPosition(ccp(winSize.width * 0.5, winSize.height * 0.9));
+    this->addChild(_progressTimer);
 
 	
     // 更新スケジューラを設定
@@ -282,6 +293,7 @@ void ShibuyaScene::update(float dt)
 					CCLOG("_playerShip life: %d", life);
 					
 					showPlayerLife();
+                    updateProgressTimer();
 					
 					if (life == 0) {
 						endScene();
@@ -311,6 +323,7 @@ void ShibuyaScene::update(float dt)
 					CCLOG("_playerShip life: %d", life);
 					
 					showPlayerLife();
+                    updateProgressTimer();
 					
 					if (life == 0) {
 						endScene();
@@ -340,6 +353,7 @@ void ShibuyaScene::update(float dt)
 					CCLOG("_playerShip life: %d", life);
 					
 					showPlayerLife();
+                    updateProgressTimer();
 					
 					if (life == 0) {
 						endScene();
@@ -475,6 +489,16 @@ void ShibuyaScene::makeRetryButton()
 	CCMenu* menu = CCMenu::create(retryItem, NULL);
 	menu->setPosition(CCPointZero);
 	this->addChild(menu);
+}
+
+/*
+ * プログレスタイマーの更新
+ */
+void ShibuyaScene::updateProgressTimer()
+{
+    float percentage = _progressTimer->getPercentage();
+    percentage -= (100/_playerShipLife);
+    _progressTimer->setPercentage(percentage);
 }
 
 /*

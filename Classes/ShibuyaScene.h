@@ -18,6 +18,8 @@
 #include "SimpleAudioEngine.h"
 #include "ShibuyaBossShip.h"
 
+USING_NS_CC;
+
 // クラス定義必要？
 class ParallaxLayer;
 class PlayerShip;
@@ -42,6 +44,7 @@ public:
     virtual float randomValueBetween(float low, float high);
 private:
     PlayerShip* _playerShip;
+    int _playerShipLife;
 	cocos2d::CCSpriteBatchNode * _batchNode;
     cocos2d::CCNode*    _enemyLayer;
     ParallaxLayer*  _backgroundNode;
@@ -50,6 +53,8 @@ private:
 	ShibuyaBossShip* _sbBossChildLowerShip;
 
     std::vector<EnemyShip*>_enemyList;
+    
+    CCProgressTimer* _progressTimer;
     
     int             _nextEnemy;
     double          _nextEnemySpawn;
@@ -66,6 +71,8 @@ private:
 	
 	void makeRetryButton();
 	void tapRetryButton(CCNode *node);
+    
+    void updateProgressTimer();
 };
 
 #endif /* defined(__cocos2dx_space_game__ShibuyaScene__) */
