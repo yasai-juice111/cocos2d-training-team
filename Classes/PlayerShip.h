@@ -37,7 +37,7 @@ public:
     bool hitTheBullet(int damageLevel);
     int getHP() const;
     int getAttackPoint() const;
-    void setDamage(cocos2d::CCNode* dispLayer=NULL);
+    virtual void setDamage(cocos2d::CCNode* dispLayer=NULL);
 public:
     static PlayerShip* createShip(const char* filename);
     static PlayerShip* createShipFrame(const char* filename, int numFrame);

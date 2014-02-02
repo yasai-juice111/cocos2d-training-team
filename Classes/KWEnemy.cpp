@@ -15,6 +15,7 @@
 //using namespace CocosDenshion;
 
 USING_NS_CC;
+const float kDefaultFrameRate = (1.0 / 24.0);
 
 KWEnemy::KWEnemy()
 {
@@ -99,6 +100,49 @@ void KWEnemy::createLaser(BulletSprite *shipLaser, CCSize winSize, int direction
     shipLaser->runAction(CCSequence::create(CCMoveBy::create(2.0, ccp(-winSize.width, directionPos)), CCCallFuncN::create(this, callfuncN_selector(EnemyShip::setInvisible)), NULL));
 }
 
+/**
+ * ダメージ処理
+ */
+void KWEnemy::setDamage()
+{
+    _attacked = true;
+    
+    // 適機の移動アクションを停止
+    _ship->stopAllActions();
+    
+#if 0
+    CCString*   bombName = new CCString("explosion");
+    //    CCString*   bombName = new CCString("explosion1_ss");
+    CCSpriteFrameCache* frameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
+    int numFrames = 84;
+    CCArray*    frames = CCArray::createWithCapacity(numFrames);
+    for (int i = 0; i <= numFrames; i++)
+    {
+        CCString*   name = CCString::createWithFormat("%s_%04d.png", bombName->getCString(), i);
+        CCSpriteFrame* spriteFrame = frameCache->spriteFrameByName(name->getCString());
+        if (spriteFrame)
+            frames->addObject(spriteFrame);
+    }
+    CCAnimation* animation = CCAnimation::createWithSpriteFrames(frames, kDefaultFrameRate);
+    CCAnimate* animate = CCAnimate::create(animation);
+    _ship->runAction(CCSequence::create(animate, CCCallFuncN::create(this, callfuncN_selector(EnemyShip::setInvisible)), NULL));
+#else
+    CCString*   bombName = new CCString("explosion");
+    CCSpriteFrameCache* frameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
+    int numFrames = 16;
+    CCArray*    frames = CCArray::createWithCapacity(numFrames);
+    for (int i = 1; i <= numFrames; i++)
+    {
+        CCString*   name = CCString::createWithFormat("%s_000%02d.png", bombName->getCString(), i);
+        CCSpriteFrame* spriteFrame = frameCache->spriteFrameByName(name->getCString());
+        if (spriteFrame)
+            frames->addObject(spriteFrame);
+    }
+    CCAnimation* animation = CCAnimation::createWithSpriteFrames(frames, kDefaultFrameRate);
+    CCAnimate* animate = CCAnimate::create(animation);
+    _ship->runAction(CCSequence::create(animate, CCCallFuncN::create(this, callfuncN_selector(EnemyShip::setInvisible)), NULL));
+#endif
+}
 
 
 

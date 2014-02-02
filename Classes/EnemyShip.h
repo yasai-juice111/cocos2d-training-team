@@ -37,7 +37,7 @@ public:
     cocos2d::CCRect getBoundingBox();
     cocos2d::CCSprite* getBodySprite();
     void setAttacked();
-    void setDamage();
+    virtual void setDamage();
     int getPlayerDamageLevel() const;
     int getHP() const;
     int getDefeatedPoint() const;
