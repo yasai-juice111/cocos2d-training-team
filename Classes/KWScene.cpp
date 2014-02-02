@@ -51,8 +51,8 @@ bool KWScene::init()
     //    frameCache->addSpriteFramesWithFile("dragon_ss.plist");
     frameCache->addSpriteFramesWithFile("temp_bullets.plist");
 //    frameCache->addSpriteFramesWithFile("temp_explosion.plist");
-    frameCache->addSpriteFramesWithFile("explosion.plist");
-    frameCache->addSpriteFramesWithFile("explosion_boss.plist");
+    frameCache->addSpriteFramesWithFile("explosion_2_S/explosion.plist");
+    frameCache->addSpriteFramesWithFile("explosion_boss_1_S/explosion_boss.plist");
     // 背景レイヤーの設定
     _backgroundNode = ParallaxLayer::createLayer();
 #if 0   // 背景は外部から取得したJSONデータから設定する
