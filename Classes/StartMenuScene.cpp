@@ -13,6 +13,7 @@
 #include "cocos2d.h"
 #include "SimpleAudioEngine.h"
 #include "KWScene.h"
+#include "ChoScene.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -157,7 +158,7 @@ void StartMenuScene::menuSelectGameLevel3(CCObject* pSender)
 //    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(kTouchSEName, false);
 
     // スタートメニュー選択が画面に遷移
-    CCScene *pScene = StageScene::scene();
+    CCScene *pScene = ChoScene::scene();
     CCDirector::sharedDirector()->replaceScene(pScene);
 }
 
