@@ -30,9 +30,8 @@ public:
     void setInvisible(cocos2d::CCNode * node);
     void touchBeganProcess(cocos2d::CCPoint& pos);
     cocos2d::CCPoint getBodySize();
-    
-    void setDamage();
-    
+    virtual void setDamage();
+
 public:
     static PlayerShip* createShip(const char* filename);
     static PlayerShip* createShipFrame(const char* filename, int numFrame);
