@@ -21,6 +21,7 @@ public:
 	virtual void update(float dt);
 	// 弾を打つ(弾の方向調整)
 	virtual void shotBullet();
+    virtual void setDamage();
 	
 public:
     static KWEnemy* createShip(const char* filename);
