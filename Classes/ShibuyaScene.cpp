@@ -56,6 +56,7 @@ bool ShibuyaScene::init()
     frameCache->addSpriteFramesWithFile("temp_bullets.plist");
     frameCache->addSpriteFramesWithFile("temp_explosion.plist");
     frameCache->addSpriteFramesWithFile("explosion.plist"); // 今サイズが大きすぎて表示できない。
+    frameCache->addSpriteFramesWithFile("explosion_boss.plist");
     // 背景レイヤーの設定
     _backgroundNode = ParallaxLayer::createLayer();
 #if 0   // 背景は外部から取得したJSONデータから設定する
@@ -79,7 +80,7 @@ bool ShibuyaScene::init()
     _playerShip->setPosition(ccp(winSize.width * 0.1, winSize.height * 0.9));
     this->addChild(_playerShip, 3);
 	
-    _playerShipLife = 5;
+    _playerShipLife = 3;
 	_playerShip->setLife(_playerShipLife);
 	showPlayerLife();
     
@@ -142,14 +143,14 @@ bool ShibuyaScene::init()
     _playerProgressTimer->setMidpoint(ccp(0, 0));
     _playerProgressTimer->setBarChangeRate(ccp(1, 0));
     _playerProgressTimer->setPercentage(100.0);
-    _playerProgressTimer->setPosition(ccp(winSize.width * 0.3, winSize.height * 0.9));
+    _playerProgressTimer->setPosition(ccp(winSize.width * 0.35, winSize.height * 0.9));
     this->addChild(_playerProgressTimer);
     _bossProgressTimer = CCProgressTimer::create(_battery);
     _bossProgressTimer->setType(kCCProgressTimerTypeBar);
     _bossProgressTimer->setMidpoint(ccp(0, 0));
     _bossProgressTimer->setBarChangeRate(ccp(1, 0));
     _bossProgressTimer->setPercentage(100.0);
-    _bossProgressTimer->setPosition(ccp(winSize.width * 0.7, winSize.height * 0.9));
+    _bossProgressTimer->setPosition(ccp(winSize.width * 0.65, winSize.height * 0.9));
     this->addChild(_bossProgressTimer);
 
 	
@@ -202,13 +203,13 @@ void ShibuyaScene::update(float dt)
 	
 	// ボス子機の表示位置の更新
 	if (_sbBossChildUpperShip->isVisible()) {
-		_sbBossChildUpperShip->setPosition(ccp(bossShipNextPositionX, bossShipNextPositionY + winSize.height * 0.1));
+		_sbBossChildUpperShip->setPosition(ccp(bossShipNextPositionX, bossShipNextPositionY + winSize.height * 0.15));
 		_sbBossChildUpperShip->update(dt);
 	}
 	
 	// ボス子機の表示位置の更新
 	if (_sbBossChildLowerShip->isVisible()) {
-		_sbBossChildLowerShip->setPosition(ccp(bossShipNextPositionX, bossShipNextPositionY - winSize.height * 0.1));
+		_sbBossChildLowerShip->setPosition(ccp(bossShipNextPositionX, bossShipNextPositionY - winSize.height * 0.15));
 		_sbBossChildLowerShip->update(dt);
 	}
 	

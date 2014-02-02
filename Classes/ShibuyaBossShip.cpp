@@ -147,15 +147,15 @@ void ShibuyaBossShip::shotBullet()
 
 void ShibuyaBossShip::setDamage()
 {
-    CCString*   bombName = new CCString("temp_explosion");
-    CCString*   name = CCString::createWithFormat("%s_01.png", bombName->getCString());
+    CCString* bombName = new CCString("explosion_boss");
+    CCString* name = CCString::createWithFormat("temp_explosion_01.png");
     CCSprite* bombSprite = CCSprite::createWithSpriteFrameName(name->getCString());
     CCSpriteFrameCache* frameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
     int numFrames = 4;
-    CCArray*    frames = CCArray::createWithCapacity(numFrames);
+    CCArray* frames = CCArray::createWithCapacity(numFrames);
     for (int i = 1; i <= numFrames; i++)
     {
-        CCString*   name = CCString::createWithFormat("%s_%02d.png", bombName->getCString(), i);
+        CCString* name = CCString::createWithFormat("%s_000%02d.png", bombName->getCString(), i);
         CCSpriteFrame* spriteFrame = frameCache->spriteFrameByName(name->getCString());
         if (spriteFrame)
             frames->addObject(spriteFrame);
