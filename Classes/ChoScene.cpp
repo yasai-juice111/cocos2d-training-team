@@ -80,15 +80,14 @@ bool ChoScene::init()
             enemyShip = ChoEnemy::createShip("android_pattern_3.png");
             enemyShip->setMoveSpeed(5);
         }
+        else if (i < 15)
+        {
+            enemyShip = ChoEnemy::createShip("android_boss_1.png");
+            enemyShip->setMoveSpeed(5);
+        }
         else if (i < 20)
         {
             enemyShip = ChoEnemy::createShip("android_pattern_5.png");
-            enemyShip->setMoveSpeed(1);
-        }
-        else if (i < 23)
-        {
-            enemyShip = ChoEnemy::createShip("android_boss_1.png");
-            enemyShip->setScale(0.50);
             enemyShip->setMoveSpeed(1);
         }
         else if (i < 25)
