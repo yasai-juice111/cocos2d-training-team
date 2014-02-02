@@ -80,10 +80,15 @@ bool ChoScene::init()
             enemyShip = ChoEnemy::createShip("android_pattern_3.png");
             enemyShip->setMoveSpeed(5);
         }
+        else if (i < 15)
+        {
+            enemyShip = ChoEnemy::createShip("android_boss_1.png");
+            enemyShip->setMoveSpeed(5);
+        }
         else if (i < 20)
         {
             enemyShip = ChoEnemy::createShip("android_pattern_5.png");
-            enemyShip->setMoveSpeed(4);
+            enemyShip->setMoveSpeed(1);
         }
         else if (i < 25)
         {
@@ -104,7 +109,8 @@ bool ChoScene::init()
     // Player機の作成
     CCString*   playerShipName = new CCString("apple_hero_2.png");
     _playerShip = ChoPlayer::createShip(playerShipName->getCString());
-    _playerShip->setPosition(ccp(winSize.width * 0.5, winSize.height * 0.5));
+    _playerShip->setPosition(ccp(winSize.width * 0.1, winSize.height * 0.5));
+    _playerShip->setScale(0.25);
     this->addChild(_playerShip, 3);
     
     // Playerの砲撃弾の設定
