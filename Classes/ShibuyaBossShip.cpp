@@ -1,11 +1,12 @@
 //
-//  PlayerShip.cpp
-//  SpaceGame
+//  ShibuyaBossShip.cpp
+//  cocos2dx-space-game
 //
-//  Created by Shinji Hiramatsu on 2014/01/24.
+//  Created by Shun SHIBUYA on 14/02/01.
 //
 //
 
+#include "ShibuyaBossShip.h"
 #include "PlayerShip.h"
 #include "BulletSprite.h"
 #include "TimeUtils.h"
@@ -18,29 +19,28 @@ USING_NS_CC;
 
 const float kDefaultFrameRate = (1.0 / 24.0);
 
-PlayerShip::PlayerShip()
+ShibuyaBossShip::ShibuyaBossShip()
+{
+	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+	positionDx = - winSize.width / 100;
+	positionDy = - winSize.height / 100;
+}
+
+ShibuyaBossShip::~ShibuyaBossShip()
 {
     
 }
 
-PlayerShip::~PlayerShip()
-{
-    
-}
-
-bool PlayerShip::initWithFileName(const char* pszFileName)
+bool ShibuyaBossShip::initWithFileName(const char* pszFileName)
 {
     if (!CCNode::init())
         return false;
     
     _nextShipLaser = 0;
     _autoShooting = true;
-    _shotInterval = 0.05;
+    _shotInterval = 0.5;
     _lastShotTime = 0;
-    _defaultHP = 1000;
-    _hp = _defaultHP;
     _hasShipAnimation = false;
-    _duringBombEffect = false;
     _ship = CCSprite::create(pszFileName);
     this->addChild(_ship);
     
@@ -48,43 +48,13 @@ bool PlayerShip::initWithFileName(const char* pszFileName)
     
 }
 
-bool PlayerShip::initWithFrameName(const char* pFrameName, int numFrame)
-{
-    if (!CCNode::init())
-        return false;
-    
-    _nextShipLaser = 0;
-    _autoShooting = true;
-    _duringBombEffect = false;
-    _shotInterval = 0.05;
-    _lastShotTime = 0;
-    _hasShipAnimation = true;
-    _imageName = new CCString(pFrameName);
-    
-    // Player機の作成
-    CCString*  frameName = CCString::createWithFormat("%s.plist", pFrameName);
-    
-    CCSpriteFrameCache* frameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
-    frameCache->addSpriteFramesWithFile(frameName->getCString());
-    
-    CCString*   name = CCString::createWithFormat("%s_01.png", pFrameName);
-    _ship = CCSprite::createWithSpriteFrameName(name->getCString());
-    
-    //    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
-    //    _ship->setPosition(ccp(winSize.width * 0.1, winSize.height * 0.5));
-    _ship->setPosition(ccp(0, 0));
-    this->addChild(_ship);
-    
-    return true;
-    
-}
-
-void PlayerShip::initBullets(cocos2d::CCNode* bulletLayer)
+void ShibuyaBossShip::initBullets(cocos2d::CCNode* bulletLayer)
 {
 #define KNUMLASERS 15
     for(int i = 0; i < KNUMLASERS; ++i)
     {
-        BulletSprite *shipLaser = BulletSprite::createWithSpriteFrameName("shot_blue.png");
+        BulletSprite *shipLaser = BulletSprite::createWithSpriteFrameName("shot_red.png");
+		shipLaser->setFlipX(true);
         shipLaser->setVisible(false);
         bulletLayer->addChild(shipLaser);
         bulletList.push_back(shipLaser);
@@ -93,9 +63,9 @@ void PlayerShip::initBullets(cocos2d::CCNode* bulletLayer)
 }
 
 
-PlayerShip* PlayerShip::createShip(const char* pszFileName)
+ShibuyaBossShip* ShibuyaBossShip::createShip(const char* pszFileName)
 {
-    PlayerShip *pobSprite = new PlayerShip();
+    ShibuyaBossShip *pobSprite = new ShibuyaBossShip();
     if (pobSprite && pobSprite->initWithFileName(pszFileName))
     {
         pobSprite->autorelease();
@@ -105,9 +75,9 @@ PlayerShip* PlayerShip::createShip(const char* pszFileName)
     return NULL;
 }
 
-PlayerShip* PlayerShip::createShipFrame(const char* pszFileName, int numFrame)
+ShibuyaBossShip* ShibuyaBossShip::createShipFrame(const char* pszFileName, int numFrame)
 {
-    PlayerShip *pobSprite = new PlayerShip();
+    ShibuyaBossShip *pobSprite = new ShibuyaBossShip();
     if (pobSprite && pobSprite->initWithFrameName(pszFileName, numFrame))
     {
         pobSprite->autorelease();
@@ -117,7 +87,7 @@ PlayerShip* PlayerShip::createShipFrame(const char* pszFileName, int numFrame)
     return NULL;
 }
 
-void PlayerShip::start()
+void ShibuyaBossShip::start()
 {
     if (!_ship)
         return;
@@ -141,13 +111,13 @@ void PlayerShip::start()
     
 }
 
-void PlayerShip::end()
+void ShibuyaBossShip::end()
 {
     if (_ship)
         _ship->stopAllActions();
 }
 
-void PlayerShip::update(float dt)
+void ShibuyaBossShip::update(float dt)
 {
     if (_autoShooting)
     {
@@ -159,11 +129,11 @@ void PlayerShip::update(float dt)
             
             _lastShotTime = curTime;
         }
-        
+		
     }
 }
 
-void PlayerShip::shotBullet()
+void ShibuyaBossShip::shotBullet()
 {
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
     BulletSprite *shipLaser = bulletList[_nextShipLaser++];
@@ -172,14 +142,11 @@ void PlayerShip::shotBullet()
     shipLaser->setPosition( ccpAdd( this->getPosition(), ccp(shipLaser->getContentSize().width/2, 0)));
     shipLaser->setVisible(true);
     shipLaser->stopAllActions();
-    shipLaser->runAction(CCSequence::create(CCMoveBy::create(0.5,ccp(winSize.width, 0)), CCCallFuncN::create(this, callfuncN_selector(PlayerShip::setInvisible)), NULL));
+    shipLaser->runAction(CCSequence::create(CCMoveBy::create(0.5,ccp(-1 * winSize.width, 0)), CCCallFuncN::create(this, callfuncN_selector(ShibuyaBossShip::setInvisible)), NULL));
 }
 
-void PlayerShip::setDamage(cocos2d::CCNode* dispLayer)
+void ShibuyaBossShip::setDamage()
 {
-    if (_duringBombEffect)
-        return;
-    
     CCString*   bombName = new CCString("temp_explosion");
     CCString*   name = CCString::createWithFormat("%s_01.png", bombName->getCString());
     CCSprite* bombSprite = CCSprite::createWithSpriteFrameName(name->getCString());
@@ -195,42 +162,17 @@ void PlayerShip::setDamage(cocos2d::CCNode* dispLayer)
     }
     CCAnimation* animation = CCAnimation::createWithSpriteFrames(frames, kDefaultFrameRate);
     CCAnimate* animate = CCAnimate::create(animation);
-    if (dispLayer)
-    {
-        bombSprite->setPosition(this->getPosition());
-        dispLayer->addChild(bombSprite);
-    }
-    else
-    {
-        bombSprite->setPosition(ccp(0, 0));
-        this->addChild(bombSprite);
-    }
-    bombSprite->runAction(CCSequence::create(animate, CCCallFuncN::create(this, callfuncN_selector(PlayerShip::removeNode)), NULL));
-    _duringBombEffect = true;
+    bombSprite->setPosition(ccp(0, 0));
+    this->addChild(bombSprite);
+    bombSprite->runAction(CCSequence::create(animate, CCCallFuncN::create(this, callfuncN_selector(ShibuyaBossShip::setInvisible)), NULL));
 }
 
-void PlayerShip::setInvisible(CCNode * node)
+void ShibuyaBossShip::setInvisible(CCNode * node)
 {
     node->setVisible(false);
 }
 
-void PlayerShip::removeNode(cocos2d::CCNode* node)
-{
-    node->setVisible(false);
-    node->removeFromParentAndCleanup(true);
-    _duringBombEffect = false;
-}
-
-
-void PlayerShip::touchBeganProcess(cocos2d::CCPoint& pos)
-{
-    if (!_autoShooting)
-    {
-        shotBullet();
-    }
-}
-
-CCPoint PlayerShip::getBodySize()
+CCPoint ShibuyaBossShip::getBodySize()
 {
     if (_ship)
     {
@@ -240,55 +182,32 @@ CCPoint PlayerShip::getBodySize()
     return CCPointZero;
 }
 
-cocos2d::CCRect PlayerShip::getBoundingBox()
+float ShibuyaBossShip::getPositionDx()
 {
-    CCRect  shipBounds = _ship->boundingBox();
-    CCPoint basePos = _ship->convertToWorldSpace(this->getPosition());
-    shipBounds.origin.x = basePos.x;
-    shipBounds.origin.y = basePos.y;
-    
-    return shipBounds;
+	return positionDx;
 }
 
-cocos2d::CCSprite* PlayerShip::getBodySprite()
+float ShibuyaBossShip::getPositionDy()
 {
-    return _ship;
+	return positionDy;
 }
 
-
-void PlayerShip::stopActions()
+void ShibuyaBossShip::turnPositionDx()
 {
-    if (_ship)
-        _ship->stopAllActions();
-    this->stopAllActions();
+	positionDx *= -1;
 }
 
-bool PlayerShip::hitTheBullet(int damageLevel)
+void ShibuyaBossShip::turnPositionDy()
 {
-    _hp -= damageLevel;
-    if (_hp < 0)
-        _hp = 0;
-
-#if 0
-    if (_hp == 0)
-    {
-        stopActions();
-        _ship->setVisible(false);
-    }
-#endif
-    
-    return (_hp == 0)? true: false;
+	positionDy *= -1;
 }
 
-
-int PlayerShip::getHP() const
+void ShibuyaBossShip::setLife(int life)
 {
-    return _hp;
+	_lives = life;
 }
 
-int PlayerShip::getAttackPoint() const
+int ShibuyaBossShip::getLife()
 {
-    return _attackPoint;
+	return _lives;
 }
-
-

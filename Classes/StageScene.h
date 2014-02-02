@@ -46,15 +46,13 @@ public:
     void removeNode(cocos2d::CCNode* node);
     float randomValueBetween(float low, float high);
     
-private:
-    PlayerShip*  _playerShip;
+protected:
 	cocos2d::CCSpriteBatchNode * _batchNode;
     cocos2d::CCNode*    _enemyLayer;
     cocos2d::CCNode*    _effectLayer;
     cocos2d::CCNode*    _uiLayer;
     ParallaxLayer*  _backgroundNode;
     
-    std::vector<EnemyShip*>_enemyList;
     
     // UI View Items
     cocos2d::CCLabelTTF*     _scoreItem;
@@ -75,6 +73,10 @@ private:
     cocos2d::CCPoint _startTouchPos;
     cocos2d::CCPoint _lastTouchPos;
     cocos2d::CCPoint _moveShipPos;
+    
+private:
+    PlayerShip*  _playerShip;
+    std::vector<EnemyShip*>_enemyList;
 };
 
 #endif /* defined(__SpaceGame__StageScene__) */

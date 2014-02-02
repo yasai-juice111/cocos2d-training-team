@@ -16,6 +16,7 @@ class HelloWorld : public cocos2d::CCLayer
 private:
 	cocos2d::CCSpriteBatchNode * _batchNode;
 	cocos2d::CCSprite * _ship;
+	cocos2d::CCSprite * _enemy;
 
     CCParallaxNodeExtras *_backgroundNode;
     CCSprite *_spacedust1;
@@ -34,20 +35,37 @@ private:
     CCArray* _asteroids;
     int _nextAsteroid;
     float _nextAsteroidSpawn;
-    
+
+    CCArray* _enemyChilds;
+    int _nextEnemyChild;
+
     CCArray* _shipLasers;
     int _nextShipLaser;
     
+	CCArray* _enemyLasers;
+	int _nextEnemyLaser;
+    
+	CCArray* _enemyChildLasers;
+	int _nextEnemyChildLaser;
+    
     int _lives;
+    int _enemyLives;
     
     double _gameOverTime;
     bool _gameOver;
     
+	// enemy velocity
+	int _enemyVelocityX;
+	int _enemyVelocityY;
+
     // scheduled Update
     void update(float dt);
     
     void endScene(EndReason endReason);
     void restartTapped();
+    
+    void showLifeLabel();
+    void showRemainingTimeLabel(float time);
     
 public:
     // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone

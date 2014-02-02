@@ -168,6 +168,9 @@ void EnemyShip::update(float dt)
     }
 }
 
+/*
+ 弾をうつ
+ */
 void EnemyShip::shotBullet()
 {
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();

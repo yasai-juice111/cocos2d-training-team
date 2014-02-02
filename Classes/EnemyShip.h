@@ -25,8 +25,8 @@ public:
     void start();
     void end();
     void reset();
-    void update(float dt);
-    void shotBullet();
+	virtual void update(float dt);
+	virtual	void shotBullet();
     void setInvisible(cocos2d::CCNode * node);
     void touchBeganProcess(cocos2d::CCPoint& pos);
     float getMoveSpeed();
