@@ -291,6 +291,9 @@
 		FA77ACC3189512E900C44866 /* splash_10.png in Resources */ = {isa = PBXBuildFile; fileRef = FA77ACB5189512E900C44866 /* splash_10.png */; };
 		FA77ACC4189512E900C44866 /* splash_11.png in Resources */ = {isa = PBXBuildFile; fileRef = FA77ACB6189512E900C44866 /* splash_11.png */; };
 		FA77ACC5189512E900C44866 /* splash_12.png in Resources */ = {isa = PBXBuildFile; fileRef = FA77ACB7189512E900C44866 /* splash_12.png */; };
+		FA8E3CFF189DE8EC00B0C42E /* ChoScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA8E3CFD189DE8EC00B0C42E /* ChoScene.cpp */; };
+		FA8E3D02189DE90100B0C42E /* ChoEnemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA8E3D00189DE90100B0C42E /* ChoEnemy.cpp */; };
+		FA8E3D05189DE90F00B0C42E /* ChoPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA8E3D03189DE90F00B0C42E /* ChoPlayer.cpp */; };
 		FAB8FBCB188BD8E2002143D8 /* android_vs_ios.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = FAB8FBC7188BD8E2002143D8 /* android_vs_ios.jpeg */; };
 		FAB8FBCC188BD8E2002143D8 /* androidFree.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FAB8FBC8188BD8E2002143D8 /* androidFree.jpg */; };
 		FAB8FBCD188BD8E2002143D8 /* miniAndroid.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FAB8FBC9188BD8E2002143D8 /* miniAndroid.jpg */; };
@@ -871,6 +874,12 @@
 		FA77ACB5189512E900C44866 /* splash_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_10.png; sourceTree = "<group>"; };
 		FA77ACB6189512E900C44866 /* splash_11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_11.png; sourceTree = "<group>"; };
 		FA77ACB7189512E900C44866 /* splash_12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_12.png; sourceTree = "<group>"; };
+		FA8E3CFD189DE8EC00B0C42E /* ChoScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ChoScene.cpp; path = ../Classes/ChoScene.cpp; sourceTree = "<group>"; };
+		FA8E3CFE189DE8EC00B0C42E /* ChoScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChoScene.h; path = ../Classes/ChoScene.h; sourceTree = "<group>"; };
+		FA8E3D00189DE90100B0C42E /* ChoEnemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ChoEnemy.cpp; path = ../Classes/ChoEnemy.cpp; sourceTree = "<group>"; };
+		FA8E3D01189DE90100B0C42E /* ChoEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChoEnemy.h; path = ../Classes/ChoEnemy.h; sourceTree = "<group>"; };
+		FA8E3D03189DE90F00B0C42E /* ChoPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ChoPlayer.cpp; path = ../Classes/ChoPlayer.cpp; sourceTree = "<group>"; };
+		FA8E3D04189DE90F00B0C42E /* ChoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChoPlayer.h; path = ../Classes/ChoPlayer.h; sourceTree = "<group>"; };
 		FAB8FBC7188BD8E2002143D8 /* android_vs_ios.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = android_vs_ios.jpeg; sourceTree = "<group>"; };
 		FAB8FBC8188BD8E2002143D8 /* androidFree.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = androidFree.jpg; sourceTree = "<group>"; };
 		FAB8FBC9188BD8E2002143D8 /* miniAndroid.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = miniAndroid.jpg; sourceTree = "<group>"; };
@@ -1418,6 +1427,7 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				FA8E3CFC189DE8C300B0C42E /* cho */,
 				FA4990221894FEB700B99B2C /* Kawabata */,
 				FAF23E0B1883E41A00BC00A2 /* CCParallaxNodeExtras.cpp */,
 				FAF23E0C1883E41A00BC00A2 /* CCParallaxNodeExtras.h */,
@@ -2014,6 +2024,19 @@
 			path = fonts;
 			sourceTree = "<group>";
 		};
+		FA8E3CFC189DE8C300B0C42E /* cho */ = {
+			isa = PBXGroup;
+			children = (
+				FA8E3CFD189DE8EC00B0C42E /* ChoScene.cpp */,
+				FA8E3CFE189DE8EC00B0C42E /* ChoScene.h */,
+				FA8E3D00189DE90100B0C42E /* ChoEnemy.cpp */,
+				FA8E3D01189DE90100B0C42E /* ChoEnemy.h */,
+				FA8E3D03189DE90F00B0C42E /* ChoPlayer.cpp */,
+				FA8E3D04189DE90F00B0C42E /* ChoPlayer.h */,
+			);
+			name = cho;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2392,6 +2415,9 @@
 				FA2F72ED189DD16A0005E7D0 /* KWEnemy.cpp in Sources */,
 				FA2F72EE189DD16A0005E7D0 /* KWPlayer.cpp in Sources */,
 				FA2F72EF189DD16A0005E7D0 /* KWScene.cpp in Sources */,
+				FA8E3CFF189DE8EC00B0C42E /* ChoScene.cpp in Sources */,
+				FA8E3D02189DE90100B0C42E /* ChoEnemy.cpp in Sources */,
+				FA8E3D05189DE90F00B0C42E /* ChoPlayer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
