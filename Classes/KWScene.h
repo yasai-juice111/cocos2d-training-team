@@ -2,7 +2,7 @@
 //  KWScene.h
 //  cocos2dx-space-game
 //
-//  Created by cocos2d-x on 2014/01/26.
+//  Created by c7:kawabata_satoshi on 2014/01/26.
 //
 //
 

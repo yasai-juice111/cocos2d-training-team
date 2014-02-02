@@ -2,7 +2,7 @@
 //  KWPlayer.h
 //  cocos2dx-space-game
 //
-//  Created by kwst_mac on 2014/02/01.
+//  Created by c7:kawabata_satoshi on 2014/02/01.
 //
 //
 
