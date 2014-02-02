@@ -17,7 +17,7 @@ KWPlayer::KWPlayer()
 {
     // 弾のスピード
 	_bulletSpeed = 0.5;
-	_bulletVariation = FOCUS;
+	_bulletVariation = ONE;
 	// ライフ
     _life = 3;
     

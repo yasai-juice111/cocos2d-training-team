@@ -303,6 +303,10 @@
 		FAB8FBCC188BD8E2002143D8 /* androidFree.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FAB8FBC8188BD8E2002143D8 /* androidFree.jpg */; };
 		FAB8FBCD188BD8E2002143D8 /* miniAndroid.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FAB8FBC9188BD8E2002143D8 /* miniAndroid.jpg */; };
 		FAB8FBCE188BD8E2002143D8 /* miniAndroid2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = FAB8FBCA188BD8E2002143D8 /* miniAndroid2.jpeg */; };
+		FAEEA930189E0BE10013A803 /* explosion.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAEEA92B189E0BE10013A803 /* explosion.plist */; };
+		FAEEA931189E0BE10013A803 /* explosion.png in Resources */ = {isa = PBXBuildFile; fileRef = FAEEA92C189E0BE10013A803 /* explosion.png */; };
+		FAEEA932189E0BE10013A803 /* explosion_boss.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAEEA92E189E0BE10013A803 /* explosion_boss.plist */; };
+		FAEEA933189E0BE10013A803 /* explosion_boss.png in Resources */ = {isa = PBXBuildFile; fileRef = FAEEA92F189E0BE10013A803 /* explosion_boss.png */; };
 		FAF23E0D1883E41A00BC00A2 /* CCParallaxNodeExtras.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAF23E0B1883E41A00BC00A2 /* CCParallaxNodeExtras.cpp */; };
 		FAF23E251883E42500BC00A2 /* Arial.fnt in Resources */ = {isa = PBXBuildFile; fileRef = FAF23E0E1883E42500BC00A2 /* Arial.fnt */; };
 		FAF23E261883E42500BC00A2 /* Arial.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF23E0F1883E42500BC00A2 /* Arial.png */; };
@@ -897,6 +901,10 @@
 		FAB8FBC8188BD8E2002143D8 /* androidFree.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = androidFree.jpg; sourceTree = "<group>"; };
 		FAB8FBC9188BD8E2002143D8 /* miniAndroid.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = miniAndroid.jpg; sourceTree = "<group>"; };
 		FAB8FBCA188BD8E2002143D8 /* miniAndroid2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = miniAndroid2.jpeg; sourceTree = "<group>"; };
+		FAEEA92B189E0BE10013A803 /* explosion.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = explosion.plist; sourceTree = "<group>"; };
+		FAEEA92C189E0BE10013A803 /* explosion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = explosion.png; sourceTree = "<group>"; };
+		FAEEA92E189E0BE10013A803 /* explosion_boss.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = explosion_boss.plist; sourceTree = "<group>"; };
+		FAEEA92F189E0BE10013A803 /* explosion_boss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = explosion_boss.png; sourceTree = "<group>"; };
 		FAF23E0B1883E41A00BC00A2 /* CCParallaxNodeExtras.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCParallaxNodeExtras.cpp; path = ../Classes/CCParallaxNodeExtras.cpp; sourceTree = "<group>"; };
 		FAF23E0C1883E41A00BC00A2 /* CCParallaxNodeExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCParallaxNodeExtras.h; path = ../Classes/CCParallaxNodeExtras.h; sourceTree = "<group>"; };
 		FAF23E0E1883E42500BC00A2 /* Arial.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Arial.fnt; sourceTree = "<group>"; };
@@ -1893,6 +1901,8 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FAEEA92A189E0BE10013A803 /* explosion_2_L */,
+				FAEEA92D189E0BE10013A803 /* explosion_boss_1_L */,
 				FA8E3D06189DF14000B0C42E /* splash_13.png */,
 				FA8E3D07189DF14000B0C42E /* splash_14.png */,
 				FA77ACA8189512E900C44866 /* android_special.png */,
@@ -2066,6 +2076,24 @@
 			name = cho;
 			sourceTree = "<group>";
 		};
+		FAEEA92A189E0BE10013A803 /* explosion_2_L */ = {
+			isa = PBXGroup;
+			children = (
+				FAEEA92B189E0BE10013A803 /* explosion.plist */,
+				FAEEA92C189E0BE10013A803 /* explosion.png */,
+			);
+			path = explosion_2_L;
+			sourceTree = "<group>";
+		};
+		FAEEA92D189E0BE10013A803 /* explosion_boss_1_L */ = {
+			isa = PBXGroup;
+			children = (
+				FAEEA92E189E0BE10013A803 /* explosion_boss.plist */,
+				FAEEA92F189E0BE10013A803 /* explosion_boss.png */,
+			);
+			path = explosion_boss_1_L;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2211,6 +2239,10 @@
 				FA77ACC5189512E900C44866 /* splash_12.png in Resources */,
 				FA8E3D08189DF14000B0C42E /* splash_13.png in Resources */,
 				FA8E3D09189DF14000B0C42E /* splash_14.png in Resources */,
+				FAEEA930189E0BE10013A803 /* explosion.plist in Resources */,
+				FAEEA931189E0BE10013A803 /* explosion.png in Resources */,
+				FAEEA932189E0BE10013A803 /* explosion_boss.plist in Resources */,
+				FAEEA933189E0BE10013A803 /* explosion_boss.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

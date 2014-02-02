@@ -44,14 +44,23 @@ public:
     virtual void setInvisible(cocos2d::CCNode * node);
     virtual float randomValueBetween(float low, float high);
 private:
+    // シーン終了処理
+    void endScene();
 	// Playerの当たり判定を見る
 	void judgePlayerHit();
 	// Enemyの当たり判定を見る
 	void judgeEnemyHit();
+    // 現在の経過時間
+    int getCurrentTime();
+    // 経過時間表示
+    void showCurrentTime();
+    
 	// Plyaer
 	KWPlayer* _playerShip;
 	// 敵機
     std::vector<KWEnemy*>_enemyList;
+    // ゲームスターとタイム
+    int _startTime;
 };
 
 #endif /* defined(__cocos2dx_space_game__KWScene__) */

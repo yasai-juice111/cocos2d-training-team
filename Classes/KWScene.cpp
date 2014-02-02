@@ -41,6 +41,7 @@ bool KWScene::init()
     _touchFlag = false;
     _moveShipPos = ccp(0, 0);
     _nextEnemy = 0;
+    _startTime = int(TimeUtils::getTime());
     
     // 画面サイズの取得
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
@@ -187,10 +188,13 @@ void KWScene::update(float dt)
     {
         // 死亡した
         CCLOG("player is dead.....");
+        endScene();
     }
     
+    // 時間表示
+    CCLOG("TIME : %d", getCurrentTime());
+    showCurrentTime();
     
-//    CCLOG("TIME : %d", TimeUtils::getMSecTime());
 }
 
 /**
@@ -292,6 +296,7 @@ void KWScene::judgePlayerHit()
 		iterEnemy++;
 	}
 }
+
 /**
  * Enemyの当たり判定
  */
@@ -324,4 +329,54 @@ void KWScene::judgeEnemyHit()
         }
         iterPlayerBullet++;
     }
+}
+
+/*
+ * 終了処理
+ */
+void KWScene::endScene()
+{
+	// stop schedule
+	this->unscheduleUpdate();
+    
+	// show result
+	char message[10];
+	strcpy(message,"Game Finish!");
+	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+    CCLabelBMFont * label ;
+    label = CCLabelBMFont::create(message, "Arial.fnt");
+    label->setScale(5);
+    label->setPosition(ccp(winSize.width/2 , winSize.height*0.6));
+    this->addChild(label, 100);
+}
+
+/**
+ * 現在の経過時間取得
+ */
+int KWScene::getCurrentTime()
+{
+    int cTime = int(TimeUtils::getTime()) - _startTime;
+    return  cTime;
+}
+
+/**
+ * 経過時間表示
+ */
+void KWScene::showCurrentTime()
+{
+	const int tagPlayerLifeLabel = 101;
+	CCString* lifeString = CCString::createWithFormat("time : %d", getCurrentTime());
+	CCLabelTTF* lifeLabel = (CCLabelTTF*)this->getChildByTag(tagPlayerLifeLabel);
+	if (lifeLabel)
+	{
+		lifeLabel->setString(lifeString->getCString());
+	}
+	else
+	{
+		CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+		lifeLabel = CCLabelTTF::create(lifeString->getCString(), "Arial", 24.0);
+		lifeLabel->setPosition(ccp(winSize.width * 0.1, winSize.height * 0.9));
+		lifeLabel->setTag(tagPlayerLifeLabel);
+		this->addChild(lifeLabel);
+	}
 }

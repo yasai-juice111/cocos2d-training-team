@@ -12,13 +12,6 @@
 #include "PlayerShip.h"
 #include "BulletSprite.h"
 
-// 弾の出方のバリエーション
-enum bulletVariation {
-	ONE,
-	FOCUS,
-	THREE
-};
-
 class KWPlayer : public PlayerShip
 {
 public:
@@ -46,6 +39,12 @@ private:
     
     // ライフ
     int _life;
+    // 弾の出方のバリエーション
+    enum bulletVariation {
+        ONE,
+        FOCUS,
+        THREE
+    };
 };
 
 #endif /* defined(__cocos2dx_space_game__KWPlayer__) */
