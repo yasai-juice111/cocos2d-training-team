@@ -31,7 +31,7 @@ public:
     void touchBeganProcess(cocos2d::CCPoint& pos);
     cocos2d::CCPoint getBodySize();
     
-    void setDamage();
+    virtual void setDamage();
 
 public:
     static PlayerShip* createShip(const char* filename);
