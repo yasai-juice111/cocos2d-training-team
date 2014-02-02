@@ -13,10 +13,10 @@
 #include "BulletSprite.h"
 
 // 弾の出方のバリエーション
-enum bulletVariation {
-	ONE,
-	FOCUS,
-	THREE
+enum bulletVariations {
+	ONE_BULLET,
+	TWO_BULLET,
+	THREE_BULLET
 };
 
 class ChoPlayer : public PlayerShip
@@ -36,7 +36,7 @@ private:
 	// 弾のスピード
 	float _bulletSpeed;
 	// 弾の出方のバリエーション
-	int _bulletVariation;
+	int _bulletVariations;
 	// 弾のインターバル
 	float bulletInterval;
 };
