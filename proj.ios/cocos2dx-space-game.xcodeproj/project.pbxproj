@@ -276,6 +276,7 @@
 		FA402E351894C8D5000CBBF9 /* android_boss_2.png in Resources */ = {isa = PBXBuildFile; fileRef = FA402E321894C8D5000CBBF9 /* android_boss_2.png */; };
 		FA402E361894C8D5000CBBF9 /* android_boss_3.png in Resources */ = {isa = PBXBuildFile; fileRef = FA402E331894C8D5000CBBF9 /* android_boss_3.png */; };
 		FA682AFA189DF8A8009A98B8 /* HiramatsuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA682AF8189DF8A8009A98B8 /* HiramatsuScene.cpp */; };
+
 		FA682B01189DF8C7009A98B8 /* CCJSONConverter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA682AFC189DF8C7009A98B8 /* CCJSONConverter.cpp */; };
 		FA682B02189DF8C7009A98B8 /* cJSON.c in Sources */ = {isa = PBXBuildFile; fileRef = FA682AFF189DF8C7009A98B8 /* cJSON.c */; };
 		FA682B08189DF8F3009A98B8 /* DictUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA682B04189DF8F3009A98B8 /* DictUtil.cpp */; };
@@ -297,6 +298,11 @@
 		FA6934B5189E2FA800C06A5C /* explosion_2_S in Resources */ = {isa = PBXBuildFile; fileRef = FA6934AF189E2FA800C06A5C /* explosion_2_S */; };
 		FA6934B6189E2FA800C06A5C /* explosion_boss_1_L in Resources */ = {isa = PBXBuildFile; fileRef = FA6934B0189E2FA800C06A5C /* explosion_boss_1_L */; };
 		FA6934B7189E2FA800C06A5C /* explosion_boss_1_S in Resources */ = {isa = PBXBuildFile; fileRef = FA6934B1189E2FA800C06A5C /* explosion_boss_1_S */; };
+
+		FA682B42189DF95D009A98B8 /* bullets.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA682B3F189DF95D009A98B8 /* bullets.plist */; };
+		FA682B43189DF95D009A98B8 /* bullets.png in Resources */ = {isa = PBXBuildFile; fileRef = FA682B40189DF95D009A98B8 /* bullets.png */; };
+		FA682B44189DF95D009A98B8 /* episode_hiramatsu.json in Resources */ = {isa = PBXBuildFile; fileRef = FA682B41189DF95D009A98B8 /* episode_hiramatsu.json */; };
+
 		FA77ACB8189512E900C44866 /* android_special.png in Resources */ = {isa = PBXBuildFile; fileRef = FA77ACA8189512E900C44866 /* android_special.png */; };
 		FA77ACB9189512E900C44866 /* apple_hero_2.png in Resources */ = {isa = PBXBuildFile; fileRef = FA77ACA9189512E900C44866 /* apple_hero_2.png */; };
 		FA77ACBA189512E900C44866 /* apple_hero.png in Resources */ = {isa = PBXBuildFile; fileRef = FA77ACAA189512E900C44866 /* apple_hero.png */; };
@@ -321,6 +327,12 @@
 		FAB8FBCC188BD8E2002143D8 /* androidFree.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FAB8FBC8188BD8E2002143D8 /* androidFree.jpg */; };
 		FAB8FBCD188BD8E2002143D8 /* miniAndroid.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FAB8FBC9188BD8E2002143D8 /* miniAndroid.jpg */; };
 		FAB8FBCE188BD8E2002143D8 /* miniAndroid2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = FAB8FBCA188BD8E2002143D8 /* miniAndroid2.jpeg */; };
+		FACF6785189E17C000A75E0F /* background in Resources */ = {isa = PBXBuildFile; fileRef = FACF6784189E17C000A75E0F /* background */; };
+		FACF678B189E17F400A75E0F /* explosion_1 in Resources */ = {isa = PBXBuildFile; fileRef = FACF6786189E17F300A75E0F /* explosion_1 */; };
+		FACF678C189E17F400A75E0F /* explosion_2_L in Resources */ = {isa = PBXBuildFile; fileRef = FACF6787189E17F300A75E0F /* explosion_2_L */; };
+		FACF678D189E17F400A75E0F /* explosion_2_S in Resources */ = {isa = PBXBuildFile; fileRef = FACF6788189E17F300A75E0F /* explosion_2_S */; };
+		FACF678E189E17F400A75E0F /* explosion_boss_1_L in Resources */ = {isa = PBXBuildFile; fileRef = FACF6789189E17F300A75E0F /* explosion_boss_1_L */; };
+		FACF678F189E17F400A75E0F /* explosion_boss_1_S in Resources */ = {isa = PBXBuildFile; fileRef = FACF678A189E17F300A75E0F /* explosion_boss_1_S */; };
 		FAF23E0D1883E41A00BC00A2 /* CCParallaxNodeExtras.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAF23E0B1883E41A00BC00A2 /* CCParallaxNodeExtras.cpp */; };
 		FAF23E251883E42500BC00A2 /* Arial.fnt in Resources */ = {isa = PBXBuildFile; fileRef = FAF23E0E1883E42500BC00A2 /* Arial.fnt */; };
 		FAF23E261883E42500BC00A2 /* Arial.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF23E0F1883E42500BC00A2 /* Arial.png */; };
@@ -883,16 +895,8 @@
 		FA402E331894C8D5000CBBF9 /* android_boss_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = android_boss_3.png; sourceTree = "<group>"; };
 		FA682AF8189DF8A8009A98B8 /* HiramatsuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HiramatsuScene.cpp; path = ../Classes/HiramatsuScene.cpp; sourceTree = "<group>"; };
 		FA682AF9189DF8A8009A98B8 /* HiramatsuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HiramatsuScene.h; path = ../Classes/HiramatsuScene.h; sourceTree = "<group>"; };
-		FA682AFC189DF8C7009A98B8 /* CCJSONConverter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCJSONConverter.cpp; path = ../Classes/JSONParser/CCJSONConverter.cpp; sourceTree = "<group>"; };
-		FA682AFD189DF8C7009A98B8 /* CCJSONConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCJSONConverter.h; path = ../Classes/JSONParser/CCJSONConverter.h; sourceTree = "<group>"; };
-		FA682AFE189DF8C7009A98B8 /* CCJSONData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCJSONData.h; path = ../Classes/JSONParser/CCJSONData.h; sourceTree = "<group>"; };
-		FA682AFF189DF8C7009A98B8 /* cJSON.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cJSON.c; path = ../Classes/JSONParser/cJSON.c; sourceTree = "<group>"; };
-		FA682B00189DF8C7009A98B8 /* cJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cJSON.h; path = ../Classes/JSONParser/cJSON.h; sourceTree = "<group>"; };
-		FA682B04189DF8F3009A98B8 /* DictUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DictUtil.cpp; path = ../Classes/DictUtil.cpp; sourceTree = "<group>"; };
-		FA682B05189DF8F3009A98B8 /* DictUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DictUtil.h; path = ../Classes/DictUtil.h; sourceTree = "<group>"; };
-		FA682B06189DF8F3009A98B8 /* JSONToDictConverter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = JSONToDictConverter.cpp; path = ../Classes/JSONToDictConverter.cpp; sourceTree = "<group>"; };
-		FA682B07189DF8F3009A98B8 /* JSONToDictConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONToDictConverter.h; path = ../Classes/JSONToDictConverter.h; sourceTree = "<group>"; };
 		FA682B0A189DF900009A98B8 /* GameConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameConst.h; path = ../Classes/GameConst.h; sourceTree = "<group>"; };
+
 		FA682B0C189DF91F009A98B8 /* ConfigBackground.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ConfigBackground.cpp; path = ../Classes/config/ConfigBackground.cpp; sourceTree = "<group>"; };
 		FA682B0E189DF92B009A98B8 /* ConfigBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConfigBackground.h; path = ../Classes/config/ConfigBackground.h; sourceTree = "<group>"; };
 		FA682B0F189DF92B009A98B8 /* ConfigEnemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ConfigEnemy.cpp; path = ../Classes/config/ConfigEnemy.cpp; sourceTree = "<group>"; };
@@ -918,6 +922,11 @@
 		FA6934AF189E2FA800C06A5C /* explosion_2_S */ = {isa = PBXFileReference; lastKnownFileType = folder; path = explosion_2_S; sourceTree = "<group>"; };
 		FA6934B0189E2FA800C06A5C /* explosion_boss_1_L */ = {isa = PBXFileReference; lastKnownFileType = folder; path = explosion_boss_1_L; sourceTree = "<group>"; };
 		FA6934B1189E2FA800C06A5C /* explosion_boss_1_S */ = {isa = PBXFileReference; lastKnownFileType = folder; path = explosion_boss_1_S; sourceTree = "<group>"; };
+
+		FA682B3F189DF95D009A98B8 /* bullets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bullets.plist; sourceTree = "<group>"; };
+		FA682B40189DF95D009A98B8 /* bullets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullets.png; sourceTree = "<group>"; };
+		FA682B41189DF95D009A98B8 /* episode_hiramatsu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = episode_hiramatsu.json; sourceTree = "<group>"; };
+
 		FA77ACA8189512E900C44866 /* android_special.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = android_special.png; sourceTree = "<group>"; };
 		FA77ACA9189512E900C44866 /* apple_hero_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = apple_hero_2.png; sourceTree = "<group>"; };
 		FA77ACAA189512E900C44866 /* apple_hero.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = apple_hero.png; sourceTree = "<group>"; };
@@ -948,6 +957,12 @@
 		FAB8FBC8188BD8E2002143D8 /* androidFree.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = androidFree.jpg; sourceTree = "<group>"; };
 		FAB8FBC9188BD8E2002143D8 /* miniAndroid.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = miniAndroid.jpg; sourceTree = "<group>"; };
 		FAB8FBCA188BD8E2002143D8 /* miniAndroid2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = miniAndroid2.jpeg; sourceTree = "<group>"; };
+		FACF6784189E17C000A75E0F /* background */ = {isa = PBXFileReference; lastKnownFileType = folder; path = background; sourceTree = "<group>"; };
+		FACF6786189E17F300A75E0F /* explosion_1 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = explosion_1; sourceTree = "<group>"; };
+		FACF6787189E17F300A75E0F /* explosion_2_L */ = {isa = PBXFileReference; lastKnownFileType = folder; path = explosion_2_L; sourceTree = "<group>"; };
+		FACF6788189E17F300A75E0F /* explosion_2_S */ = {isa = PBXFileReference; lastKnownFileType = folder; path = explosion_2_S; sourceTree = "<group>"; };
+		FACF6789189E17F300A75E0F /* explosion_boss_1_L */ = {isa = PBXFileReference; lastKnownFileType = folder; path = explosion_boss_1_L; sourceTree = "<group>"; };
+		FACF678A189E17F300A75E0F /* explosion_boss_1_S */ = {isa = PBXFileReference; lastKnownFileType = folder; path = explosion_boss_1_S; sourceTree = "<group>"; };
 		FAF23E0B1883E41A00BC00A2 /* CCParallaxNodeExtras.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCParallaxNodeExtras.cpp; path = ../Classes/CCParallaxNodeExtras.cpp; sourceTree = "<group>"; };
 		FAF23E0C1883E41A00BC00A2 /* CCParallaxNodeExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCParallaxNodeExtras.h; path = ../Classes/CCParallaxNodeExtras.h; sourceTree = "<group>"; };
 		FAF23E0E1883E42500BC00A2 /* Arial.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Arial.fnt; sourceTree = "<group>"; };
@@ -1502,9 +1517,6 @@
 				FA682B0A189DF900009A98B8 /* GameConst.h */,
 				FA1314991894E1CC00BBBF27 /* Scene */,
 				FA13149A1894E1D500BBBF27 /* Game */,
-				FA682B03189DF8CE009A98B8 /* Utils */,
-				FA682B0B189DF907009A98B8 /* Config */,
-				FA682AFB189DF8B0009A98B8 /* JSONUtils */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -1965,7 +1977,13 @@
 				FA682B40189DF95D009A98B8 /* bullets.png */,
 				FA682B41189DF95D009A98B8 /* episode_hiramatsu.json */,
 				FA77ACAF189512E900C44866 /* fonts */,
+				FACF6784189E17C000A75E0F /* background */,
 				FA77ACB1189512E900C44866 /* splash_1.png */,
+				FACF6786189E17F300A75E0F /* explosion_1 */,
+				FACF6787189E17F300A75E0F /* explosion_2_L */,
+				FACF6788189E17F300A75E0F /* explosion_2_S */,
+				FACF6789189E17F300A75E0F /* explosion_boss_1_L */,
+				FACF678A189E17F300A75E0F /* explosion_boss_1_S */,
 				FA77ACB2189512E900C44866 /* splash_2.png */,
 				FA77ACB3189512E900C44866 /* splash_3.png */,
 				FA77ACB4189512E900C44866 /* splash_4.png */,
@@ -2086,6 +2104,7 @@
 			name = Hiramatsu;
 			sourceTree = "<group>";
 		};
+
 		FA682AFB189DF8B0009A98B8 /* JSONUtils */ = {
 			isa = PBXGroup;
 			children = (
@@ -2132,6 +2151,8 @@
 			name = Config;
 			sourceTree = "<group>";
 		};
+
+
 		FA77ACAF189512E900C44866 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -2310,12 +2331,21 @@
 				FA682B42189DF95D009A98B8 /* bullets.plist in Resources */,
 				FA682B43189DF95D009A98B8 /* bullets.png in Resources */,
 				FA682B44189DF95D009A98B8 /* episode_hiramatsu.json in Resources */,
+
 				FA6934B2189E2FA800C06A5C /* background in Resources */,
 				FA6934B3189E2FA800C06A5C /* explosion_1 in Resources */,
 				FA6934B4189E2FA800C06A5C /* explosion_2_L in Resources */,
 				FA6934B5189E2FA800C06A5C /* explosion_2_S in Resources */,
 				FA6934B6189E2FA800C06A5C /* explosion_boss_1_L in Resources */,
 				FA6934B7189E2FA800C06A5C /* explosion_boss_1_S in Resources */,
+
+				FACF6785189E17C000A75E0F /* background in Resources */,
+				FACF678B189E17F400A75E0F /* explosion_1 in Resources */,
+				FACF678C189E17F400A75E0F /* explosion_2_L in Resources */,
+				FACF678D189E17F400A75E0F /* explosion_2_S in Resources */,
+				FACF678E189E17F400A75E0F /* explosion_boss_1_L in Resources */,
+				FACF678F189E17F400A75E0F /* explosion_boss_1_S in Resources */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2555,18 +2585,6 @@
 				FA8E3D02189DE90100B0C42E /* ChoEnemy.cpp in Sources */,
 				FA8E3D05189DE90F00B0C42E /* ChoPlayer.cpp in Sources */,
 				FA682AFA189DF8A8009A98B8 /* HiramatsuScene.cpp in Sources */,
-				FA682B01189DF8C7009A98B8 /* CCJSONConverter.cpp in Sources */,
-				FA682B02189DF8C7009A98B8 /* cJSON.c in Sources */,
-				FA682B08189DF8F3009A98B8 /* DictUtil.cpp in Sources */,
-				FA682B09189DF8F3009A98B8 /* JSONToDictConverter.cpp in Sources */,
-				FA682B0D189DF91F009A98B8 /* ConfigBackground.cpp in Sources */,
-				FA682B1D189DF92B009A98B8 /* ConfigEnemy.cpp in Sources */,
-				FA682B1E189DF92B009A98B8 /* ConfigEnemyPopData.cpp in Sources */,
-				FA682B1F189DF92B009A98B8 /* ConfigGame.cpp in Sources */,
-				FA682B20189DF92B009A98B8 /* ConfigGameState.cpp in Sources */,
-				FA682B21189DF92B009A98B8 /* ConfigMovePattern.cpp in Sources */,
-				FA682B22189DF92B009A98B8 /* ConfigPlayer.cpp in Sources */,
-				FA682B23189DF92B009A98B8 /* ConfigStage.cpp in Sources */,
 				FA8BF2F8189E0A57000AD61B /* ShibuyaBossShip.cpp in Sources */,
 				FA8BF2F9189E0A57000AD61B /* ShibuyaPlayerShip.cpp in Sources */,
 				FA8BF2FA189E0A57000AD61B /* ShibuyaScene.cpp in Sources */,

@@ -15,10 +15,10 @@ ChoPlayer::ChoPlayer()
 {
     // 弾のスピード
 	_bulletSpeed = 0.5;
-	_bulletVariation = FOCUS;
+	_bulletVariations = TWO_BULLET;
 	
 	
-	bulletInterval = CCRANDOM_0_1() * 0.1;
+	bulletInterval = CCRANDOM_0_1() * 0.5;
 }
 
 ChoPlayer::~ChoPlayer()
@@ -78,26 +78,26 @@ void ChoPlayer::update(float dt)
 void ChoPlayer::shotBullet()
 {
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
-	switch (_bulletVariation)
+	switch (_bulletVariations)
 	{
-		case ONE:
-			createLaser(bulletList[_nextShipLaser++], winSize, ONE, _bulletSpeed);
+		case ONE_BULLET:
+			createLaser(bulletList[_nextShipLaser++], winSize, ONE_BULLET, _bulletSpeed);
 			break;
-		case FOCUS:
-			createLaser(bulletList[_nextShipLaser++], winSize, ONE, _bulletSpeed);
-			createLaser(bulletList[_nextShipLaser++], winSize, FOCUS, _bulletSpeed);
-			createLaser(bulletList[_nextShipLaser++], winSize, -FOCUS, _bulletSpeed);
+		case TWO_BULLET:
+			createLaser(bulletList[_nextShipLaser++], winSize, ONE_BULLET, _bulletSpeed);
+			createLaser(bulletList[_nextShipLaser++], winSize, TWO_BULLET, _bulletSpeed);
+			createLaser(bulletList[_nextShipLaser++], winSize, -TWO_BULLET, _bulletSpeed);
 			break;
-		case THREE:
-			createLaser(bulletList[_nextShipLaser++], winSize, ONE, _bulletSpeed);
-			createLaser(bulletList[_nextShipLaser++], winSize, FOCUS, _bulletSpeed);
-			createLaser(bulletList[_nextShipLaser++], winSize, -FOCUS, _bulletSpeed);
-			createLaser(bulletList[_nextShipLaser++], winSize, THREE, _bulletSpeed);
-			createLaser(bulletList[_nextShipLaser++], winSize, -THREE, _bulletSpeed);
+		case THREE_BULLET:
+			createLaser(bulletList[_nextShipLaser++], winSize, ONE_BULLET, _bulletSpeed);
+			createLaser(bulletList[_nextShipLaser++], winSize, TWO_BULLET, _bulletSpeed);
+			createLaser(bulletList[_nextShipLaser++], winSize, -TWO_BULLET, _bulletSpeed);
+			createLaser(bulletList[_nextShipLaser++], winSize, THREE_BULLET, _bulletSpeed);
+			createLaser(bulletList[_nextShipLaser++], winSize, -THREE_BULLET, _bulletSpeed);
 			break;
 			
 		default:
-			createLaser(bulletList[_nextShipLaser++], winSize, ONE, _bulletSpeed);
+			createLaser(bulletList[_nextShipLaser++], winSize, ONE_BULLET, _bulletSpeed);
 			break;
 	}
 }

@@ -11,12 +11,9 @@
 #include "PlayerShip.h"
 #include "EnemyShip.h"
 #include "BulletSprite.h"
-#include "ConfigGame.h"
 #include "GameConst.h"
 #include "TimeUtils.h"
-#include "JSONToDictConverter.h"
 #include "SimpleAudioEngine.h"
-#include "CCJSONConverter.h"
 
 using namespace CocosDenshion;
 
@@ -59,28 +56,7 @@ bool StageScene::init()
     _bossHP = 100;
     
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
-    
-    CCDictionary* configDict = NULL;
-    // File path.
-    const char* fileName = "episode_hiramatsu.json";
-    std::string fullPath = CCFileUtils::sharedFileUtils()->fullPathForFilename(fileName);
-    
-    // File open mode. (See "fopen" in the "stdio.h")
-    const char* openMode = "r";
-    
-    // File size (will be set when open the file).
-    unsigned long fileSize = 0;
-    
-    // Open the file and get the data.
-    unsigned char* json_str = CCFileUtils::sharedFileUtils()->getFileData(fullPath.c_str(), openMode, &fileSize);
-    if (json_str)
-    {
-        //        configDict = JSONToDictConverter::queryDictionary((const char *)json_str);
-        configDict = CCJSONConverter::sharedConverter()->dictionaryFrom((const char *)json_str);
-    }
-    
-    _config = new ConfigGame(configDict);
-    
+        
     // plistの登録
     CCSpriteFrameCache* frameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
     //    frameCache->addSpriteFramesWithFile("dragon_ss.plist");
@@ -91,7 +67,7 @@ bool StageScene::init()
     // 背景レイヤーの設定
     _backgroundNode = ParallaxLayer::createLayer();
 #if 1  // 背景は外部から取得したJSONデータから設定する
-    _backgroundNode->addChildLayer("1A2_normalBG01.jpeg", 0, 1.0, ccp(0.25, 1.0), CCPointZero);
+    _backgroundNode->addChildLayer("background/1A2_normalBG01.jpeg", 0, 1.0, ccp(0.25, 1.0), CCPointZero);
     //    _backgroundNode->addChildLayer("bglayer2.png", 0, 1.5, ccp(0.5, 1.0), CCPointZero);
     //    _backgroundNode->addChildLayer("bglayer3.png", 0, 1.5, ccp(1.0, 1.0), CCPointZero);
 #endif
