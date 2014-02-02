@@ -30,7 +30,6 @@ public:
     void setInvisible(cocos2d::CCNode * node);
     void touchBeganProcess(cocos2d::CCPoint& pos);
     cocos2d::CCPoint getBodySize();
-    
     virtual void setDamage();
 
 public:
@@ -48,7 +47,7 @@ protected:
     double              _shotInterval;
     double              _lastShotTime;
     
-//    cocos2d::CCArray*   _shipLasers;
+    //    cocos2d::CCArray*   _shipLasers;
     int                 _nextShipLaser;
 };
 
