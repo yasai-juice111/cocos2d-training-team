@@ -183,7 +183,6 @@ void ShibuyaScene::update(float dt)
     _playerShip->setPosition(ccp(newX, newY));
     _moveShipPos = ccp(0, 0);
     _playerShip->update(dt);
-	SimpleAudioEngine::sharedEngine()->playEffect("laser_ship.wav");
     	
 	// ボス機の表示位置の更新
 	float bossShipNextPositionX = _shibuyaBossShip->getPosition().x + _shibuyaBossShip->getPositionDx();

@@ -170,6 +170,8 @@ void ShibuyaPlayerShip::shotBullet()
     shipLaser->setVisible(true);
     shipLaser->stopAllActions();
     shipLaser->runAction(CCSequence::create(CCMoveBy::create(0.5,ccp(winSize.width, 0)), CCCallFuncN::create(this, callfuncN_selector(ShibuyaPlayerShip::setInvisible)), NULL));
+    
+    SimpleAudioEngine::sharedEngine()->playEffect("laser_ship.wav");
 }
 
 void ShibuyaPlayerShip::setDamage()

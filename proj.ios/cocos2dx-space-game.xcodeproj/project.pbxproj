@@ -276,6 +276,7 @@
 		FA338D9D189E16D400C86357 /* explosion_boss.png in Resources */ = {isa = PBXBuildFile; fileRef = FA338D98189E16D400C86357 /* explosion_boss.png */; };
 		FA338D9E189E16D400C86357 /* explosion_boss.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA338D9A189E16D400C86357 /* explosion_boss.plist */; };
 		FA338D9F189E16D400C86357 /* explosion_boss.png in Resources */ = {isa = PBXBuildFile; fileRef = FA338D9B189E16D400C86357 /* explosion_boss.png */; };
+		FA338DA3189E217E00C86357 /* battery-empty-256x256.png in Resources */ = {isa = PBXBuildFile; fileRef = FA338DA2189E217E00C86357 /* battery-empty-256x256.png */; };
 		FA402E341894C8D5000CBBF9 /* android_boss_1.png in Resources */ = {isa = PBXBuildFile; fileRef = FA402E311894C8D5000CBBF9 /* android_boss_1.png */; };
 		FA402E351894C8D5000CBBF9 /* android_boss_2.png in Resources */ = {isa = PBXBuildFile; fileRef = FA402E321894C8D5000CBBF9 /* android_boss_2.png */; };
 		FA402E361894C8D5000CBBF9 /* android_boss_3.png in Resources */ = {isa = PBXBuildFile; fileRef = FA402E331894C8D5000CBBF9 /* android_boss_3.png */; };
@@ -897,6 +898,7 @@
 		FA338D98189E16D400C86357 /* explosion_boss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = explosion_boss.png; sourceTree = "<group>"; };
 		FA338D9A189E16D400C86357 /* explosion_boss.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = explosion_boss.plist; sourceTree = "<group>"; };
 		FA338D9B189E16D400C86357 /* explosion_boss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = explosion_boss.png; sourceTree = "<group>"; };
+		FA338DA2189E217E00C86357 /* battery-empty-256x256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "battery-empty-256x256.png"; sourceTree = "<group>"; };
 		FA402E311894C8D5000CBBF9 /* android_boss_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = android_boss_1.png; sourceTree = "<group>"; };
 		FA402E321894C8D5000CBBF9 /* android_boss_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = android_boss_2.png; sourceTree = "<group>"; };
 		FA402E331894C8D5000CBBF9 /* android_boss_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = android_boss_3.png; sourceTree = "<group>"; };
@@ -1979,6 +1981,7 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FA338DA2189E217E00C86357 /* battery-empty-256x256.png */,
 				FA338D96189E16D400C86357 /* explosion_boss_1_L */,
 				FA338D99189E16D400C86357 /* explosion_boss_1_S */,
 				FA8E3D06189DF14000B0C42E /* splash_13.png */,
@@ -2416,6 +2419,7 @@
 				FA338D9D189E16D400C86357 /* explosion_boss.png in Resources */,
 				FA338D9E189E16D400C86357 /* explosion_boss.plist in Resources */,
 				FA338D9F189E16D400C86357 /* explosion_boss.png in Resources */,
+				FA338DA3189E217E00C86357 /* battery-empty-256x256.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
