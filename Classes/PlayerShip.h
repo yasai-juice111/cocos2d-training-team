@@ -32,16 +32,13 @@ public:
     cocos2d::CCPoint getBodySize();
     
     void setDamage();
-
+    
 public:
     static PlayerShip* createShip(const char* filename);
     static PlayerShip* createShipFrame(const char* filename, int numFrame);
     
 public:
     std::vector<BulletSprite*>  bulletList;
-	
-	void setLife(int life);
-	int getLife();
     
 protected:
     cocos2d::CCSprite*  _ship;
@@ -51,10 +48,8 @@ protected:
     double              _shotInterval;
     double              _lastShotTime;
     
-//    cocos2d::CCArray*   _shipLasers;
+    //    cocos2d::CCArray*   _shipLasers;
     int                 _nextShipLaser;
-	
-	int _lives;
 };
 
 #endif /* defined(__SpaceGame__PlayerShip__) */

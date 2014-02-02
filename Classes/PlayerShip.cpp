@@ -55,19 +55,19 @@ bool PlayerShip::initWithFrameName(const char* pFrameName, int numFrame)
     _shotInterval = 0.05;
     _lastShotTime = 0;
     _hasShipAnimation = true;
-   _imageName = new CCString(pFrameName);
+    _imageName = new CCString(pFrameName);
     
     // Player機の作成
     CCString*  frameName = CCString::createWithFormat("%s.plist", pFrameName);
-
+    
     CCSpriteFrameCache* frameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
     frameCache->addSpriteFramesWithFile(frameName->getCString());
     
     CCString*   name = CCString::createWithFormat("%s_01.png", pFrameName);
     _ship = CCSprite::createWithSpriteFrameName(name->getCString());
     
-//    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
-//    _ship->setPosition(ccp(winSize.width * 0.1, winSize.height * 0.5));
+    //    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+    //    _ship->setPosition(ccp(winSize.width * 0.1, winSize.height * 0.5));
     _ship->setPosition(ccp(0, 0));
     this->addChild(_ship);
     
@@ -155,7 +155,7 @@ void PlayerShip::update(float dt)
             
             _lastShotTime = curTime;
         }
-
+        
     }
 }
 
@@ -216,12 +216,3 @@ CCPoint PlayerShip::getBodySize()
     return CCPointZero;
 }
 
-void PlayerShip::setLife(int life)
-{
-	_lives = life;
-}
-
-int PlayerShip::getLife()
-{
-	return _lives;
-}
