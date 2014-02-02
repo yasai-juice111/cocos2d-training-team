@@ -313,6 +313,7 @@
 		FAB8FBCC188BD8E2002143D8 /* androidFree.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FAB8FBC8188BD8E2002143D8 /* androidFree.jpg */; };
 		FAB8FBCD188BD8E2002143D8 /* miniAndroid.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FAB8FBC9188BD8E2002143D8 /* miniAndroid.jpg */; };
 		FAB8FBCE188BD8E2002143D8 /* miniAndroid2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = FAB8FBCA188BD8E2002143D8 /* miniAndroid2.jpeg */; };
+		FAD77411189DF09D00518628 /* ShibuyaPlayerShip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAD7740F189DF09D00518628 /* ShibuyaPlayerShip.cpp */; };
 		FAF23E0D1883E41A00BC00A2 /* CCParallaxNodeExtras.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAF23E0B1883E41A00BC00A2 /* CCParallaxNodeExtras.cpp */; };
 		FAF23E251883E42500BC00A2 /* Arial.fnt in Resources */ = {isa = PBXBuildFile; fileRef = FAF23E0E1883E42500BC00A2 /* Arial.fnt */; };
 		FAF23E261883E42500BC00A2 /* Arial.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF23E0F1883E42500BC00A2 /* Arial.png */; };
@@ -913,6 +914,8 @@
 		FAB8FBC8188BD8E2002143D8 /* androidFree.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = androidFree.jpg; sourceTree = "<group>"; };
 		FAB8FBC9188BD8E2002143D8 /* miniAndroid.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = miniAndroid.jpg; sourceTree = "<group>"; };
 		FAB8FBCA188BD8E2002143D8 /* miniAndroid2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = miniAndroid2.jpeg; sourceTree = "<group>"; };
+		FAD7740F189DF09D00518628 /* ShibuyaPlayerShip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShibuyaPlayerShip.cpp; path = ../Classes/ShibuyaPlayerShip.cpp; sourceTree = "<group>"; };
+		FAD77410189DF09D00518628 /* ShibuyaPlayerShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShibuyaPlayerShip.h; path = ../Classes/ShibuyaPlayerShip.h; sourceTree = "<group>"; };
 		FAF23E0B1883E41A00BC00A2 /* CCParallaxNodeExtras.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCParallaxNodeExtras.cpp; path = ../Classes/CCParallaxNodeExtras.cpp; sourceTree = "<group>"; };
 		FAF23E0C1883E41A00BC00A2 /* CCParallaxNodeExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCParallaxNodeExtras.h; path = ../Classes/CCParallaxNodeExtras.h; sourceTree = "<group>"; };
 		FAF23E0E1883E42500BC00A2 /* Arial.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Arial.fnt; sourceTree = "<group>"; };
@@ -2037,6 +2040,8 @@
 				FA230CC41894F30600C1F1B8 /* ShibuyaScene.h */,
 				241CC48B189C094E00B977C0 /* ShibuyaBossShip.cpp */,
 				241CC48C189C094F00B977C0 /* ShibuyaBossShip.h */,
+				FAD7740F189DF09D00518628 /* ShibuyaPlayerShip.cpp */,
+				FAD77410189DF09D00518628 /* ShibuyaPlayerShip.h */,
 			);
 			name = Shibuya;
 			sourceTree = "<group>";
@@ -2476,6 +2481,7 @@
 				FA2F72ED189DD16A0005E7D0 /* KWEnemy.cpp in Sources */,
 				FA2F72EE189DD16A0005E7D0 /* KWPlayer.cpp in Sources */,
 				FA2F72EF189DD16A0005E7D0 /* KWScene.cpp in Sources */,
+				FAD77411189DF09D00518628 /* ShibuyaPlayerShip.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

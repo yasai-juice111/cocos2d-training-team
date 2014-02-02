@@ -11,7 +11,7 @@
 
 #include "StageScene.h"
 #include "ParallaxLayer.h"
-#include "PlayerShip.h"
+#include "ShibuyaPlayerShip.h"
 #include "EnemyShip.h"
 #include "BulletSprite.h"
 #include "TimeUtils.h"
@@ -43,7 +43,7 @@ public:
     virtual void setInvisible(cocos2d::CCNode * node);
     virtual float randomValueBetween(float low, float high);
 private:
-    PlayerShip* _playerShip;
+    ShibuyaPlayerShip* _playerShip;
     int _playerShipLife;
 	cocos2d::CCSpriteBatchNode * _batchNode;
     cocos2d::CCNode*    _enemyLayer;

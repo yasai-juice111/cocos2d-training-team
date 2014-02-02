@@ -75,7 +75,7 @@ bool ShibuyaScene::init()
     
     // Player機の作成
     CCString*   playerShipName = new CCString("temp_apple.png");
-    _playerShip = PlayerShip::createShip(playerShipName->getCString());
+    _playerShip = ShibuyaPlayerShip::createShip(playerShipName->getCString());
     _playerShip->setPosition(ccp(winSize.width * 0.1, winSize.height * 0.9));
     this->addChild(_playerShip, 3);
 	
