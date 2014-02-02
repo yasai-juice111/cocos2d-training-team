@@ -2,7 +2,7 @@
 //  ShibuyaPlayerShip.cpp
 //  cocos2dx-space-game
 //
-//  Created by cocos2d-x on 14/02/02.
+//  Created by c2:shibuya_shun on 14/02/02.
 //
 //
 

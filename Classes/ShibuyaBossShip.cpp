@@ -2,7 +2,7 @@
 //  ShibuyaBossShip.cpp
 //  cocos2dx-space-game
 //
-//  Created by Shun SHIBUYA on 14/02/01.
+//  Created by c2:shibuya_shun on 14/02/01.
 //
 //
 
